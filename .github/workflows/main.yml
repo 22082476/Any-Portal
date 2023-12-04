@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: '14'
 
+      - name: Set up working directory
+        run: cd ../../any-portal-frontend  # Vervang 'path/to/your/react/project' door het juiste pad
+          
       - name: Install dependencies
         run: npm install
 

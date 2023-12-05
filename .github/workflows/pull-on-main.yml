@@ -13,12 +13,43 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build and run API Docker containers
+      
+
+      - name: Build and run ChatApi Docker containers
+
         uses: docker/build-push-action@v2
         with:
           context: ChatApi
           file: ChatApi/Dockerfile
           push: false # Zet op true als je de image wilt pushen naar een Docker registry
+
+      - name: Build and run LoginApi Docker containers
+        uses: docker/build-push-action@v2
+        with:
+            context: LoginApi
+            file: LoginApi/Dockerfile
+            push: false  
+            
+      - name: Build and run MedicalApi Docker containers
+        uses: docker/build-push-action@v2
+        with:
+            context: MedicalApi
+            file: MedicalApi/Dockerfile
+            push: false 
+
+      - name: Build and run ResearchApi Docker containers
+        uses: docker/build-push-action@v2
+        with:
+            context: ResearchApi
+            file: ResearchApi/Dockerfile
+            push: false 
+
+      - name: Build and run UserApi Docker containers
+        uses: docker/build-push-action@v2
+        with:
+            context: UserApi
+            file: UserApi/Dockerfile
+            push: false 
 
           # Voeg hier andere Docker build-stappen toe voor andere API's op dezelfde manier
 
@@ -32,17 +63,34 @@ jobs:
           cd Test.ChatApi
           dotnet test &
 
+          cd ../Test.LoginApi
+          dotnet test &
+
+          cd ../Test.MedicalApi
+          dotnet test &
+
+          cd ../Test.ResearchApi
+          dotnet test &
+
+          cd ../Test.UserApi
+          dotnet test &
+
+
           # Voeg hier andere API-testprojecten toe op dezelfde manier
 
       - name: Wait for API tests to complete
         run: wait
 
-  merge:
+  merge-allowed:
     needs: test
     runs-on: ubuntu-latest
+    if: always()  # Deze regel zorgt ervoor dat de job altijd wordt uitgevoerd
+
     steps:
-      - name: Check test results and merge if successful
-        if: ${{ job.status == 'success' }}
-        uses: pullreminders/merge-action@v5
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check test is succes
+        if: ${{ needs.test.result == 'success' }}
+        run: echo "Tests passed. You can merge this pull request."
+      
+      - name: Check test is failed
+        if: ${{ needs.test.result != 'success' }}
+        run: echo "Tests failed. Cannot merge this pull request."

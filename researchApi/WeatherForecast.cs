@@ -1,4 +1,4 @@
-namespace researchApi;
+namespace ResearchApi;
 
 public class WeatherForecast
 {

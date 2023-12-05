@@ -1,0 +1,50 @@
+name: Run Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install Node.js dependencies
+        run: npm install
+        working-directory: path/to/your/react/project # Pad naar je React-project
+
+      - name: Run React tests
+        run: npm test
+        working-directory: path/to/your/react/project # Pad naar je React-project
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1' # of de juiste versie voor je project
+
+      - name: Restore .NET Core dependencies and build
+        run: |
+          dotnet restore  # Herstel de .NET-afhankelijkheden
+          dotnet build    # Bouw je .NET-project
+
+      - name: Run xUnit tests
+        run: dotnet test path/to/your/test/project.csproj # Pad naar je xUnit-testproject
+
+  merge:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge if tests passed
+        if: ${{ needs.test.result == 'success' }}
+        uses: pullreminders/merge-action@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

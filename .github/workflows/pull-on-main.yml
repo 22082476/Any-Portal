@@ -49,6 +49,7 @@ jobs:
         run: wait
 
   merge-allowed:
+    needs: test
     runs-on: ubuntu-latest
     if: always()  # Deze regel zorgt ervoor dat de job altijd wordt uitgevoerd
 

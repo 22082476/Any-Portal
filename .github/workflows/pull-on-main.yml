@@ -1,4 +1,4 @@
-name: Run Tests
+name: Test React and .NET Projects
 
 on:
   pull_request:
@@ -18,33 +18,42 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Install Node.js dependencies
-        run: npm install
-        working-directory: path/to/your/react/project # Pad naar je React-project
+      - name: Install Node.js dependencies and run React tests
+        run: |
+          cd path/to/your/react/project
+          npm install
+          npm test
 
-      - name: Run React tests
-        run: npm test
-        working-directory: path/to/your/react/project # Pad naar je React-project
+      - name: Build and run API Docker containers
+        uses: docker/build-push-action@v2
+        with:
+          context: ChatApi
+          file: ChatApi/Dockerfile
+          push: false # Zet op true als je de image wilt pushen naar een Docker registry
 
-      - name: Setup .NET Core
+          # Voeg hier andere Docker build-stappen toe voor andere API's op dezelfde manier
+
+      - name: Install .NET SDK
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '3.1' # of de juiste versie voor je project
+          dotnet-version: '7.0' # Pas de versie aan indien nodig
 
-      - name: Restore .NET Core dependencies and build
+      - name: Test APIs
         run: |
-          dotnet restore  # Herstel de .NET-afhankelijkheden
-          dotnet build    # Bouw je .NET-project
+          cd Test.ChatApi
+          dotnet test &
 
-      - name: Run xUnit tests
-        run: dotnet test path/to/your/test/project.csproj # Pad naar je xUnit-testproject
+          # Voeg hier andere API-testprojecten toe op dezelfde manier
+
+      - name: Wait for API tests to complete
+        run: wait
 
   merge:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Merge if tests passed
-        if: ${{ needs.test.result == 'success' }}
+      - name: Check test results and merge if successful
+        if: ${{ job.status == 'success' }}
         uses: pullreminders/merge-action@v5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

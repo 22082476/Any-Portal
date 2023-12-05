@@ -37,12 +37,7 @@ jobs:
             file: MedicalApi/Dockerfile
             push: false 
 
-      - name: Build and run ResearchApi Docker containers
-        uses: docker/build-push-action@v2
-        with:
-            context: ResearchApi
-            file: ResearchApi/Dockerfile
-            push: false 
+      
 
       - name: Build and run UserApi Docker containers
         uses: docker/build-push-action@v2

@@ -61,12 +61,12 @@ jobs:
           cd ../Test.LoginApi
           dotnet test &
 
-          cd Test.MedicalApi
+          cd ../Test.MedicalApi
           dotnet test &
 
           
 
-          cd Test.UserApi
+          cd ../Test.UserApi
           dotnet test &
 
 

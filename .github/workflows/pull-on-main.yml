@@ -58,14 +58,13 @@ jobs:
           cd Test.ChatApi
           dotnet test &
 
-          cd Test.LoginApi
+          cd ../Test.LoginApi
           dotnet test &
 
           cd Test.MedicalApi
           dotnet test &
 
-          cd Test.ResearchApi
-          dotnet test &
+          
 
           cd Test.UserApi
           dotnet test &

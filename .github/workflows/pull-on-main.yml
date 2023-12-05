@@ -89,12 +89,16 @@ jobs:
       - name: Wait for API tests to complete
         run: wait
 
-  merge:
+  merge-allowed:
     needs: test
     runs-on: ubuntu-latest
+    if: always()  # Deze regel zorgt ervoor dat de job altijd wordt uitgevoerd
+
     steps:
-      - name: Check test results and merge if successful
-        if: ${{ job.status == 'success' }}
-        uses: pullreminders/merge-action@v5
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check test is succes
+        if: ${{ needs.test.result == 'success' }}
+        run: echo "Tests passed. You can merge this pull request."
+      
+      - name: Check test is failed
+        if: ${{ needs.test.result != 'success' }}
+        run: echo "Tests failed. Cannot merge this pull request."

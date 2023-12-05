@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserApi", "UserApi\UserApi.csproj", "{28CBD6DC-5CC0-4EAB-ACFD-8F89DC75A21A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "researchApi", "ResearchApi\ResearchApi.csproj", "{B714FC68-6228-426F-B717-46601A4B0DFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResearchApi", "ResearchApi\ResearchApi.csproj", "{B714FC68-6228-426F-B717-46601A4B0DFF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApi", "ChatApi\ChatApi.csproj", "{88CAA90F-0EB7-4BAF-AFF8-FC37FC6ACDE7}"
 EndProject

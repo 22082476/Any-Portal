@@ -24,7 +24,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build and deploy
+      - name: Run tests
+        run: npm run test  # Voer hier de testopdrachten uit die je gebruikt voor je React-project
+
+      - name: Build and deploy if tests pass
+        if: ${{ success() }}
         run: |
           npm run build
           npm run deploy -- -m "Deploy React app to GitHub Pages"

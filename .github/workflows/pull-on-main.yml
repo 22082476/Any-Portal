@@ -54,10 +54,10 @@ jobs:
     if: always()  # Deze regel zorgt ervoor dat de job altijd wordt uitgevoerd
 
     steps:
-      - name: Check test status
+      - name: Check test is succes
         if: ${{ needs.test.result == 'success' }}
         run: echo "Tests passed. You can merge this pull request."
       
-      - name: Check test status
+      - name: Check test is failed
         if: ${{ needs.test.result != 'success' }}
         run: echo "Tests failed. Cannot merge this pull request."

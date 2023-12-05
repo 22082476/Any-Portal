@@ -5,13 +5,13 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserApi", "UserApi\UserApi.csproj", "{28CBD6DC-5CC0-4EAB-ACFD-8F89DC75A21A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "researchApi", "ResearchApi\ResearchApi.csproj", "{B714FC68-6228-426F-B717-46601A4B0DFF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApi", "ChatApi\ChatApi.csproj", "{88CAA90F-0EB7-4BAF-AFF8-FC37FC6ACDE7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginApi", "LoginApi\LoginApi.csproj", "{DD96D9A7-C255-49AF-A9C3-006462608C80}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalApi", "MedicalApi\MedicalApi.csproj", "{FA9C09EE-6B00-4268-8A2C-4B9092625713}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResearchApi", "ResearchApi\ResearchApi.csproj", "{23E879C4-3ACA-4FE6-9837-0BDCA8DAAF27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,5 +42,9 @@ Global
 		{FA9C09EE-6B00-4268-8A2C-4B9092625713}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA9C09EE-6B00-4268-8A2C-4B9092625713}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA9C09EE-6B00-4268-8A2C-4B9092625713}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23E879C4-3ACA-4FE6-9837-0BDCA8DAAF27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23E879C4-3ACA-4FE6-9837-0BDCA8DAAF27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23E879C4-3ACA-4FE6-9837-0BDCA8DAAF27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23E879C4-3ACA-4FE6-9837-0BDCA8DAAF27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

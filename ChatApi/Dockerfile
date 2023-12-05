@@ -30,3 +30,4 @@ EXPOSE 3001
 
 # Start de ASP.NET Core-applicatie
 ENTRYPOINT ["dotnet", "ChatApi.dll"]
+    

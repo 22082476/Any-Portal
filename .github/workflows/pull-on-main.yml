@@ -63,22 +63,22 @@ jobs:
 
       - name: Run Test LoginApi
         run: 
-          cd ../Test.LoginApi &&
+          cd Test.LoginApi &&
           dotnet test 
 
       - name: Run Test MedicalApi
         run: 
-           cd ../Test.MedicalApi &&
+           cd Test.MedicalApi &&
           dotnet test 
 
       - name: Run Test ResearchApi
         run: 
-          cd ../Test.ResearchApi &&
+          cd Test.ResearchApi &&
           dotnet test 
 
       - name: Run Test UserApi
         run: 
-          cd ../Test.UserApi &&
+          cd Test.UserApi &&
           dotnet test 
 
       

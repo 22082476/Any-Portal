@@ -51,35 +51,37 @@ jobs:
             file: UserApi/Dockerfile
             push: false 
 
-          # Voeg hier andere Docker build-stappen toe voor andere API's op dezelfde manier
-
       - name: Install .NET SDK
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '7.0' # Pas de versie aan indien nodig
+          dotnet-version: '7.0'
 
-      - name: Test APIs
-        run: |
-          cd Test.ChatApi
-          dotnet test &
+      - name: Run Test ChatAPi
+        run: 
+          cd Test.ChatApi &&
+          dotnet test 
 
-          cd ../Test.LoginApi
-          dotnet test &
+      - name: Run Test LoginApi
+        run: 
+          cd ../Test.LoginApi &&
+          dotnet test 
 
-          cd ../Test.MedicalApi
-          dotnet test &
+      - name: Run Test MedicalApi
+        run: 
+           cd ../Test.MedicalApi &&
+          dotnet test 
 
-          cd ../Test.ResearchApi
-          dotnet test &
+      - name: Run Test ResearchApi
+        run: 
+          cd ../Test.ResearchApi &&
+          dotnet test 
 
-          cd ../Test.UserApi
-          dotnet test &
+      - name: Run Test UserApi
+        run: 
+          cd ../Test.UserApi &&
+          dotnet test 
 
-
-          # Voeg hier andere API-testprojecten toe op dezelfde manier
-
-      - name: Wait for API tests to complete
-        run: wait
+      
 
   merge-allowed:
     needs: test

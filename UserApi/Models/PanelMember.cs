@@ -22,3 +22,24 @@ public class PanelMember
     public string [] Availability = new string[7];
 
 }
+
+
+public class PanelMemberNullable
+{
+    
+    public string UserId { get; set; }
+    
+    public string? Email { get; set; }
+    public uint? PhoneNumber { get; set;}
+
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
+
+    public AgeRange? Age { get; set; }
+
+    public string? postalCode { get; set; }
+
+    public string? Preferred_contact { get; set; }  
+    public string [] Availability = new string[7];
+
+}

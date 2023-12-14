@@ -8,9 +8,11 @@ namespace UserApi.Controllers;
 public class AdministratorController : ControllerBase
 {
     private readonly UserContext _context;
-    public AdministratorController (UserContext context)
+    private readonly ILog _logger;
+    public AdministratorController (UserContext context, ILogger logger)
     {
        _context = context;
+       _logger = logger;
     }
 
     [HttpGet]
@@ -61,8 +63,12 @@ public class AdministratorController : ControllerBase
 
 
     [HttpPost]
-    public async Task<IActionResult> Post ([FromBody] Administrator administrator)
+    public async Task<IActionResult> Post ([FromServices] IHttpContextAccessor httpContextAccessor, [FromBody] Administrator administrator)
     {
+        var user = httpContextAccessor.HttpContext.User;
+        
+        var admin = user.FindFirst("tid").Value;
+        
         if(!_context.Administrators.Contains(administrator)){
             var add = _context.Administrators.AddAsync(administrator);
 
@@ -75,8 +81,11 @@ public class AdministratorController : ControllerBase
             Console.WriteLine(e);
             return StatusCode(500);
         }
+            _logger.Log(new LogMsg { ExecutedBy = admin, Source = "AdminController.Post()", Operation = "Toevoegen Beheerder", Msg = "Admin heeft beheerder toe gevoegd" });
             return Ok(administrator); 
         }
+
+        
         return BadRequest("Account bestaat al");
     }
 

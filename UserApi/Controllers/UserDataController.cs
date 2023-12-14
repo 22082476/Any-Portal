@@ -7,6 +7,7 @@ namespace UserApi.Controllers;
 public class UserDataController : ControllerBase
 {
     private readonly UserContext _context;
+    
     public UserDataController (UserContext context)
     {
        _context = context;

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Expressions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,8 @@ builder.Services.AddSwaggerGen();
 var config = builder.Configuration;
 
 builder.Services.AddDbContext<UserContext>((options) => options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+ //add service voor de zelfde gemaakte logger ILogger;
+builder.Services.AddScoped<AdminLogger>();
 
 var app = builder.Build();
 

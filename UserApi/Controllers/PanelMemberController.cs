@@ -6,10 +6,10 @@ namespace UserApi.Controllers;
 
 [ApiController]
 [Route("[controller]/PanelMember")]
-public class UserApiController : ControllerBase
+public class PanelMemberController : ControllerBase
 {
     private readonly UserContext _context;
-    public UserApiController (UserContext context)
+    public PanelMemberController (UserContext context)
     {
        _context = context;
     }
@@ -17,13 +17,44 @@ public class UserApiController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get ([FromServices] IHttpContextAccessor httpContextAccessor)
     {
-       if(httpContextAccessor.HttpContext.Request.Cookies.TryGetValue("session-id", out string id))
-       {
-        var result = _context.PanelMembers.Include((p) => p.Age).SingleOrDefaultAsync((p) => p.UserId.Equals(id));
+       var user = httpContextAccessor.HttpContext.User;
 
-        if(await result != null)
-            return Ok(result);
-       }
+        var tenantIdClaim = user.FindFirst("tid");
+
+        if (tenantIdClaim != null)
+        {   
+            string tenantId = tenantIdClaim.Value;
+
+            var result = _context.PanelMembers.Include((p) => p.Age).SingleOrDefaultAsync((p) => p.UserId.Equals(tenantId));
+
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+        }
+    
+        return NotFound();
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll ([FromServices] IHttpContextAccessor httpContextAccessor)
+    {
+       var user = httpContextAccessor.HttpContext.User;
+
+        var tenantIdClaim = user.FindFirst("tid");
+
+        if (tenantIdClaim != null)
+        {   
+            string tenantId = tenantIdClaim.Value;
+
+            var result = _context.PanelMembers.Include((p) => p.Age).Select((p) => new { FirstName = p.FirstName, LastName = p.FirstName,  Email = p.Email, PhoneNumber = p.PhoneNumber, Age = p.Age, Preferred_contact = p.Preferred_contact, PostalCode = p.PostalCode, Availability = p.Availability});
+
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+        }
+    
         return NotFound();
     }
 
@@ -42,69 +73,85 @@ public class UserApiController : ControllerBase
             Console.WriteLine(e);
             return StatusCode(500);
         }
-            return Ok(panelMember); 
-        }
+
         return Ok(panelMember); 
+
+        }
+        return BadRequest("Account bestaat al");        
     }
 
 [HttpPut]
 public async Task<IActionResult> Put([FromServices] IHttpContextAccessor httpContextAccessor, [FromBody] PanelMember panelMember)
 {
-    if (httpContextAccessor.HttpContext.Request.Cookies.TryGetValue("session-id", out string id))
-    {
-        var result = await _context.PanelMembers.SingleOrDefaultAsync(p => p.UserId.Equals(id));
-    
+    var user = httpContextAccessor.HttpContext.User;
 
-        if (result != null)
-        {
-            result = panelMember;
+        var tenantIdClaim = user.FindFirst("tid");
 
-            try
+        if (tenantIdClaim != null)
+        {   
+            string tenantId = tenantIdClaim.Value;
+
+            var result = await _context.PanelMembers.SingleOrDefaultAsync(p => p.UserId.Equals(tenantId));
+            if (result != null)
             {
-                await _context.SaveChangesAsync();
-                return Ok(result);
-            }
-            catch (DbUpdateException e)
-            {
-                Console.WriteLine(e);
-                return StatusCode(500);
+                result = panelMember;
+            
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return Ok(result);
+                }
+                catch (DbUpdateException e)
+                {
+                    Console.WriteLine(e);
+                    return StatusCode(500);
+                }
             }
         }
-    }
-
-    return NotFound();
+    
+        return NotFound();
 }
 
+    [HttpDelete]
     public async Task<IActionResult> Delete ([FromServices] IHttpContextAccessor httpContextAccessor)
     {
-        if (!httpContextAccessor.HttpContext.Request.Cookies.TryGetValue("session-id", out string? id))
-            return BadRequest();
+        var user = httpContextAccessor.HttpContext.User;
+ 
+        var tenantIdClaim = user.FindFirst("tid");
+ 
+        if (tenantIdClaim != null)
+        {   
+            string tenantId = tenantIdClaim.Value;
+ 
+            var member =  await _context.PanelMembers.Include((m) => m.Age).SingleOrDefaultAsync((p) => p.UserId.Equals(tenantId));
 
-        var deletedMembers =  await _context.PanelMembers.SingleOrDefaultAsync((p) => p.UserId.Equals(id));
-        if (deletedMembers == null)
-                return NotFound();
+            if (member != null){
+                
 
-        if(await GetFromResearchApi  (id))
-        {
-            deletedMembers.UpdateToNull();
-        }
-        else
-        {
-            _context.Remove(deletedMembers);
-        }
+                if(await GetFromResearchApi  (tenantId))
+                {
+                    member.UpdateToNull();
+                }
+                else
+                {
+                    _context.Remove(member);
+                }
 
-        try 
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch(DbUpdateException e)
-        {
-            Console.WriteLine(e);
-            return StatusCode(500);
-        }
+                try 
+                {
+                    await _context.SaveChangesAsync();
 
-        return NoContent();
+                    return NoContent();
+                }
+                catch(DbUpdateException e)
+                {
+                    Console.WriteLine(e);
+                    return StatusCode(500);
+                }
+            }
     }
+    return NotFound();
+}
 
 
     private static async Task<bool> GetFromResearchApi (string id)

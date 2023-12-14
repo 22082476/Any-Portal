@@ -12,7 +12,7 @@ public class PanelMember
 
     [Required] public AgeRange Age { get; set; }
 
-    [Required] public string postalCode { get; set; }
+    [Required] public string PostalCode { get; set; }
 
     public string Preferred_contact { get; set; }  
     public string [] Availability = new string [7];

@@ -16,10 +16,10 @@ public class ChatController : ControllerBase
         _chatContext = chatContext;
     }
 
-    [HttpGet("{chatId}", Name = "GetChat")]
+    [HttpGet]
+    [Route("GetChat/{ChatId}")]
     public IActionResult Get(int chatId)
-    {
-        var chat = _chatContext.Chats.Where(chat => chat.ChatId == chatId).ToList();
+    { var chat = _chatContext.Chats.Where(chat => chat.ChatId == chatId).ToList();
 
         if (chat == null || !chat.Any())
         {
@@ -29,7 +29,8 @@ public class ChatController : ControllerBase
         return Ok(chat);
     }
 
-    [HttpGet("{UserId}", Name = "GetUser")]
+    [HttpGet]
+    [Route("GetUserChats/{UserId}")]
     public IActionResult Get(string UserId)
     {
         var chats = _chatContext.Chats.Where(chat => chat.UserOne == UserId || chat.UserTwo == UserId).ToList();
@@ -42,30 +43,100 @@ public class ChatController : ControllerBase
         return Ok(chats);
     }
 
-    [HttpGet("{chatId}", Name = "GetAllChat")]
-    public IActionResult Get(int chatId)
+    [HttpGet]
+    [Route("GetMessage/{ChatId}")]
+    public IActionResult GetMessages(int chatId)
     {
-        var chats = _chatContext.Chats.Where(chat => chat.ChatId == chatId).ToList();
+        var Messages = _chatContext.ChatMessages.Where(Messages => Messages.ChatId == chatId);
 
-        if (chats == null || !chats.Any())
+        if (Messages == null || !Messages.Any())
         {
             return NotFound();
         }
 
-        return Ok(chats);
+        return Ok(Messages);
     }
 
-    [HttpPost( Name = "AddChat")]
-    public IActionResult Post(Chat chat)
+    [HttpPost]
+    [Route("SaveChat")]
+    public IActionResult Save(Chat chat)
     {
-        
+        if(CheckChat(chat)){
+            _chatContext.Chats.Add(chat);
+            _chatContext.SaveChanges();
+            return Ok();
+        }
+        return BadRequest();
+    }
+
+    [HttpPut]
+    [Route("UpdateChat")]
+    public IActionResult Update(Chat chat)
+    {
+        if(CheckChat(chat)){
+            _chatContext.Chats.Update(chat);
+            _chatContext.SaveChanges();
+            return Ok();  
+        }
+        return BadRequest();
+    }
+
+    [HttpDelete] [Route("DeleteChat")]
+    public IActionResult Delete(Chat chat)
+    {
+        _chatContext.Chats.Remove(chat);
+        _chatContext.SaveChanges();
         return Ok();
     }
 
-    [HttpPost( Name = "SendMessage")]
+    [HttpPost]
+    [Route("SendMessage")]
     public IActionResult Post(ChatMessage chatMessage)
     {
+        if(CheckMessages(chatMessage)){
+            _chatContext.ChatMessages.Add(chatMessage);
+            _chatContext.SaveChanges();
+            return Ok();
+        }
+        return BadRequest();
         
-        return Ok();
+    }
+
+    [HttpDelete]
+    [Route("DeleteMessage")]
+    public IActionResult Delete(ChatMessage chatMessage)
+    {
+        if(CheckMessages(chatMessage)){
+            _chatContext.ChatMessages.Remove(chatMessage);
+            _chatContext.SaveChanges();
+            return Ok();
+        }
+        return BadRequest();
+        
+    }
+
+    private bool CheckChat(Chat chat)
+    {
+        if(
+            chat.UserOne == null ||
+            chat.UserTwo == null ||
+            chat.Messages == null
+        )
+        {
+            return false;
+        }
+        return true;
+    }
+
+    private bool CheckMessages(ChatMessage chatMessage)
+    {
+        if(
+            chatMessage.Message == null ||
+            chatMessage.SentFrom == null
+        )
+        {
+            return false;
+        }
+        return true;
     }
 }

@@ -15,6 +15,7 @@ public class PanelMemberController : ControllerBase
     }
 
     [HttpGet]
+    [Route("Own")]
     public async Task<IActionResult> Get ([FromServices] IHttpContextAccessor httpContextAccessor)
     {
        var user = httpContextAccessor.HttpContext.User;
@@ -80,37 +81,37 @@ public class PanelMemberController : ControllerBase
         return BadRequest("Account bestaat al");        
     }
 
-[HttpPut]
-public async Task<IActionResult> Put([FromServices] IHttpContextAccessor httpContextAccessor, [FromBody] PanelMember panelMember)
-{
-    var user = httpContextAccessor.HttpContext.User;
+    [HttpPut]
+    public async Task<IActionResult> Put([FromServices] IHttpContextAccessor httpContextAccessor, [FromBody] PanelMember panelMember)
+    {
+        var user = httpContextAccessor.HttpContext.User;
 
-        var tenantIdClaim = user.FindFirst("tid");
+            var tenantIdClaim = user.FindFirst("tid");
 
-        if (tenantIdClaim != null)
-        {   
-            string tenantId = tenantIdClaim.Value;
+            if (tenantIdClaim != null)
+            {   
+                string tenantId = tenantIdClaim.Value;
 
-            var result = await _context.PanelMembers.SingleOrDefaultAsync(p => p.UserId.Equals(tenantId));
-            if (result != null)
-            {
-                result = panelMember;
+                var result = await _context.PanelMembers.SingleOrDefaultAsync(p => p.UserId.Equals(tenantId));
+                if (result != null)
+                {
+                    result = panelMember;
             
-                try
-                {
-                    await _context.SaveChangesAsync();
-                    return Ok(result);
-                }
-                catch (DbUpdateException e)
-                {
-                    Console.WriteLine(e);
-                    return StatusCode(500);
+                    try
+                    {
+                        await _context.SaveChangesAsync();
+                        return Ok(result);
+                    }
+                    catch (DbUpdateException e)
+                    {
+                        Console.WriteLine(e);
+                        return StatusCode(500);
+                    }
                 }
             }
-        }
     
-        return NotFound();
-}
+            return NotFound();
+    }
 
     [HttpDelete]
     public async Task<IActionResult> Delete ([FromServices] IHttpContextAccessor httpContextAccessor)
@@ -149,9 +150,9 @@ public async Task<IActionResult> Put([FromServices] IHttpContextAccessor httpCon
                     return StatusCode(500);
                 }
             }
+        }
+        return NotFound();
     }
-    return NotFound();
-}
 
 
     private static async Task<bool> GetFromResearchApi (string id)

@@ -14,8 +14,8 @@ public class PanelMember
 
     [Required] public string PostalCode { get; set; }
 
-    public string Preferred_contact { get; set; }  
-    public string [] Availability = new string [7];
+    [Required] public string Preferred_contact { get; set; }  
+    [Required] public string [] Availability = new string [7];
 
     public void UpdateToNull()
     {

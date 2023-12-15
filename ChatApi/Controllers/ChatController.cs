@@ -6,24 +6,21 @@ namespace ChatApi.Controllers;
 [Route("[controller]")]
 public class ChatController : ControllerBase
 {
-    private readonly ILogger<ChatController> _logger;
-
     private readonly ChatContext _chatContext;
 
-    public ChatController(ILogger<ChatController> logger, ChatContext chatContext)
+    public ChatController(ChatContext chatContext)
     {
-        _logger = logger;
         _chatContext = chatContext;
     }
 
     [HttpGet]
     [Route("GetChat/{ChatId}")]
-    public IActionResult Get(int chatId)
-    { var chat = _chatContext.Chats.Where(chat => chat.ChatId == chatId).ToList();
+    public IActionResult GetChat(int chatId)
+    { var chat = _chatContext.Chats.SingleOrDefault(chat => chat.ChatId == chatId);
 
-        if (chat == null || !chat.Any())
+        if (chat == null)
         {
-            return NotFound();
+            return NotFound("Er is geen chat gevonden");
         }
 
         return Ok(chat);
@@ -31,13 +28,13 @@ public class ChatController : ControllerBase
 
     [HttpGet]
     [Route("GetUserChats/{UserId}")]
-    public IActionResult Get(string UserId)
+    public IActionResult GetChats(string UserId)
     {
         var chats = _chatContext.Chats.Where(chat => chat.UserOne == UserId || chat.UserTwo == UserId).ToList();
 
         if (chats == null || !chats.Any())
         {
-            return NotFound();
+            return NotFound("Er is geen chat gevonden");
         }
 
         return Ok(chats);
@@ -51,7 +48,7 @@ public class ChatController : ControllerBase
 
         if (Messages == null || !Messages.Any())
         {
-            return NotFound();
+            return NotFound("Er zijn geen berichten gevonden");
         }
 
         return Ok(Messages);
@@ -64,9 +61,9 @@ public class ChatController : ControllerBase
         if(CheckChat(chat)){
             _chatContext.Chats.Add(chat);
             _chatContext.SaveChanges();
-            return Ok();
+            return Ok("Chat toegevoegd");
         }
-        return BadRequest();
+        return BadRequest("Foute request");
     }
 
     [HttpPut]
@@ -76,9 +73,9 @@ public class ChatController : ControllerBase
         if(CheckChat(chat)){
             _chatContext.Chats.Update(chat);
             _chatContext.SaveChanges();
-            return Ok();  
+            return Ok("Chat Geüpdated");  
         }
-        return BadRequest();
+        return BadRequest("Foute request");
     }
 
     [HttpDelete] [Route("DeleteChat")]
@@ -86,7 +83,7 @@ public class ChatController : ControllerBase
     {
         _chatContext.Chats.Remove(chat);
         _chatContext.SaveChanges();
-        return Ok();
+        return Ok("Chat toegevoegd");
     }
 
     [HttpPost]
@@ -96,9 +93,9 @@ public class ChatController : ControllerBase
         if(CheckMessages(chatMessage)){
             _chatContext.ChatMessages.Add(chatMessage);
             _chatContext.SaveChanges();
-            return Ok();
+            return Ok("Bericht verzonden");
         }
-        return BadRequest();
+        return BadRequest("Foute request");
         
     }
 
@@ -109,9 +106,9 @@ public class ChatController : ControllerBase
         if(CheckMessages(chatMessage)){
             _chatContext.ChatMessages.Remove(chatMessage);
             _chatContext.SaveChanges();
-            return Ok();
+            return Ok("Bericht verwijderd");
         }
-        return BadRequest();
+        return BadRequest("Foute request");
         
     }
 
@@ -120,9 +117,8 @@ public class ChatController : ControllerBase
         if(
             chat.UserOne == null ||
             chat.UserTwo == null ||
-            chat.Messages == null
-        )
-        {
+            chat.Messages == null)
+            {
             return false;
         }
         return true;

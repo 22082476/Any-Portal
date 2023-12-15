@@ -13,5 +13,5 @@ public class Chat
     [Required]
     public string UserTwo { get;set; }
 
-    public IList<ChatMessage> Messages { get;set; }
+    public IList<ChatMessage> Messages { get;set; } = new List<ChatMessage>();
 }

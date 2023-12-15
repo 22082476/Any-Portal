@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace UserApi.Controllers;
 
@@ -8,26 +9,30 @@ namespace UserApi.Controllers;
 public class AdministratorController : ControllerBase
 {
     private readonly UserContext _context;
-    private readonly ILog _logger;
-    public AdministratorController (UserContext context, ILogger logger)
+    // private readonly ILog<AdminLogger> _logger;
+    public AdministratorController (UserContext context)
     {
        _context = context;
-       _logger = logger;
+    //    _logger = logger;
+    //    , ILog<AdminLogger> logger
     }
 
     [HttpGet]
-    [Route("Own")]
-    public async Task<IActionResult> GetOwn ([FromServices] IHttpContextAccessor httpContextAccessor)
+    [Route("Own/{userId}")]
+    // public async Task<IActionResult> GetOwn ([FromServices] IHttpContextAccessor httpContextAccessor)
+        public async Task<IActionResult> GetOwn (string userId)
+
     {
-        var user = httpContextAccessor.HttpContext.User;
+        // var user = httpContextAccessor.HttpContext.User;
 
-        var tenantIdClaim = user.FindFirst("tid");
+        // var tenantIdClaim = user.FindFirst("tid");
 
-        if (tenantIdClaim != null)
+        // if (tenantIdClaim != null)
+        if(userId != null)
         {   
-            string tenantId = tenantIdClaim.Value;
+            // string tenantId = tenantIdClaim.Value;
 
-            var result = await _context.Administrators.FirstOrDefaultAsync(p => p.UserId.Equals(tenantId));
+            var result = await _context.Administrators.FirstOrDefaultAsync(p => p.UserId.Equals(userId));
 
             if (result != null)
             {
@@ -39,15 +44,16 @@ public class AdministratorController : ControllerBase
 }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll ([FromServices] IHttpContextAccessor httpContextAccessor)
+    // public async Task<IActionResult> GetAll ([FromServices] IHttpContextAccessor httpContextAccessor)
+    public async Task<IActionResult> GetAll ()
     {
-        var user = httpContextAccessor.HttpContext.User;
+        // var user = httpContextAccessor.HttpContext.User;
 
-        var tenantIdClaim = user.FindFirst("tid");
+        // var tenantIdClaim = user.FindFirst("tid");
 
-        if (tenantIdClaim != null)
-        {   
-            string tenantId = tenantIdClaim.Value;
+        // if (tenantIdClaim != null)
+        // {   
+            // string tenantId = tenantIdClaim.Value;
 
             var result = _context.Administrators;
 
@@ -56,20 +62,21 @@ public class AdministratorController : ControllerBase
                 return Ok(result);
             }
             
-        }
+        // }
     
         return NotFound();
 }
 
 
     [HttpPost]
-    public async Task<IActionResult> Post ([FromServices] IHttpContextAccessor httpContextAccessor, [FromBody] Administrator administrator)
+    // public async Task<IActionResult> Post ([FromServices] IHttpContextAccessor httpContextAccessor, [FromBody] Administrator administrator)
+    public async Task<IActionResult> Post ([FromBody] Administrator administrator)
     {
-        var user = httpContextAccessor.HttpContext.User;
+        // var user = httpContextAccessor.HttpContext.User;
         
-        var admin = user.FindFirst("tid").Value;
+        // var admin = user.FindFirst("tid").Value;
         
-        if(!_context.Administrators.Contains(administrator)){
+        if(!_context.Administrators.Any((a) => a.UserId.Equals(administrator.UserId))){
             var add = _context.Administrators.AddAsync(administrator);
 
         try
@@ -81,7 +88,7 @@ public class AdministratorController : ControllerBase
             Console.WriteLine(e);
             return StatusCode(500);
         }
-            _logger.Log(new LogMsg { ExecutedBy = admin, Source = "AdminController.Post()", Operation = "Toevoegen Beheerder", Msg = "Admin heeft beheerder toe gevoegd" });
+            // _logger.Log(new LogMsg { ExecutedBy = admin, Source = "AdminController.Post()", Operation = "Toevoegen Beheerder", Msg = "Admin heeft beheerder toe gevoegd" });
             return Ok(administrator); 
         }
 
@@ -89,18 +96,19 @@ public class AdministratorController : ControllerBase
         return BadRequest("Account bestaat al");
     }
 
-[HttpPut]
-public async Task<IActionResult> Put([FromServices] IHttpContextAccessor httpContextAccessor, [FromBody] Administrator administrator)
-{
-       var user = httpContextAccessor.HttpContext.User;
+    [HttpPut]
+    // public async Task<IActionResult> Put([FromServices] IHttpContextAccessor httpContextAccessor, [FromBody] Administrator administrator)
+    public async Task<IActionResult> Put([FromBody] Administrator administrator)
+    {
+       //var user = httpContextAccessor.HttpContext.User;
 
-        var tenantIdClaim = user.FindFirst("tid");
+        // var tenantIdClaim = user.FindFirst("tid");
 
-        if (tenantIdClaim != null)
+        // if (tenantIdClaim != null)
         {   
-            string tenantId = tenantIdClaim.Value;
+            // string tenantId = tenantIdClaim.Value;
 
-            var result = await _context.Administrators.SingleOrDefaultAsync(p => p.UserId.Equals(tenantId));
+            var result = await _context.Administrators.SingleOrDefaultAsync(p => p.UserId.Equals(administrator.UserId));
 
             if (result != null)
             {
@@ -123,17 +131,22 @@ public async Task<IActionResult> Put([FromServices] IHttpContextAccessor httpCon
 }
 
     [HttpDelete]
-    public async Task<IActionResult> Delete ([FromServices] IHttpContextAccessor httpContextAccessor)
+    [Route("{userId}")]
+    // public async Task<IActionResult> Delete ([FromServices] IHttpContextAccessor httpContextAccessor, string id)
+    public async Task<IActionResult> Delete (string userId)
     {
-        var user = httpContextAccessor.HttpContext.User;
+        // var user = httpContextAccessor.HttpContext.User;
  
-        var tenantIdClaim = user.FindFirst("tid");
+        // var tenantIdClaim = user.FindFirst("tid");
  
-        if (tenantIdClaim != null)
+        // if (tenantIdClaim == null)
+            // return BadRequest();
+
+        if(userId != null)
         {   
-            string tenantId = tenantIdClaim.Value;
+            // string tenantId = tenantIdClaim.Value;
  
-            var administrator =  await _context.Administrators.SingleOrDefaultAsync((p) => p.UserId.Equals(tenantId));
+            var administrator =  await _context.Administrators.SingleOrDefaultAsync((p) => p.UserId.Equals(userId));
 
             if (administrator == null)
                 return NotFound();
@@ -144,6 +157,7 @@ public async Task<IActionResult> Put([FromServices] IHttpContextAccessor httpCon
             {
 
             await _context.SaveChangesAsync();
+            // _logger.Log(new LogMsg { ExecutedBy = tenantId, Source = "AdminController.Delete()", Operation = "Verwijderen Beheerder", Msg = $"Admin heeft beheerder {id} verwijderd" });
 
             return NoContent();
             }

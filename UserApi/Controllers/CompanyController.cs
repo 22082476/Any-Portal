@@ -14,18 +14,19 @@ public class CompanyController : ControllerBase
     }
 
     [HttpGet]
-    [Route("Own")]
-    public async Task<IActionResult> GetOwn ([FromServices] IHttpContextAccessor httpContextAccessor)
+    [Route("Own/{userId}")]
+    // public async Task<IActionResult> GetOwn ([FromServices] IHttpContextAccessor httpContextAccessor)
+    public async Task<IActionResult> GetOwn (string userId)
     {
-        var user = httpContextAccessor.HttpContext.User;
+        // var user = httpContextAccessor.HttpContext.User;
 
-        var tenantIdClaim = user.FindFirst("tid");
+        // var tenantIdClaim = user.FindFirst("tid");
 
-        if (tenantIdClaim != null)
+        // if (tenantIdClaim != null)
         {   
-            string tenantId = tenantIdClaim.Value;
+            // string tenantId = tenantIdClaim.Value;
 
-            var result = await _context.Companies.FirstOrDefaultAsync(p => p.UserId.Equals(tenantId));
+            var result = await _context.Companies.FirstOrDefaultAsync(p => p.UserId.Equals(userId));
 
             if (result != null)
             {
@@ -34,18 +35,19 @@ public class CompanyController : ControllerBase
     }
     
     return NotFound();
-}
+    }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll ([FromServices] IHttpContextAccessor httpContextAccessor)
+    // public async Task<IActionResult> GetAll ([FromServices] IHttpContextAccessor httpContextAccessor)
+    public async Task<IActionResult> GetAll ()
     {
-        var user = httpContextAccessor.HttpContext.User;
+        // var user = httpContextAccessor.HttpContext.User;
 
-        var tenantIdClaim = user.FindFirst("tid");
+        // var tenantIdClaim = user.FindFirst("tid");
 
-        if (tenantIdClaim != null)
+        // if (tenantIdClaim != null)
         {   
-            string tenantId = tenantIdClaim.Value;
+            // string tenantId = tenantIdClaim.Value;
 
             var result = _context.Companies.Select((c) => new { Email = c.Email, CompanyName = c.CompanyName, Location = c.Location, Website = c.Website, Description = c.Description });
 
@@ -61,9 +63,10 @@ public class CompanyController : ControllerBase
 
 
     [HttpPost]
+    // public async Task<IActionResult> Post ([FromBody] Company company)
     public async Task<IActionResult> Post ([FromBody] Company company)
     {
-        if(!_context.Companies.Contains(company)){
+        if(!_context.Companies.Any((c) => c.UserId.Equals(company.UserId))){
             var add = _context.Companies.AddAsync(company);
 
         try
@@ -80,18 +83,19 @@ public class CompanyController : ControllerBase
         return BadRequest("Account bestaat al");
     }
 
-[HttpPut]
-public async Task<IActionResult> Put([FromServices] IHttpContextAccessor httpContextAccessor, [FromBody] Company company)
-{
-       var user = httpContextAccessor.HttpContext.User;
+    [HttpPut]
+    // public async Task<IActionResult> Put([FromServices] IHttpContextAccessor httpContextAccessor, [FromBody] Company company)
+    public async Task<IActionResult> Put([FromBody] Company company)
+    {
+    //    var user = httpContextAccessor.HttpContext.User;
 
-        var tenantIdClaim = user.FindFirst("tid");
+        // var tenantIdClaim = user.FindFirst("tid");
 
-        if (tenantIdClaim != null)
+        // if (tenantIdClaim != null)
         {   
-            string tenantId = tenantIdClaim.Value;
+            // string tenantId = tenantIdClaim.Value;
 
-            var result = await _context.Companies.SingleOrDefaultAsync(p => p.UserId.Equals(tenantId));
+            var result = await _context.Companies.SingleOrDefaultAsync(p => p.UserId.Equals(company.UserId));
 
             if (result != null)
             {
@@ -114,17 +118,21 @@ public async Task<IActionResult> Put([FromServices] IHttpContextAccessor httpCon
 }
 
     [HttpDelete]
-    public async Task<IActionResult> Delete ([FromServices] IHttpContextAccessor httpContextAccessor)
+    [Route("{userId}")]
+    
+    // public async Task<IActionResult> Delete ([FromServices] IHttpContextAccessor httpContextAccessor)
+    public async Task<IActionResult> Delete (string userId)
     {
-        var user = httpContextAccessor.HttpContext.User;
+        // var user = httpContextAccessor.HttpContext.User;
  
-        var tenantIdClaim = user.FindFirst("tid");
+        // var tenantIdClaim = user.FindFirst("tid");
  
-        if (tenantIdClaim != null)
+        // if (tenantIdClaim != null)
+        if(userId != null)
         {   
-            string tenantId = tenantIdClaim.Value;
+            // string tenantId = tenantIdClaim.Value;
  
-            var company =  await _context.Companies.SingleOrDefaultAsync((p) => p.UserId.Equals(tenantId));
+            var company =  await _context.Companies.SingleOrDefaultAsync((p) => p.UserId.Equals(userId));
 
             if (company == null)
                 return NotFound();

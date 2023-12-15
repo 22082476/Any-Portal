@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-public class AdminLogger : ILog
+public class AdminLogger : ILog<AdminLogger>
 {
     private readonly string _source;
 
@@ -10,7 +10,7 @@ public class AdminLogger : ILog
         _source = source;
     }
 
-    public void Log(LogMsg msg)
+    public async void Log(LogMsg msg)
     {
         string logMessage = $"{DateTime.Now} - Source: {msg.Source} - {msg.Operation} - {msg.ExecutedBy} - {msg.Msg ?? ""}";
 
@@ -23,7 +23,7 @@ public class AdminLogger : ILog
     }
 }
 
-public interface ILog
+public interface ILog<T>
 {
     void Log(LogMsg msg);
 }

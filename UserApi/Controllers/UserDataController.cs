@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace UserApi.Controllers;
 
 [ApiController]
-[Route("[controller]/UserData")]
+[Route("[controller]")]
 public class UserDataController : ControllerBase
 {
     private readonly UserContext _context;
@@ -24,6 +24,23 @@ public class UserDataController : ControllerBase
         }
 
         return BadRequest();
+    }
+
+    [HttpGet]
+    [Route("Ages/{rangeName}")]
+    public async Task<IActionResult> GetAges (string rangeName)
+    {
+        if (rangeName != null)
+        {
+            var result =  _context.AgeRanges.SingleOrDefault((r) => r.RangeName.Equals(rangeName));
+
+            if(result != null)
+                return Ok(result);
+
+        }
+
+        return NotFound();
+        
     }
 }
 

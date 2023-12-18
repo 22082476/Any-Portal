@@ -5,7 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace UserApi.Controllers;
 
 [ApiController]
-[Route("[controller]/Administrator")]
+[Route("[controller]")]
 public class AdministratorController : ControllerBase
 {
     private readonly UserContext _context;

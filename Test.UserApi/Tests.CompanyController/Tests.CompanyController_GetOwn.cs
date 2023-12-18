@@ -7,7 +7,7 @@ namespace Test.UserApi;
 
 public class TestCompanyController_GetOwn : IClassFixture<CompanyFixture>
 {
-    private readonly CompanyFixture _fixture;
+    private readonly UserContextFixture _fixture;
 
         public TestCompanyController_GetOwn(CompanyFixture fixture)
         {

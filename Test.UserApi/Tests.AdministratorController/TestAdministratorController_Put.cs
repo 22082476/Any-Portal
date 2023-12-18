@@ -3,7 +3,7 @@ using UserApi.Controllers;
 
 public class TestAdministratorController_Put : IClassFixture<AdminFixture>
 {
-    private readonly AdminFixture _fixture;
+    private readonly UserContextFixture _fixture;
 
     public TestAdministratorController_Put (AdminFixture fixture)
     {

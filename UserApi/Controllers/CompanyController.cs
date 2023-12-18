@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace UserApi.Controllers;
 
 [ApiController]
-[Route("[controller]/Company")]
+[Route("[controller]")]
 public class CompanyController : ControllerBase
 {
     private readonly UserContext _context;

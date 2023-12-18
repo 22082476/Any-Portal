@@ -9,16 +9,6 @@ public class AgeRange
 
     public bool CompareAgeRange(AgeRange ageRange)
     {
-        return this == ageRange;
-    }
-
-    public static bool operator == (AgeRange ageRange, AgeRange ageRange1)
-    {
-        return ageRange.RangeName.Equals(ageRange1.RangeName) && ageRange1.AgeStart == ageRange1.AgeStart && ageRange.AgeEnd == ageRange1.AgeEnd; 
-    }
-
-    public static bool operator != (AgeRange ageRange, AgeRange ageRange1)
-    {
-        return !ageRange.RangeName.Equals(ageRange1.RangeName) && ageRange1.AgeStart != ageRange1.AgeStart && ageRange.AgeEnd != ageRange1.AgeEnd; 
+        return RangeName.Equals(ageRange.RangeName) && AgeStart == ageRange.AgeStart && AgeEnd == ageRange.AgeEnd;
     }
 }

@@ -14,6 +14,7 @@ public class UserDataController : ControllerBase
     }
 
     [HttpGet]
+    [Route("Names")]
     public async Task<IActionResult> GetNames ()
     {
         var result = _context.PanelMembers.Select((p) => new { UserId = p.UserId, FirstName = p.FirstName, LastName = p.LastName });
@@ -58,5 +59,3 @@ public class UserDataController : ControllerBase
         return NotFound();
     }
 }
-
-

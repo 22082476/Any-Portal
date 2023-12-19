@@ -17,7 +17,7 @@ public class PanelMemberController : ControllerBase
     }
 
     [HttpGet]
-    [Route("Own/{userId}")]
+    [Route("{userId}")]
     // public async Task<IActionResult> Get ([FromServices] IHttpContextAccessor httpContextAccessor)
     public async Task<IActionResult> GetOwn (string userId)
     {
@@ -98,31 +98,24 @@ public class PanelMemberController : ControllerBase
         // var tenantIdClaim = user.FindFirst("tid");
 
         // if (tenantIdClaim != null)
-        {   
-            // string tenantId = tenantIdClaim.Value;
-
-            var result = await _context.PanelMembers.SingleOrDefaultAsync(p => p.UserId.Equals(panelMember.UserId));
-
-            if (result != null)
-            {
-                result = panelMember;
-            
-                try
-                {
-                    await _context.SaveChangesAsync();
-
-                    return Ok(result);
-                }
-                catch (DbUpdateException e)
-                {
-                    Console.WriteLine(e);
-                    
-                    return StatusCode(500);
-                }
-            }
-        }
     
-            return NotFound();
+         
+            // string tenantId = tenantIdClaim.Value;
+            
+        _context.PanelMembers.Update(panelMember);
+            
+        try
+        {
+            await _context.SaveChangesAsync();
+
+            return Ok(panelMember);
+        }
+        catch (DbUpdateException e)
+        {
+            Console.WriteLine(e);
+                    
+            return BadRequest();
+        }
     }
 
     [HttpDelete]

@@ -37,6 +37,6 @@ public class TestAdministratorController_Put : IClassFixture<AdminFixture>
         var actionResult = controller.Put(dataObject).GetAwaiter().GetResult();
 
         //Assert
-        Assert.IsType<NotFoundResult>(actionResult);
+        Assert.IsType<BadRequestResult>(actionResult);
     }
 }

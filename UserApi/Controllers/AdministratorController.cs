@@ -18,7 +18,7 @@ public class AdministratorController : ControllerBase
     }
 
     [HttpGet]
-    [Route("Own/{userId}")]
+    [Route("{userId}")]
     // public async Task<IActionResult> GetOwn ([FromServices] IHttpContextAccessor httpContextAccessor)
         public async Task<IActionResult> GetOwn (string userId)
 
@@ -105,30 +105,29 @@ public class AdministratorController : ControllerBase
         // var tenantIdClaim = user.FindFirst("tid");
 
         // if (tenantIdClaim != null)
-        {   
+        
             // string tenantId = tenantIdClaim.Value;
 
-            var result = await _context.Administrators.SingleOrDefaultAsync(p => p.UserId.Equals(administrator.UserId));
+        _context.Administrators.Update(administrator);
 
-            if (result != null)
-            {
-                result = administrator;
+            // if (result != null)
+            // result = administrator;
 
-                try
-                {
-                    await _context.SaveChangesAsync();
-                    return Ok(result);
-                }
-                catch (DbUpdateException e)
-                {
-                    Console.WriteLine(e);
-                    return StatusCode(500);
-                }
-            }
+        try
+        {
+            await _context.SaveChangesAsync();
+
+            return Ok(administrator);
         }
+        catch (DbUpdateException e)
+        {
+            Console.WriteLine(e);
+            return BadRequest();
+        }
+    }
     
-        return NotFound();
-}
+       
+
 
     [HttpDelete]
     [Route("{userId}")]

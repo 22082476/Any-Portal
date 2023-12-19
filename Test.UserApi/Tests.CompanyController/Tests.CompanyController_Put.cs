@@ -15,7 +15,7 @@ public class TestCompanyController_Put : IClassFixture<CompanyFixture>
     {
         //Arrange
         var controller = new CompanyController (_fixture.Context);
-        var dataObject = new Company { UserId = "userId", CompanyName = "CompanyName", Email = "test@mail.nl", Description = "text", Website = new Uri ("https://www.site.nl"), Location = "location", IsValid = true};
+        var dataObject = new Company { UserId = "userId", CompanyName = "Company", Email = "testje@mail.nl", Description = "text text text", Website = new Uri ("https://www.site1.nl"), Location = "location", IsValid = true};
 
         
         //Act
@@ -31,13 +31,13 @@ public class TestCompanyController_Put : IClassFixture<CompanyFixture>
     public void Test_Put_BadRequest()
     {
         //Arrange
-        var controller = new CompanyController (_fixture.Context);
+        var controller = new CompanyController (_fixture.ContextWithout);
         var dataObject = new Company { UserId = "userId1213", CompanyName = "CompanyName", Email = "test@mail.nl", Description = "text", Website = new Uri ("https://www.site.nl"), Location = "location", IsValid = true};
 
         //Act
         var actionResult = controller.Put(dataObject).GetAwaiter().GetResult();
 
         //Assert
-        Assert.IsType<NotFoundResult>(actionResult);
+        Assert.IsType<BadRequestResult>(actionResult);
     }
 }

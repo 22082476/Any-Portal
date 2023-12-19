@@ -14,7 +14,7 @@ public class CompanyController : ControllerBase
     }
 
     [HttpGet]
-    [Route("Own/{userId}")]
+    [Route("{userId}")]
     // public async Task<IActionResult> GetOwn ([FromServices] IHttpContextAccessor httpContextAccessor)
     public async Task<IActionResult> GetOwn (string userId)
     {
@@ -92,30 +92,26 @@ public class CompanyController : ControllerBase
         // var tenantIdClaim = user.FindFirst("tid");
 
         // if (tenantIdClaim != null)
-        {   
+        
+      
             // string tenantId = tenantIdClaim.Value;
 
-            var result = await _context.Companies.SingleOrDefaultAsync(p => p.UserId.Equals(company.UserId));
+        _context.Companies.Update(company);
 
-            if (result != null)
-            {
-                result = company;
 
-                try
-                {
-                    await _context.SaveChangesAsync();
-                    return Ok(result);
-                }
-                catch (DbUpdateException e)
-                {
-                    Console.WriteLine(e);
-                    return StatusCode(500);
-                }
-            }
+        try
+        {
+            await _context.SaveChangesAsync();
+
+            return Ok(company);
+        }
+        catch (DbUpdateException e)
+        {
+            Console.WriteLine(e);
+            return BadRequest();
         }
     
-        return NotFound();
-}
+    }
 
     [HttpDelete]
     [Route("{userId}")]

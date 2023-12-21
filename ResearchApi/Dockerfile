@@ -1,5 +1,5 @@
 # Gebruik een basisimage met de SDK van .NET Core om de applicatie te bouwen
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 # Stel de werkdirectory in binnen de container
 WORKDIR /app

@@ -17,7 +17,7 @@ RUN dotnet build -c Release -o /app/build
 RUN dotnet publish -c Release -o /app/publish
 
 # Bouw de runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 
 # Werkdirectory instellen voor de runtime image
 WORKDIR /app

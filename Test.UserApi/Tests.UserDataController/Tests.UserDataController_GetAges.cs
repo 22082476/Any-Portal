@@ -17,11 +17,11 @@ public class TestUserDataController_GetAges : IClassFixture<UserDataFixture>
     {
         //Arrange
         var controller = new UserDataController (_fixture.Context);
-        var dataObject = new AgeRange{ RangeName = "Range1", AgeStart = 1, AgeEnd = 18};
+        var dataObject = new AgeRange{ AgeId = 1, AgeStart = 1, AgeEnd = 18};
 
         
         //Act
-        var actionResult = controller.GetAge(dataObject.RangeName).GetAwaiter().GetResult();
+        var actionResult = controller.GetAge(dataObject.AgeId).GetAwaiter().GetResult();
         var resultObject = actionResult as OkObjectResult;
         
         //Assert
@@ -34,10 +34,10 @@ public class TestUserDataController_GetAges : IClassFixture<UserDataFixture>
     {
         //Arrange
         var controller = new UserDataController (_fixture.Context);
-        var dataObject = new AgeRange{ RangeName = "Range1123", AgeStart = 1, AgeEnd = 18};
+        var dataObject = new AgeRange{ AgeId = 1123, AgeStart = 1, AgeEnd = 18};
         
         //Act
-        var actionResult = controller.GetAge(dataObject.RangeName).GetAwaiter().GetResult();
+        var actionResult = controller.GetAge(dataObject.AgeId).GetAwaiter().GetResult();
         
         //Assert
         Assert.IsType<NotFoundResult>(actionResult);

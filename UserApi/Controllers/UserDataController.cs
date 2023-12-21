@@ -28,12 +28,12 @@ public class UserDataController : ControllerBase
     }
 
     [HttpGet]
-    [Route("Ages/{rangeName}")]
-    public async Task<IActionResult> GetAge (string rangeName)
+    [Route("Ages/{AgeId}")]
+    public async Task<IActionResult> GetAge (int AgeId)
     {
-        if (rangeName != null)
+        if (AgeId != null)
         {
-            var result =  _context.AgeRanges.SingleOrDefault((r) => r.RangeName.Equals(rangeName));
+            var result =  _context.AgeRanges.SingleOrDefault((r) => r.AgeId == AgeId);
 
             if(result != null)
             {

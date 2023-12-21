@@ -30,7 +30,7 @@ public class PanelMemberController : ControllerBase
         {   
             // string tenantId = tenantIdClaim.Value;
 
-            var result =  await _context.PanelMembers.Include((p) => p.Age).SingleOrDefaultAsync((p) => p.UserId.Equals(userId));
+            var result =  await _context.PanelMembers.SingleOrDefaultAsync((p) => p.UserId.Equals(userId));
 
             if (result != null)
             {
@@ -53,7 +53,7 @@ public class PanelMemberController : ControllerBase
         {   
             // string tenantId = tenantIdClaim.Value;
 
-            var result = _context.PanelMembers.Include((p) => p.Age).Select((p) => new { FirstName = p.FirstName, LastName = p.FirstName,  Email = p.Email, PhoneNumber = p.PhoneNumber, Age = p.Age, Preferred_contact = p.Preferred_contact, PostalCode = p.PostalCode, Availability = p.Availability});
+            var result = _context.PanelMembers.Select((p) => new { FirstName = p.FirstName, LastName = p.FirstName,  Email = p.Email, PhoneNumber = p.PhoneNumber, AgeId = p.AgeId, Preferred_contact = p.Preferred_contact, PostalCode = p.PostalCode, Availability = p.Availability});
 
                 if (result != null)
                 {
@@ -69,9 +69,11 @@ public class PanelMemberController : ControllerBase
     {
         if(!_context.PanelMembers.Any((p) => p.UserId.Equals(panelMember.UserId))){
 
-            panelMember.Age = await _context.AgeRanges.SingleAsync((a) => a.RangeName.Equals(panelMember.Age.RangeName));
-    
-            var add = _context.PanelMembers.AddAsync(panelMember);
+        if(!await _context.AgeRanges.AnyAsync((a) => a.AgeId == panelMember.AgeId))
+            return BadRequest("AgeRange niet gevonden");
+
+        var add = _context.PanelMembers.AddAsync(panelMember);
+
 
         try
         {
@@ -98,10 +100,13 @@ public class PanelMemberController : ControllerBase
         // var tenantIdClaim = user.FindFirst("tid");
 
         // if (tenantIdClaim != null)
-    
+        if(!await _context.AgeRanges.AnyAsync((a) => a.AgeId == panelMember.AgeId ))
+            return NotFound("AgeRange niet gevonden");
          
             // string tenantId = tenantIdClaim.Value;
-            
+        if(!await _context.PanelMembers.AnyAsync((a) => a.UserId == panelMember.UserId))
+            return NotFound("PanelMemeber niet gevonden");
+
         _context.PanelMembers.Update(panelMember);
             
         try
@@ -133,7 +138,7 @@ public class PanelMemberController : ControllerBase
         {   
             // string tenantId = tenantIdClaim.Value;
  
-            var member =  await _context.PanelMembers.Include((m) => m.Age).SingleOrDefaultAsync((p) => p.UserId.Equals(userId));
+            var member =  await _context.PanelMembers.SingleOrDefaultAsync((p) => p.UserId.Equals(userId));
 
             if (member != null){
             

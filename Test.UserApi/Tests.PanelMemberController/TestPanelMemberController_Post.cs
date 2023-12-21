@@ -16,7 +16,7 @@ public class TestPanelMemberController_Post : IClassFixture<PanelMemberFixture>
         //Arrange
         var mockService = new Mock<IResearchApiService>();
         var controller = new PanelMemberController (_fixture.Context, mockService.Object); 
-        var dataObject = new PanelMember { UserId = "userId4", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", Age = new AgeRange {RangeName = "range1", AgeStart = 1, AgeEnd = 18}, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not"}; 
+        var dataObject = new PanelMember { UserId = "userId4", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not"}; 
         
         //Act
         var actionResult = controller.Post(dataObject).GetAwaiter().GetResult();
@@ -33,7 +33,7 @@ public class TestPanelMemberController_Post : IClassFixture<PanelMemberFixture>
         //Arrange
         var mockService = new Mock<IResearchApiService>();
         var controller = new PanelMemberController (_fixture.Context, mockService.Object); 
-        var dataObject = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", Age = new AgeRange {RangeName = "range1", AgeStart = 1, AgeEnd = 18}, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not"};
+        var dataObject = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not"};
        
         //Act
         var actionResult = controller.Post(dataObject).GetAwaiter().GetResult();

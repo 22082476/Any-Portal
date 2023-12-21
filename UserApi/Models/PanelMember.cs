@@ -8,7 +8,7 @@ public class PanelMember
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
 
-    [Required] public AgeRange Age { get; set; }
+    [Required] public int AgeId { get; set; }
 
     [Required] public string PostalCode { get; set; }
 

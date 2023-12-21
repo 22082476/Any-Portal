@@ -72,7 +72,7 @@ jobs:
       - name: Install .NET SDK
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '7.0'
+          dotnet-version: '8.0'
 
       - name: Run Test ChatAPi
         run: 

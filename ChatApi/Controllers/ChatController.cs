@@ -84,7 +84,7 @@ public class ChatController : ControllerBase
         if(CheckChat(chat)){
         _chatContext.Chats.Remove(chat);
         _chatContext.SaveChanges();
-        return Ok("Chat Verwijderd");
+        return NoContent();
         }
         return BadRequest("Foute request");
     }
@@ -109,7 +109,7 @@ public class ChatController : ControllerBase
         if(CheckMessages(chatMessage)){
             _chatContext.ChatMessages.Remove(chatMessage);
             _chatContext.SaveChanges();
-            return Ok("Bericht verwijderd");
+            return NoContent();
         }
         return BadRequest("Foute request");
         

@@ -9,21 +9,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Test.ChatApi;
-public class TestSaveChat : IClassFixture<ChatFixture>
+public class TestDeleteChat : IClassFixture<ChatFixture>
 {
     private readonly ChatContextFixture _fixture;
-    public TestSaveChat(ChatFixture fixture){
+    public TestDeleteChat(ChatFixture fixture){
         _fixture = fixture;
     }
     [Fact]
-    public void SaveChat()
+    public void DeleteChat()
     {
         //arrange
-        var controller = new ChatController(_fixture.ContextWithout);
+        var controller = new ChatController(_fixture.Context);
         var chat = new Chat{ChatId = 1, UserOne = "ABCD", UserTwo = "EFGH"};
 
         //act
-        OkObjectResult result = controller.Save(chat) as OkObjectResult; 
+        OkObjectResult result = controller.Delete(chat) as OkObjectResult; 
 
         //assert
         Assert.IsType<OkObjectResult>(result);
@@ -31,14 +31,14 @@ public class TestSaveChat : IClassFixture<ChatFixture>
     }
 
     [Fact]
-    public void SaveChatFaulty()
+    public void DeleteChatFaulty()
     {
         //arrange
-        var controller = new ChatController(_fixture.ContextWithout);
-        var chatfaulty = new Chat{ChatId = 1, UserTwo = "EFGH"};
+        var controller = new ChatController(_fixture.Context);
+        var chatfaulty = new Chat{UserTwo = "EFGH", UserOne = "ABCD"};
 
         //act
-        BadRequestObjectResult result = controller.Save(chatfaulty) as BadRequestObjectResult; 
+        BadRequestObjectResult result = controller.Delete(chatfaulty) as BadRequestObjectResult; 
 
         //assert
         Assert.IsType<BadRequestObjectResult>(result);

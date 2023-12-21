@@ -7,15 +7,15 @@ using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Test.ChatApi;
-public class TestGetChatMessage : IClassFixture<ChatWithMessageFixture>
+public class TestDeleteChatMessage : IClassFixture<ChatWithMessageFixture>
 {
     private readonly ChatContextFixture _fixture;
-    public TestGetChatMessage(ChatWithMessageFixture fixture){
+    public TestDeleteChatMessage(ChatWithMessageFixture fixture){
         _fixture = fixture;
     }
 
     [Fact]
-    public void TestGetChatMessages()
+    public void TestDeleteChatMessages()
     {
         //arrange
        var controller = new ChatController(_fixture.MessageContext);
@@ -24,24 +24,26 @@ public class TestGetChatMessage : IClassFixture<ChatWithMessageFixture>
                     };
 
         //act
-        var result = controller.GetMessages(1) as OkObjectResult;
-        var SavedMessage = result.Value as IList<ChatMessage>;
+        var result = controller.DeleteMessage(message) as OkObjectResult;
 
         //assert
         Assert.IsType<OkObjectResult>(result);
-        Assert.Equal(message.ToString(),SavedMessage.FirstOrDefault().ToString());
     }
 
     [Fact]
-    public void TestGetChatMessagesFaulty()
+    public void TestGetDeleteMessagesFaulty()
     {
         //arrange
        var controller = new ChatController(_fixture.MessageContext);
+       ChatMessage message = new ChatMessage{
+                        Message = "hey geert", SentFrom = "ABCD", DateTime = new DateTime(2023, 4, 15, 13, 30, 0)
+                    };
 
         //act
-        var result = controller.GetMessages(10) as NotFoundObjectResult;
+        var result = controller.DeleteMessage(message) as BadRequestObjectResult;
+        
         //assert
-        Assert.IsType<NotFoundObjectResult>(result);
+        Assert.IsType<BadRequestObjectResult>(result);
     }
 
 }

@@ -44,7 +44,7 @@ public class ChatController : ControllerBase
     [Route("GetMessage/{ChatId}")]
     public IActionResult GetMessages(int chatId)
     {
-        var Messages = _chatContext.ChatMessages.Where(Messages => Messages.ChatId == chatId);
+        var Messages = _chatContext.ChatMessages.Where(Messages => Messages.ChatId == chatId).ToList();
 
         if (Messages == null || !Messages.Any())
         {
@@ -81,9 +81,12 @@ public class ChatController : ControllerBase
     [HttpDelete] [Route("DeleteChat")]
     public IActionResult Delete(Chat chat)
     {
+        if(CheckChat(chat)){
         _chatContext.Chats.Remove(chat);
         _chatContext.SaveChanges();
-        return Ok("Chat toegevoegd");
+        return Ok("Chat Verwijderd");
+        }
+        return BadRequest("Foute request");
     }
 
     [HttpPost]
@@ -101,7 +104,7 @@ public class ChatController : ControllerBase
 
     [HttpDelete]
     [Route("DeleteMessage")]
-    public IActionResult Delete(ChatMessage chatMessage)
+    public IActionResult DeleteMessage(ChatMessage chatMessage)
     {
         if(CheckMessages(chatMessage)){
             _chatContext.ChatMessages.Remove(chatMessage);
@@ -115,9 +118,9 @@ public class ChatController : ControllerBase
     private bool CheckChat(Chat chat)
     {
         if(
+            chat.ChatId == 0 ||
             chat.UserOne == null ||
-            chat.UserTwo == null ||
-            chat.Messages == null)
+            chat.UserTwo == null)
             {
             return false;
         }
@@ -127,6 +130,8 @@ public class ChatController : ControllerBase
     private bool CheckMessages(ChatMessage chatMessage)
     {
         if(
+            chatMessage.MessageId == 0 ||
+            chatMessage.ChatId == 0 ||
             chatMessage.Message == null ||
             chatMessage.SentFrom == null
         )

@@ -9,36 +9,37 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Test.ChatApi;
-public class TestSaveChat : IClassFixture<ChatFixture>
+public class TestUpdateChat : IClassFixture<ChatFixture>
 {
     private readonly ChatContextFixture _fixture;
-    public TestSaveChat(ChatFixture fixture){
+    public TestUpdateChat(ChatFixture fixture){
         _fixture = fixture;
     }
     [Fact]
-    public void SaveChat()
+    public void UpdateChat()
     {
         //arrange
-        var controller = new ChatController(_fixture.ContextWithout);
-        var chat = new Chat{ChatId = 1, UserOne = "ABCD", UserTwo = "EFGH"};
+        var controller = new ChatController(_fixture.Context);
+        var chat = new Chat{ChatId = 1, UserOne = "ABCD", UserTwo = "EGH"};
 
         //act
-        OkObjectResult result = controller.Save(chat) as OkObjectResult; 
+        OkObjectResult result = controller.Update(chat) as OkObjectResult; 
+        Console.WriteLine(result.Value);
 
         //assert
-        Assert.IsType<OkObjectResult>(result);
+        Assert.IsType<OkObjectResult>(result); 
         Assert.Equal(200,result.StatusCode);
     }
 
     [Fact]
-    public void SaveChatFaulty()
+    public void UpdateChatFaulty()
     {
         //arrange
         var controller = new ChatController(_fixture.ContextWithout);
         var chatfaulty = new Chat{ChatId = 1, UserTwo = "EFGH"};
 
         //act
-        BadRequestObjectResult result = controller.Save(chatfaulty) as BadRequestObjectResult; 
+        BadRequestObjectResult result = controller.Update(chatfaulty) as BadRequestObjectResult; 
 
         //assert
         Assert.IsType<BadRequestObjectResult>(result);

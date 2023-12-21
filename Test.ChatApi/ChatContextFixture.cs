@@ -7,6 +7,7 @@ public abstract class ChatContextFixture : IDisposable
         private bool _disposed;
 
         public ChatContext Context { get; private set; }
+        public ChatContext MessageContext { get; private set; }
         public ChatContext ContextWithout { get; private set; }
 
         public ChatContextFixture()
@@ -20,12 +21,21 @@ public abstract class ChatContextFixture : IDisposable
             // Voeg testgegevens toe aan de context
             LoadData(options);
 
-
             var options2 = new DbContextOptionsBuilder<ChatContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
 
-            ContextWithout = new ChatContext(options2);
+            MessageContext = new ChatContext(options2);
+
+            // Voeg testgegevens toe aan de context
+            LoadData(options2);
+
+
+            var options3 = new DbContextOptionsBuilder<ChatContext>()
+                .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                .Options;
+
+            ContextWithout = new ChatContext(options3);
         }
 
         protected virtual void LoadData (DbContextOptions options){}

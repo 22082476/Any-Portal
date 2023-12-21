@@ -37,8 +37,10 @@ public class TestPanelMemberController_Post : IClassFixture<PanelMemberFixture>
        
         //Act
         var actionResult = controller.Post(dataObject).GetAwaiter().GetResult();
+        var objectResult = actionResult as BadRequestObjectResult;
 
         //Assert
         Assert.IsType<BadRequestObjectResult>(actionResult);
+        Assert.Equal("Account bestaat al", objectResult.Value);
     }
 }

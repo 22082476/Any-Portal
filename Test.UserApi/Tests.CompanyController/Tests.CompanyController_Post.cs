@@ -36,8 +36,10 @@ public class TestCompanyController_Post : IClassFixture<CompanyFixture>
 
         //Act
         var actionResult = controller.Post(dataObject).GetAwaiter().GetResult();
+        var ObjectResult = actionResult as BadRequestObjectResult;
 
         //Assert
         Assert.IsType<BadRequestObjectResult>(actionResult);
+        Assert.Equal("Account bestaat al", ObjectResult.Value);
     }
 }

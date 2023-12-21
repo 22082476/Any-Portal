@@ -1,5 +1,5 @@
 # Gebruik een basisimage met de SDK van .NET Core om de applicatie te bouwen
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 # Stel de werkdirectory in binnen de container
 WORKDIR /app
@@ -17,7 +17,7 @@ RUN dotnet build -c Release -o /app/build
 RUN dotnet publish -c Release -o /app/publish
 
 # Bouw de runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 
 # Werkdirectory instellen voor de runtime image
 WORKDIR /app

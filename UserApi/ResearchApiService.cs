@@ -14,7 +14,7 @@ public class ResearchApiService : IResearchApiService
             try
             {
                 // Voeg eventuele headers toe (optioneel)
-                client.DefaultRequestHeaders.Add("Cookie", id);
+                // client.DefaultRequestHeaders.Add("Cookie", id);
 
                 string apiUrl = "https://localhost:3004/"; //aanvullen
 

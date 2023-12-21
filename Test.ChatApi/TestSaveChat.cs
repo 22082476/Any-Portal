@@ -27,7 +27,6 @@ public class TestSaveChat : IClassFixture<ChatFixture>
 
         //assert
         Assert.IsType<OkObjectResult>(result);
-        Assert.Equal(200,result.StatusCode);
     }
 
     [Fact]

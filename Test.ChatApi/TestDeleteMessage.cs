@@ -24,10 +24,10 @@ public class TestDeleteChatMessage : IClassFixture<ChatWithMessageFixture>
                     };
 
         //act
-        var result = controller.DeleteMessage(message) as OkObjectResult;
+        var result = controller.DeleteMessage(message) as NoContentResult;
 
         //assert
-        Assert.IsType<OkObjectResult>(result);
+        Assert.IsType<NoContentResult>(result);
     }
 
     [Fact]
@@ -41,7 +41,7 @@ public class TestDeleteChatMessage : IClassFixture<ChatWithMessageFixture>
 
         //act
         var result = controller.DeleteMessage(message) as BadRequestObjectResult;
-        
+
         //assert
         Assert.IsType<BadRequestObjectResult>(result);
     }

@@ -23,11 +23,10 @@ public class TestDeleteChat : IClassFixture<ChatFixture>
         var chat = new Chat{ChatId = 1, UserOne = "ABCD", UserTwo = "EFGH"};
 
         //act
-        OkObjectResult result = controller.Delete(chat) as OkObjectResult; 
+        NoContentResult result = controller.Delete(chat) as NoContentResult; 
 
         //assert
-        Assert.IsType<OkObjectResult>(result);
-        Assert.Equal(200,result.StatusCode);
+        Assert.IsType<NoContentResult>(result);
     }
 
     [Fact]

@@ -1,0 +1,25 @@
+.Footer
+{
+    width: 50vw;
+    height: 0.1vh;
+    border-bottom: 29vh solid #131B56;
+    border-right: 49vw solid transparent;
+}
+
+.Footer-nav
+{
+    height: 10vh;
+    width: 99vw;
+    background-color: #131B56;
+}
+
+.coloredCornerLeft {
+    width: 0;
+    height: 0;
+    border-right: 50vw solid transparent;
+    border-bottom: 30vh solid #131B56;
+    position: absolute;
+    left: 0;
+    bottom: -0.5px;
+
+  }

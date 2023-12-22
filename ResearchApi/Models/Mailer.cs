@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
-/*
-namespace ResearchApi
-{
+
+namespace ResearchApi;
     public class Emailer
     {
         private string Email;
@@ -35,5 +34,3 @@ namespace ResearchApi
             }
         }
     }
-}
-*/

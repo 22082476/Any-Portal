@@ -1,8 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ResearchApi
-{
+namespace ResearchApi;
     public class PostalCodeRange
     {
         [Key]
@@ -14,11 +13,7 @@ namespace ResearchApi
         [Required]
         public string Till_Postalcode { get; set; }
 
-        // Foreign key naar Research
+       [Required]
         public int ResearchId { get; set; }
-
-         [ForeignKey("ResearchId")]
-    public Research Research { get; set; } // Navigatie-eigenschap
-      
     }
-}
+

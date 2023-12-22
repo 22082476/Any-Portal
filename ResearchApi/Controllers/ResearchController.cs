@@ -107,7 +107,7 @@ public class ResearchController : ControllerBase{
             return Ok(new { Message = "PostalcodeRange created successfully", ResearchId = postalCodeRange.Id});
         }
         catch (Exception ex){
-            return BadRequest(new { Message = "Failed to create AgeRange", Error = ex.Message });
+            return BadRequest(new { Message = "Failed to create PostalcodeRange", Error = ex.Message });
         }
     }
 
@@ -133,7 +133,7 @@ public class ResearchController : ControllerBase{
         }
     }
    
-   
+
    [HttpPut("Update")]
     public IActionResult UpdateResearch(int id, Research updatedResearch){
         var existingResearch = _context.Research.FirstOrDefault(r => r.Rcode == id);

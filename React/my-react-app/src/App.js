@@ -1,33 +1,31 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { Header } from './Header';
+import { Home } from './Home';
+import { Account } from './Account';
+import { Footer } from './Footer';
+import { PrivacyPolicy } from './PrivacyPolicy'
 
 
-import Home from './Home';
-import Account from './Account';
-
-
-const App = () => {
-  return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/account">Account</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/account" component={Account} /> 
-        </Switch>
-      </div>
-    </Router>
+// Hoofdcomponent met router
+function App() {
+  return (<>
+    <Header />
+    <BrowserRouter>
+      <Routes>
+          <Route path="/"element={<Home Name="Testnaam" Role="PanelMember"/>} />
+          <Route path="Onderzoek" element={<></>} />
+          <Route path="Account" element={<Account />} />
+          <Route path="Uitloggen"/> 
+          <Route path='PrivacyPolicy' element={<PrivacyPolicy />}/>     
+          {/* <Route path="*" element={<NoPage />} /> */}
+      </Routes>
+    </BrowserRouter>
+    <Footer />
+    </>
   );
-};
+}
+
 
 export default App;

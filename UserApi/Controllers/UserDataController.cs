@@ -58,4 +58,30 @@ public class UserDataController : ControllerBase
 
         return NotFound();
     }
+
+    [HttpGet]
+    [Route("/Role/{userId}")]
+    public async Task<IActionResult> GetRole (string userId)
+    {
+        if(userId != null)
+        {   
+            if(_context.PanelMembers.Any((a) => a.UserId.Equals(userId)))
+                return Ok("PanelMember");
+
+            if(_context.Companies.Any((a) => a.UserId.Equals(userId)))
+                return Ok("Company");
+
+            if(_context.Administrators.Any((a) => a.UserId.Equals(userId)))
+            {
+                
+               if(_context.Administrators.Single((a) => a.UserId.Equals(userId)).IsAdmin)
+                    return Ok("Admin"); 
+                return Ok("Administrator");
+            }
+
+            return NotFound();    
+        }
+
+        return BadRequest();
+    }
 }

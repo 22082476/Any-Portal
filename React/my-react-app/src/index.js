@@ -8,13 +8,12 @@ import reportWebVitals from './reportWebVitals';
 import Footer from './Footer';
 import FooterNav from './FooterNav';
 import Test from './ComponentSwichter';
+import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-     <Header />
-     <Test />
-    <Footer />
+    <App />
   </React.StrictMode>
 );
 

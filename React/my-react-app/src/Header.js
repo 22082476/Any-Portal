@@ -1,8 +1,8 @@
 
 import './Header.css';
-import HeaderNav from './Header-nav';
+import { HeaderNav } from './Header-nav';
 
-function Header() {
+export function Header() {
   return (
     <div className="container">
       <div className="coloredCornerRight"></div>
@@ -10,5 +10,3 @@ function Header() {
     </div>
   );
 }
-
-export default Header;

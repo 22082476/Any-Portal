@@ -48,12 +48,24 @@ jobs:
             context: UserApi
             file: UserApi/Dockerfile
             push: false 
-
-      - name: Install .NET SDK
-        uses: actions/setup-dotnet@v1
+      # Cypress-tests voor React-app in de huidige repository
+      - name: Setup Node.js for Frontend
+        uses: actions/setup-node@v2
         with:
-          dotnet-version: '8.0'
+          node-version: '14'
 
+      - name: Install Cypress dependencies
+        run: |
+          cd React/my-react-app  # Vervang dit door het juiste pad naar je frontend-map binnen je repository
+          npm install cypress
+
+      - name: Run Cypress tests
+        run: |
+          cd React/my-react-app  # Vervang dit door het juiste pad naar je frontend-map binnen je repository
+          npm run test
+          export CYPRESS_EXIT_CODE=$?
+
+      # Stappen voor het uitvoeren van .NET-tests voor verschillende API's (ChatApi, LoginApi, MedicalApi, ResearchApi, UserApi)
       - name: Run Test ChatApi
         run: 
           cd Test.ChatApi &&
@@ -66,7 +78,7 @@ jobs:
 
       - name: Run Test MedicalApi
         run: 
-           cd Test.MedicalApi &&
+          cd Test.MedicalApi &&
           dotnet test 
 
       - name: Run Test ResearchApi
@@ -79,37 +91,17 @@ jobs:
           cd Test.UserApi &&
           dotnet test 
 
-      # Cypress-tests voor React-app
-      - name: Checkout Frontend code
-        uses: actions/checkout@v2
-        with:
-          repository: my-react-app  # Vervang dit door de repositorynaam van je frontend
-
-      - name: Setup Node.js for Frontend
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: Install Cypress dependencies
-        run: |
-          cd path/to/your/frontend  # Vervang dit door het pad naar je frontend-map
-          npm install cypress
-
-      - name: Run Cypress tests
-        run: |
-          cd path/to/your/frontend  # Vervang dit door het pad naar je frontend-map
-          npx cypress run --headless --browser chrome  # Je kunt de browseroptie wijzigen indien nodig
-
   merge-allowed:
     needs: test
     runs-on: ubuntu-latest
     if: always()  # Deze regel zorgt ervoor dat de job altijd wordt uitgevoerd
 
     steps:
-      - name: Check test is succes
-        if: ${{ needs.test.result == 'success' }}
+      - name: Check test is success
+        if: ${{ needs.test.result == 'success' && env.CYPRESS_EXIT_CODE == 0 }}
         run: echo "Tests passed. You can merge this pull request."
       
       - name: Check test is failed
-        if: ${{ needs.test.result != 'success' }}
+        if: ${{ needs.test.result != 'success' && env.CYPRESS_EXIT_CODE != 0 }}
         run: echo "Tests failed. Cannot merge this pull request."
+

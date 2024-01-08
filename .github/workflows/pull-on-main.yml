@@ -83,7 +83,7 @@ jobs:
       - name: Checkout Frontend code
         uses: actions/checkout@v2
         with:
-          repository: your-frontend-repo  # Vervang dit door de repositorynaam van je frontend
+          repository: my-react-app  # Vervang dit door de repositorynaam van je frontend
 
       - name: Setup Node.js for Frontend
         uses: actions/setup-node@v2

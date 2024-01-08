@@ -19,6 +19,16 @@ public class UserDataFixture : UserContextFixture
         new PanelMember { UserId = "userId3", Email = "test322@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 3, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "mail"}
         );
 
+        context.Companies.AddRange(
+            new Company { UserId = "userId5", CompanyName = "CompanyName", Email = "test@mail.nl", Description = "text", Website = new Uri ("https://www.site.nl"), Location = "location", IsValid = true},
+            new Company { UserId = "userId4", CompanyName = "CompanyName2", Email = "test2@mail.nl", Description = "text text", Website = new Uri ("https://www.site.nl"), Location = "location", IsValid = true}
+            );
+
+        context.Administrators.AddRange(
+                new Administrator { UserId = "userId6", Email = "test@mail.nl", FirstName = "Firstname", LastName = "Lastname", IsAdmin = false },
+                new Administrator { UserId = "userId7", Email = "test2@mail.nl", FirstName = "Firstname2", LastName = "Lastname2", IsAdmin = true }
+            );
+
         context.SaveChanges();
     }
 }

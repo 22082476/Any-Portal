@@ -1,0 +1,12 @@
+.PrivacyDiv
+{
+    display: flex;
+    justify-Content: center; 
+    flex-Flow: column; 
+    align-Items: center;
+}
+
+h2, h3, h4
+{
+    text-align: cneter;
+}

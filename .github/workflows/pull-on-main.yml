@@ -12,29 +12,9 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-          
-      - name: Set up working directory
-        run: cd any-portal-frontend
-                
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm run test
-        
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      
+        uses: actions/checkout@v2    
 
       - name: Build and run ChatApi Docker containers
-
         uses: docker/build-push-action@v2
         with:
           context: ChatApi
@@ -74,7 +54,7 @@ jobs:
         with:
           dotnet-version: '8.0'
 
-      - name: Run Test ChatAPi
+      - name: Run Test ChatApi
         run: 
           cd Test.ChatApi &&
           dotnet test 
@@ -99,7 +79,26 @@ jobs:
           cd Test.UserApi &&
           dotnet test 
 
-      
+      # Cypress-tests voor React-app
+      - name: Checkout Frontend code
+        uses: actions/checkout@v2
+        with:
+          repository: your-frontend-repo  # Vervang dit door de repositorynaam van je frontend
+
+      - name: Setup Node.js for Frontend
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install Cypress dependencies
+        run: |
+          cd path/to/your/frontend  # Vervang dit door het pad naar je frontend-map
+          npm install cypress
+
+      - name: Run Cypress tests
+        run: |
+          cd path/to/your/frontend  # Vervang dit door het pad naar je frontend-map
+          npx cypress run --headless --browser chrome  # Je kunt de browseroptie wijzigen indien nodig
 
   merge-allowed:
     needs: test

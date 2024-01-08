@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Cypress Tests and Deploy
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,18 +20,18 @@ jobs:
 
       - name: Install dependencies
         run: |
+          cd React/my-react-app
           npm install
-          npm install cypress
 
       - name: Run Cypress tests
         run: |
           cd React/my-react-app
           npm run test
-          export CYPRESS_EXIT_CODE=$?
-
+      
       - name: Build and deploy if tests pass
-        if: ${{ env.CYPRESS_EXIT_CODE == 0 }}
+        if: ${{ success() }}
         run: |
+          cd React/my-react-app
           npm run build
           npm install -g gh-pages
           gh-pages -d build -b main -m "Deploy React app to GitHub Pages"

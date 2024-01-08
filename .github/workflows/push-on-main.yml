@@ -23,6 +23,7 @@ jobs:
 
       - name: Run Cypress tests
         run: |
+          cd React/my-react-app
           npm run test
           export CYPRESS_EXIT_CODE=$?
 

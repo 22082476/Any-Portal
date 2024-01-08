@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Test.MedicalApi;
 
-    public class HttpPut_Test
+    public class Test_MedController_PutMethod
     {
         [Fact]
         public async Task Update_ReturnsNoContentForSuccessfulUpdate()

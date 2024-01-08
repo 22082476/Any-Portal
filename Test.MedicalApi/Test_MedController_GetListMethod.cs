@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Test.MedicalApi;
 
- public class HttpGet_Test
+ public class Test_MedController_GetListMethod
 {
     [Fact]
     public async Task Get_ReturnsListOfDisabilities()

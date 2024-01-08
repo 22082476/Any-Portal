@@ -76,5 +76,5 @@ public class MedicalController : ControllerBase
         // Returns 204 No Content status for a successful deletion.
         return NoContent();
     }
-
+    
 }

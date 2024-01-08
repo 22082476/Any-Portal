@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Test.MedicalApi;
 
-public class HttpGet_Dcode_Test
+public class Test_MedController_GetByPrimaryKeyMethod
 {
     [Fact]
     public async Task GetByDcode_ReturnsDisabilityForValidDcode()

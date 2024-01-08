@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Test.MedicalApi;
 
-    public class HttpPost_Test
+    public class Test_MedController_PostMethod
     {
         [Fact]
         public async Task Create_ReturnsCreatedAtAction()
@@ -25,10 +25,10 @@ namespace Test.MedicalApi;
                 // Create a new Disability object to be passed to the Create method.
                 var newDisability = new Disability
                 {
-                    UserId = "user2",
+                    UserId = "user3",
                     Type = "Visueel",
-                    Name = "Blind",
-                    Tool = "Voorlees app"
+                    Name = "Slecht ziend",
+                    Tool = "Bril op sterkte"
                 };
 
                 // Call the Create method in the controller.

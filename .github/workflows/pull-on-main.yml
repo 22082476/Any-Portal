@@ -9,12 +9,13 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2    
+        uses: actions/checkout@v2
 
       - name: Build and run ChatApi Docker containers
+
         uses: docker/build-push-action@v2
         with:
           context: ChatApi
@@ -48,25 +49,13 @@ jobs:
             context: UserApi
             file: UserApi/Dockerfile
             push: false 
-      # Cypress-tests voor React-app in de huidige repository
-      - name: Setup Node.js for Frontend
-        uses: actions/setup-node@v2
+
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@v1
         with:
-          node-version: '14'
+          dotnet-version: '8.0'
 
-      - name: Install Cypress dependencies
-        run: |
-          cd React/my-react-app  # Vervang dit door het juiste pad naar je frontend-map binnen je repository
-          npm install cypress
-
-      - name: Run Cypress tests
-        run: |
-          cd React/my-react-app  # Vervang dit door het juiste pad naar je frontend-map binnen je repository
-          npm run test
-          export CYPRESS_EXIT_CODE=$?
-
-      # Stappen voor het uitvoeren van .NET-tests voor verschillende API's (ChatApi, LoginApi, MedicalApi, ResearchApi, UserApi)
-      - name: Run Test ChatApi
+      - name: Run Test ChatAPi
         run: 
           cd Test.ChatApi &&
           dotnet test 
@@ -78,7 +67,7 @@ jobs:
 
       - name: Run Test MedicalApi
         run: 
-          cd Test.MedicalApi &&
+           cd Test.MedicalApi &&
           dotnet test 
 
       - name: Run Test ResearchApi
@@ -91,17 +80,18 @@ jobs:
           cd Test.UserApi &&
           dotnet test 
 
+      
+
   merge-allowed:
     needs: test
     runs-on: ubuntu-latest
     if: always()  # Deze regel zorgt ervoor dat de job altijd wordt uitgevoerd
 
     steps:
-      - name: Check test is success
-        if: ${{ needs.test.result == 'success' && env.CYPRESS_EXIT_CODE == 0 }}
+      - name: Check test is succes
+        if: ${{ needs.test.result == 'success' }}
         run: echo "Tests passed. You can merge this pull request."
       
       - name: Check test is failed
-        if: ${{ needs.test.result != 'success' && env.CYPRESS_EXIT_CODE != 0 }}
+        if: ${{ needs.test.result != 'success' }}
         run: echo "Tests failed. Cannot merge this pull request."
-

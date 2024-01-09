@@ -32,6 +32,18 @@ builder.Services.AddCors(options =>
 //         return new AdminLogger(config.GetConnectionString("LogFileSource"));
 //     });
 
+builder.Services.AddScoped<IResearchApiService, ResearchApiService>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:3000")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

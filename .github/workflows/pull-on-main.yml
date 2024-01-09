@@ -104,3 +104,4 @@ jobs:
       - name: Check test is failed
         if: ${{ needs.test.result != 'success' && env.CYPRESS_EXIT_CODE != 0 }}
         run: echo "Tests failed. Cannot merge this pull request."
+

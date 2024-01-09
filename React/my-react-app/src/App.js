@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 import { Header } from './Header';
 import { Home } from './Home';
@@ -12,16 +12,16 @@ import { PrivacyPolicy } from './PrivacyPolicy'
 function App() {
   return (<>
     <Header />
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
           <Route path="/"element={<Home Name="Testnaam" Role="PanelMember"/>} />
-          <Route path="Onderzoek" element={<></>} />
-          <Route path="Account" element={<Account />} />
-          <Route path="Uitloggen"/> 
-          <Route path='PrivacyPolicy' element={<PrivacyPolicy />}/>     
+          <Route path="/Onderzoek" element={<></>} />
+          <Route path="/Account" element={<Account />} />
+          <Route path="/Uitloggen"/> 
+          <Route path='/PrivacyPolicy' element={<PrivacyPolicy />}/>     
           {/* <Route path="*" element={<NoPage />} /> */}
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
     <Footer />
     </>
   );

@@ -12,7 +12,6 @@ export function Account() {
         const response = await fetch("http://localhost:5177/PanelMember/string");
         const responseData = await response.json();
         setUserData(responseData);
-
               } catch (error) {
         console.error("Error fetching data from userapi:", error);
       }
@@ -50,11 +49,10 @@ export function Account() {
       )}
       {medicalData ? (
         <div>
-          
           <p>Beperking: {medicalData.disiblity}</p>
-          <p>Type beperking: {medicalData.type} </p>
-          <p>Hulpmiddel: {medicalData.tool}</p>
-        
+          <p>Type: {medicalData.type}</p>
+          <p>Hulpmiddel: {medicalData.tool}</p>         
+
         </div>
       ) : (
         <p>Loading...</p>

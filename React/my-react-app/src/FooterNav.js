@@ -5,7 +5,7 @@ import './Footer.css'
     return(
         <div className="Footer-nav">
             <nav>
-                <a href="/PrivacyPolicy">Privacy Policy</a> 
+                <a href="#/PrivacyPolicy">Privacy Policy</a> 
                 <a href="https://www.accessibility.nl/" target="_blank">Website stichting </a> 
             </nav>
             <span>

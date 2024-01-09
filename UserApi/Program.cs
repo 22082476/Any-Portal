@@ -11,6 +11,18 @@ var config = builder.Configuration;
 
 builder.Services.AddDbContext<UserContext>((options) => options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<IResearchApiService, ResearchApiService>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:3000")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 // builder.Services.AddHttpContextAccessor();
 
  //add service voor de zelfde gemaakte logger ILogger;
@@ -31,6 +43,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseHsts();
+
+app.UseCors();
 
 app.UseAuthorization();
 

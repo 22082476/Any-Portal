@@ -1,0 +1,8 @@
+.AccountInfo-div
+{
+    display: block;
+    margin: 0 25vw;
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
+}

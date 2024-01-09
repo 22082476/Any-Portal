@@ -1,0 +1,71 @@
+/* ColoredCornerBox.module.css */
+
+.container {
+  height: 30vh;
+  width: 99vw;
+  position: relative;
+  padding-top: 10px;
+}
+
+.coloredCornerRight {
+  width: 0;
+  height: 0;
+  border-left: 35vw solid transparent;
+  border-top: 30vh solid #21ACA1; 
+  position: absolute;
+  top: 0;
+  right: 0;
+  
+}
+
+.nav-bar
+{
+  z-index: 2;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;  
+}
+
+.Title
+{
+  font-size: 3rem;
+  margin: 0;
+}
+
+.nav
+{
+  padding-left: 25vw;
+  width: 39vw;
+  display: flex;
+  justify-content: space-around;  
+}
+
+.nav a
+{
+  padding: 1rem 1.5rem 1.5rem 1.5rem;
+  color: #000000;
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  
+}
+
+.nav a:hover
+{
+  text-decoration: underline  #000000;
+}
+
+.nav :last-child
+{
+  padding-right: 0; 
+}
+
+img
+{
+  width: 100px;
+  padding: 10px;
+}
+

@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Cypress Tests and Deploy
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,19 +16,23 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
-          
-      - name: Set up working directory
-        run: cd any-portal-frontend
-                
-      - name: Install dependencies
-        run: npm install
+          node-version: '16'
 
-      - name: Run tests
-        run: npm run test  # Voer hier de testopdrachten uit die je gebruikt voor je React-project
+      - name: Install dependencies
+        run: |
+          cd React/my-react-app
+          npm install
+
+      - name: Run Cypress tests
+        run: |
+          cd React/my-react-app
+          npm run test
+          exit $?
 
       - name: Build and deploy if tests pass
         if: ${{ success() }}
         run: |
+          cd React/my-react-app
           npm run build
-          npm run deploy -- -m "Deploy React app to GitHub Pages"
+          npm run deploy
+        

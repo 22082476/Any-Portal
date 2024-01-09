@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Any-Portal/static/css/main.f16d3dd0.css",
-    "main.js": "/Any-Portal/static/js/main.500c825f.js",
+    "main.css": "/Any-Portal/static/css/main.b1f129c3.css",
+    "main.js": "/Any-Portal/static/js/main.b70207e9.js",
     "static/js/787.38f16daf.chunk.js": "/Any-Portal/static/js/787.38f16daf.chunk.js",
     "static/media/icon_accessibility.png": "/Any-Portal/static/media/icon_accessibility.082af1b2a2209f5b7e2f.png",
     "index.html": "/Any-Portal/index.html",
-    "main.f16d3dd0.css.map": "/Any-Portal/static/css/main.f16d3dd0.css.map",
-    "main.500c825f.js.map": "/Any-Portal/static/js/main.500c825f.js.map",
+    "main.b1f129c3.css.map": "/Any-Portal/static/css/main.b1f129c3.css.map",
+    "main.b70207e9.js.map": "/Any-Portal/static/js/main.b70207e9.js.map",
     "787.38f16daf.chunk.js.map": "/Any-Portal/static/js/787.38f16daf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f16d3dd0.css",
-    "static/js/main.500c825f.js"
+    "static/css/main.b1f129c3.css",
+    "static/js/main.b70207e9.js"
   ]
 }

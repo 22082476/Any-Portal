@@ -1,7 +1,7 @@
 .PrivacyDiv
 {
     display: flex;
-    justify-Content: start; 
+    justify-Content: flex-start; 
     flex-Flow: column; 
     align-Items: flex-start;
     margin: 0 25vw;

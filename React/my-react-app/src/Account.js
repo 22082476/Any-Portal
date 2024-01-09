@@ -29,6 +29,7 @@ export function Account() {
 
   return (
     <div className="accountInfo-div">
+        <h2>Accountgegevens</h2>
       {userData ? (
         <div>
           <p>Voornaam: {userData.firstName}</p>

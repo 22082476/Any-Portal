@@ -1,4 +1,4 @@
-namespace Test.ResearchApi;
+namespace Test.UserApi;
 
 public class UnitTest1
 {

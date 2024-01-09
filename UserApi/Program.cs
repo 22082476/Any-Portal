@@ -20,6 +20,18 @@ builder.Services.AddDbContext<UserContext>((options) => options.UseSqlServer(con
 //         return new AdminLogger(config.GetConnectionString("LogFileSource"));
 //     });
 
+builder.Services.AddScoped<IResearchApiService, ResearchApiService>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:3000")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -31,6 +43,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseHsts();
+
+app.UseCors();
 
 app.UseAuthorization();
 

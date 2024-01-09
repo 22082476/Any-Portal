@@ -34,6 +34,5 @@ jobs:
         run: |
           cd React/my-react-app
           npm run build
-          npm install -g gh-pages
-          gh-pages -d build -b main -m "Deploy React app to GitHub Pages"
+          npm run deploy
         

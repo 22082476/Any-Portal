@@ -25,6 +25,8 @@ builder.Services.AddCors(options =>
 
 // builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddScoped<ILog, AdminLogger>();
+
  //add service voor de zelfde gemaakte logger ILogger;
 // builder.Services.AddSingleton(sp =>
 //     {

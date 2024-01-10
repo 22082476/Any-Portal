@@ -16,10 +16,10 @@ function App() {
       <Routes>
           <Route path="/"element={<Home Name="Testnaam" Role="PanelMember"/>} />
           <Route path="/Onderzoek" element={<></>} />
-          <Route path="/Account" element={<Account />} />
+          <Route path="/Account" element={<Account Role="PanelMember" />} />
           <Route path="/Uitloggen"/> 
-          <Route path='/PrivacyPolicy' element={<PrivacyPolicy />}/>     
-          {/* <Route path="*" element={<NoPage />} /> */}
+          <Route path='/PrivacyPolicy' element={<PrivacyPolicy />}/> 
+          <Route path='/AlterAccount' element={<></>}/>    
       </Routes>
     </HashRouter>
     <Footer />

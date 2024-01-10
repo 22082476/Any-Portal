@@ -4,7 +4,7 @@ export function PrivacyPolicy ()
 {
     return (
         <div className='PrivacyDiv'>
-            <h2>Privacy policy</h2>
+            <h2>Privacybeleid</h2>
             <h3>Onze rol in jouw privacy</h3>
             <p>Als Any-Portal vragen wij normale/bijzondere persoonsgegevens als gebruiker.<br />
               Wij vragen alleen om informatie die wij ook daadwerkelijk gaan gebruiken, <br /> 

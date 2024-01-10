@@ -1,3 +1,6 @@
+using MedicalApi;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// Configure and register the DisabilityDbContext with Entity Framework Core, specifying the SQL Server database provider.
+builder.Services.AddDbContext<DisabilityDbContext>(
+    // This uses the connection string named "SqlServer" from the application configuration.
+    o => o.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 
 var app = builder.Build();
 

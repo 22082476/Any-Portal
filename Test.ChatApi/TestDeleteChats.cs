@@ -23,7 +23,7 @@ public class TestDeleteChat : IClassFixture<ChatFixture>
         var chat = new Chat{ChatId = 1, UserOne = "ABCD", UserTwo = "EFGH"};
 
         //act
-        NoContentResult result = controller.Delete(chat).Result as NoContentResult; 
+        NoContentResult result = controller.Delete(chat).GetAwaiter().GetResult() as NoContentResult; 
 
         //assert
         Assert.IsType<NoContentResult>(result);

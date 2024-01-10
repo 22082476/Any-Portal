@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-
+using Moq;
 using UserApi.Controllers;
 
 namespace Test.UserApi;
@@ -17,8 +17,8 @@ public class TestAdministratorController_GetAll : IClassFixture<AdminFixture>
     public void Test_GetAll_Ok()
     {
         //Arrange
-        
-        var controller = new AdministratorController (_fixture.Context);
+        var mock = new Mock<ILog>();
+        var controller = new AdministratorController (_fixture.Context, mock.Object);
         
         //Act
         var actionResult = controller.GetAll().GetAwaiter().GetResult();
@@ -33,8 +33,8 @@ public class TestAdministratorController_GetAll : IClassFixture<AdminFixture>
     public void Test_GetAll_Ok_Empty()
     {
         //Arrange
-        
-        var controller = new AdministratorController (_fixture.ContextWithout);
+        var mock = new Mock<ILog>();
+        var controller = new AdministratorController (_fixture.ContextWithout, mock.Object);
         
         //Act
         var actionResult = controller.GetAll().GetAwaiter().GetResult();

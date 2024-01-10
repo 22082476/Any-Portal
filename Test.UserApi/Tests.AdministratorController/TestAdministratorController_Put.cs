@@ -14,7 +14,8 @@ public class TestAdministratorController_Put : IClassFixture<AdminFixture>
     public void Test_Put_Ok()
     {
         //Arrange
-        var controller = new AdministratorController (_fixture.Context);
+        var mock = new Mock<ILog>();
+        var controller = new AdministratorController (_fixture.Context, mock.Object);
         var dataObject = new Administrator { UserId = "userId", Email = "test213@mail.nl", FirstName = "naampje", LastName = "achternaampje", IsAdmin = false };
         
         //Act
@@ -30,7 +31,8 @@ public class TestAdministratorController_Put : IClassFixture<AdminFixture>
     public void Test_Put_BadRequest()
     {
         //Arrange
-        var controller = new AdministratorController (_fixture.Context);
+        var mock = new Mock<ILog>();
+        var controller = new AdministratorController (_fixture.Context, mock.Object);
         var dataObject = new Administrator { UserId = "userIdtje", Email = "test@mail.nl", FirstName = "Firstname", LastName = "Lastname", IsAdmin = false };
         
         //Act

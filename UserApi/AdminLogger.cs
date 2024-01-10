@@ -1,14 +1,9 @@
 using System;
 using System.IO;
 
-public class AdminLogger : ILog<AdminLogger>
+public class AdminLogger : ILog
 {
-    private readonly string _source;
-
-    public AdminLogger(string source)
-    {
-        _source = source;
-    }
+    private readonly string _source = "Logfile.txt";
 
     public async void Log(LogMsg msg)
     {
@@ -23,7 +18,7 @@ public class AdminLogger : ILog<AdminLogger>
     }
 }
 
-public interface ILog<T>
+public interface ILog
 {
     void Log(LogMsg msg);
 }

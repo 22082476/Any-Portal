@@ -6,6 +6,7 @@ import { Home } from './Home';
 import { Account } from './Account';
 import { Footer } from './Footer';
 import { PrivacyPolicy } from './PrivacyPolicy'
+import { AlterAccount } from './AlterAccount';
 
 
 // Hoofdcomponent met router
@@ -19,7 +20,7 @@ function App() {
           <Route path="/Account" element={<Account Role="PanelMember" />} />
           <Route path="/Uitloggen"/> 
           <Route path='/PrivacyPolicy' element={<PrivacyPolicy />}/> 
-          <Route path='/AlterAccount' element={<></>}/>    
+          <Route path='/AlterAccount' element={<AlterAccount Role=""/>}/>    
       </Routes>
     </HashRouter>
     <Footer />

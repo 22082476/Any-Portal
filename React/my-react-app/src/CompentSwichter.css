@@ -1,9 +1,0 @@
-.body
-{
-    height: 45vh;
-    width: 98vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}

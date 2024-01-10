@@ -1,0 +1,18 @@
+.ChatBubble{
+    position: absolute;
+    right: 5%;
+    bottom: 10%;
+    border: none;
+    background-color: white;
+}
+
+image{
+    display: block;
+    height: auto;
+    width: auto;
+}
+
+.ChatBubble:hover{
+    border: solid  black 1px;
+    border-radius: 100%;
+}

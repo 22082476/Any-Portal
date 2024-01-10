@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Header } from './Header';
+import { Header } from './Header/Header';
 import { Home } from './Home';
-import { Account } from './Account';
-import { Footer } from './Footer';
-import { PrivacyPolicy } from './PrivacyPolicy'
+import { Account } from './Account/Account';
+import { Footer } from './Footer/Footer';
+import { PrivacyPolicy } from './PrivacyPolicy/PrivacyPolicy'
 
 
 // Hoofdcomponent met router

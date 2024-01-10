@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Header from './Header';
-import HeaderNav from './Header-nav';
+import Header from './Header/Header';
+import HeaderNav from './Header/Header-nav';
 // import App from './App.js';
 import reportWebVitals from './reportWebVitals';
-import Footer from './Footer';
-import FooterNav from './FooterNav';
-import Test from './ComponentSwichter';
+import Footer from './Footer/Footer';
+import FooterNav from './Footer/FooterNav';
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

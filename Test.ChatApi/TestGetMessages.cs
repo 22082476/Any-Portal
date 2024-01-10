@@ -24,7 +24,7 @@ public class TestGetChatMessage : IClassFixture<ChatWithMessageFixture>
                     };
 
         //act
-        var result = controller.GetMessages(1).Result as OkObjectResult;
+        var result = controller.GetMessages(1).GetAwaiter().GetResult() as OkObjectResult;
         var SavedMessage = result.Value as IList<ChatMessage>;
 
         //assert
@@ -39,7 +39,7 @@ public class TestGetChatMessage : IClassFixture<ChatWithMessageFixture>
        var controller = new ChatController(_fixture.MessageContext);
 
         //act
-        var result = controller.GetMessages(10).Result as NotFoundObjectResult;
+        var result = controller.GetMessages(10).GetAwaiter().GetResult() as NotFoundObjectResult;
         //assert
         Assert.IsType<NotFoundObjectResult>(result);
     }

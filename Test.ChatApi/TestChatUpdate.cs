@@ -23,7 +23,7 @@ public class TestUpdateChat : IClassFixture<ChatFixture>
         var chat = new Chat{ChatId = 1, UserOne = "ABCD", UserTwo = "EGH"};
 
         //act
-        OkObjectResult result = controller.Update(chat).Result as OkObjectResult; 
+        OkObjectResult result = controller.Update(chat).GetAwaiter().GetResult() as OkObjectResult; 
         Console.WriteLine(result.Value);
 
         //assert
@@ -39,7 +39,7 @@ public class TestUpdateChat : IClassFixture<ChatFixture>
         var chatfaulty = new Chat{ChatId = 1, UserTwo = "EFGH"};
 
         //act
-        BadRequestObjectResult result = controller.Update(chatfaulty).Result as BadRequestObjectResult; 
+        BadRequestObjectResult result = controller.Update(chatfaulty).GetAwaiter().GetResult() as BadRequestObjectResult; 
 
         //assert
         Assert.IsType<BadRequestObjectResult>(result);

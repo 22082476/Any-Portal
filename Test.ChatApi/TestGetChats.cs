@@ -27,7 +27,7 @@ public class TestGetChats : IClassFixture<ChatFixture>
         chat.UserTwo = "EFGH";
 
         //act
-        var result = controller.GetChat(1).Result as OkObjectResult;
+        var result = controller.GetChat(1).GetAwaiter().GetResult() as OkObjectResult;
         var SavedChats = result.Value as Chat;
 
         //assert

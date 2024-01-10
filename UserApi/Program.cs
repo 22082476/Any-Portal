@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Expressions;
+using Microsoft.AspNetCore.HttpsPolicy;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,13 +35,6 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddScoped<ILog, AdminLogger>();
 
- //add service voor de zelfde gemaakte logger ILogger;
-// builder.Services.AddSingleton(sp =>
-//     {
-//         var logger = sp.GetRequiredService<ILog<AdminLogger>>();
-//         return new AdminLogger(config.GetConnectionString("LogFileSource"));
-//     });
-
 builder.Services.AddScoped<IResearchApiService, ResearchApiService>();
 
 
@@ -51,7 +46,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+ app.UseHttpsRedirection();
 
 app.UseHsts();
 

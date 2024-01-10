@@ -13,16 +13,6 @@ builder.Services.AddDbContext<UserContext>((options) => options.UseSqlServer(con
 
 builder.Services.AddScoped<IResearchApiService, ResearchApiService>();
 
-// builder.Services.AddCors(options =>
-// {
-//     options.AddDefaultPolicy(policy =>
-//     {
-//         policy.WithOrigins("https://22082476.github.io/Any-Portal")
-//               .AllowAnyHeader()
-//               .AllowAnyMethod();
-//     });
-// });
-
 builder.Services.AddCors(options =>
     {
         options.AddPolicy("AllowSpecificOrigin",

@@ -24,7 +24,7 @@ public class TestDeleteChatMessage : IClassFixture<ChatWithMessageFixture>
                     };
 
         //act
-        var result = controller.DeleteMessage(message) as NoContentResult;
+        var result = controller.DeleteMessage(message).GetAwaiter().GetResult()  as NoContentResult;
 
         //assert
         Assert.IsType<NoContentResult>(result);
@@ -40,7 +40,7 @@ public class TestDeleteChatMessage : IClassFixture<ChatWithMessageFixture>
                     };
 
         //act
-        var result = controller.DeleteMessage(message) as BadRequestObjectResult;
+        var result = controller.DeleteMessage(message).GetAwaiter().GetResult() as BadRequestObjectResult;
 
         //assert
         Assert.IsType<BadRequestObjectResult>(result);

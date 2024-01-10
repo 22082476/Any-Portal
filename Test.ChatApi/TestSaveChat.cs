@@ -23,7 +23,7 @@ public class TestSaveChat : IClassFixture<ChatFixture>
         var chat = new Chat{ChatId = 1, UserOne = "ABCD", UserTwo = "EFGH"};
 
         //act
-        OkObjectResult result = controller.Save(chat) as OkObjectResult; 
+        OkObjectResult result = controller.Save(chat).GetAwaiter().GetResult() as OkObjectResult; 
 
         //assert
         Assert.IsType<OkObjectResult>(result);
@@ -37,7 +37,7 @@ public class TestSaveChat : IClassFixture<ChatFixture>
         var chatfaulty = new Chat{ChatId = 1, UserTwo = "EFGH"};
 
         //act
-        BadRequestObjectResult result = controller.Save(chatfaulty) as BadRequestObjectResult; 
+        BadRequestObjectResult result = controller.Save(chatfaulty).GetAwaiter().GetResult() as BadRequestObjectResult; 
 
         //assert
         Assert.IsType<BadRequestObjectResult>(result);

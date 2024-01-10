@@ -27,7 +27,7 @@ public class TestGetChats : IClassFixture<ChatFixture>
         chat.UserTwo = "EFGH";
 
         //act
-        var result = controller.GetChat(1) as OkObjectResult;
+        var result = controller.GetChat(1).Result as OkObjectResult;
         var SavedChats = result.Value as Chat;
 
         //assert
@@ -59,7 +59,7 @@ public class TestGetChats : IClassFixture<ChatFixture>
         //act
         chats.Add(chat);
         chats.Add(chat2);
-        var result = controller.GetChats("ABCD") as OkObjectResult;
+        var result = controller.GetChats("ABCD").GetAwaiter().GetResult() as OkObjectResult;
         var SavedChats = result.Value as IList<Chat>;
 
         //assert

@@ -10,13 +10,20 @@ export function Account (props)
 
     const navigate = useNavigate();
 
-    return(
+    return(<>
         <div className="AccountInfo-div">
-            <button className="BackButton" aria-label="Pagina sluiten" onClick={() =>  navigate('/')}>X</button>
-            <h2>Accountgegevens</h2>
-            {props.Role === "PanelMember" ? <AccountPanelMember /> : null}
-            {props.Role === "Company" ? <AccountCompany /> : null}
-            {props.Role === "Administrator" ? <AccountAdmin /> : null}
+            <div>
+                <button className="BackButton" aria-label="Pagina sluiten" onClick={() =>  navigate('/')}>X</button>
+                <h2>Accountgegevens</h2>
+                {props.Role === "PanelMember" ? <AccountPanelMember /> : null}
+                {props.Role === "Company" ? <AccountCompany /> : null}
+                {props.Role === "Administrator" ? <AccountAdmin /> : null}
+            </div>
+            <div className="button-div">
+            <button className="BlueButton" aria-label="Account wijzigen" onClick={() =>  navigate('/AlterAccount')}>Account wijzigen</button>
+            </div>
         </div>
+        
+        </>
     );
 }

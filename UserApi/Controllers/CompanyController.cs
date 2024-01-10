@@ -49,7 +49,7 @@ public class CompanyController : ControllerBase
         {   
             // string tenantId = tenantIdClaim.Value;
 
-            var result = _context.Companies.Select((c) => new { Email = c.Email, CompanyName = c.CompanyName, Location = c.Location, Website = c.Website, Description = c.Description });
+            var result = _context.Companies.Select((c) => new { UserId = c.UserId, Email = c.Email, CompanyName = c.CompanyName, Location = c.Location, Website = c.Website, Description = c.Description });
 
             if (result != null)
             {

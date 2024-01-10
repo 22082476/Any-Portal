@@ -30,7 +30,7 @@ public class PanelMemberController : ControllerBase
         {   
             // string tenantId = tenantIdClaim.Value;
 
-            var result =  await _context.PanelMembers.SingleOrDefaultAsync((p) => p.UserId.Equals(userId));
+            var result =  await _context.PanelMembers.Include((c) => c.Caretaker).SingleOrDefaultAsync((p) => p.UserId.Equals(userId));
 
             if (result != null)
             {
@@ -53,7 +53,7 @@ public class PanelMemberController : ControllerBase
         {   
             // string tenantId = tenantIdClaim.Value;
 
-            var result = _context.PanelMembers.Select((p) => new { FirstName = p.FirstName, LastName = p.FirstName,  Email = p.Email, PhoneNumber = p.PhoneNumber, AgeId = p.AgeId, Preferred_contact = p.Preferred_contact, PostalCode = p.PostalCode, Availability = p.Availability});
+            var result = _context.PanelMembers.Select((p) => new { FirstName = p.FirstName, LastName = p.FirstName,  Email = p.Email, PhoneNumber = p.PhoneNumber, AgeId = p.AgeId, Preferred_contact = p.Preferred_contact, PostalCode = p.PostalCode, Availability = p.Availability, Caretaker = p.Caretaker});
 
                 if (result != null)
                 {

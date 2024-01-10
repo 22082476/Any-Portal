@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace UserApi.Migrations
 {
     [DbContext(typeof(UserContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20240110161649_CareTaker")]
+    partial class CareTaker
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,9 +139,6 @@ namespace UserApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CaretakerId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
@@ -159,20 +159,23 @@ namespace UserApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("caretakerId")
+                        .HasColumnType("int");
+
                     b.HasKey("UserId");
 
-                    b.HasIndex("CaretakerId");
+                    b.HasIndex("caretakerId");
 
                     b.ToTable("PanelMembers");
                 });
 
             modelBuilder.Entity("PanelMember", b =>
                 {
-                    b.HasOne("Caretaker", "Caretaker")
+                    b.HasOne("Caretaker", "caretaker")
                         .WithMany()
-                        .HasForeignKey("CaretakerId");
+                        .HasForeignKey("caretakerId");
 
-                    b.Navigation("Caretaker");
+                    b.Navigation("caretaker");
                 });
 #pragma warning restore 612, 618
         }

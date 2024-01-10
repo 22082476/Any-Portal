@@ -17,7 +17,8 @@ public class TestAdministratorController_getOwn : IClassFixture<AdminFixture>
     public void Test_GetOwn_Ok()
     {
         //Arrange
-        var controller = new AdministratorController (_fixture.Context);
+        var mock = new Mock<ILog>();
+        var controller = new AdministratorController (_fixture.Context, mock.Object);
         var dataObject = new Administrator { UserId = "userId", Email = "test@mail.nl", FirstName = "Firstname", LastName = "Lastname", IsAdmin = false };
         
         //Act
@@ -33,7 +34,9 @@ public class TestAdministratorController_getOwn : IClassFixture<AdminFixture>
     [Fact]
     public void Test_GetOwn_NotFound ()
     {
-        var controller = new AdministratorController (_fixture.Context);
+        //Arrang
+        var mock = new Mock<ILog>();
+        var controller = new AdministratorController (_fixture.Context, mock.Object);
         
         //Act
         var actionResult = controller.GetOwn("user").GetAwaiter().GetResult();

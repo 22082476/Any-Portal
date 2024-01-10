@@ -17,9 +17,9 @@ public class ChatController : ControllerBase
     [HttpGet]
     [Route("GetChat/{ChatId}")]
     public async Task<IActionResult> GetChat(int chatId)
-    { var chat = _chatContext.Chats.SingleOrDefaultAsync(chat => chat.ChatId == chatId);
+    { var chat = await _chatContext.Chats.SingleOrDefaultAsync(chat => chat.ChatId == chatId);
 
-        if (await chat == null)
+        if (chat == null)
         {
             return NotFound("Er is geen chat gevonden");
         }
@@ -31,8 +31,8 @@ public class ChatController : ControllerBase
     [Route("GetUserChats/{UserId}")]
     public async Task<IActionResult> GetChats(string UserId)
     {
-        var chats = _chatContext.Chats.Where(chat => chat.UserOne == UserId || chat.UserTwo == UserId);
-        var IsFilled = await chats.AnyAsync();
+        var chats = _chatContext.Chats.Where(chat => chat.UserOne == UserId || chat.UserTwo == UserId).ToList();
+        var IsFilled = chats.Any();
 
         if (chats == null || !IsFilled)
         {
@@ -46,8 +46,8 @@ public class ChatController : ControllerBase
     [Route("GetMessage/{ChatId}")]
     public async Task<IActionResult> GetMessages(int chatId)
     {
-        var Messages = _chatContext.ChatMessages.Where(Messages => Messages.ChatId == chatId);
-        var IsFilled = await Messages.AnyAsync();
+        var Messages = _chatContext.ChatMessages.Where(Messages => Messages.ChatId == chatId).ToList();
+        var IsFilled = Messages.Any();
 
         if (Messages == null || !IsFilled)
         {

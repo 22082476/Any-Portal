@@ -7,7 +7,7 @@ export function AccountPanelMember() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5177/PanelMember/string1");
+        const response = await fetch("http://localhost:5177/PanelMember/string");
         const responseData = await response.json();
         setUserData(responseData);
               } catch (error) {
@@ -15,7 +15,7 @@ export function AccountPanelMember() {
       }
 
       try {
-        const response2 = await fetch("http://localhost:5173/string1");
+        const response2 = await fetch("http://localhost:5173/string");
         const responseData2 = await response2.json();
         setMedicalData(responseData2);
 

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace UserApi.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20240110161853_CareTaker1")]
-    partial class CareTaker1
+    [Migration("20240111142720_Newversion")]
+    partial class Newversion
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,11 +70,8 @@ namespace UserApi.Migrations
 
             modelBuilder.Entity("Caretaker", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("CaretakerId")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -91,9 +88,9 @@ namespace UserApi.Migrations
                     b.Property<long?>("PhoneNumber")
                         .HasColumnType("bigint");
 
-                    b.HasKey("Id");
+                    b.HasKey("CaretakerId");
 
-                    b.ToTable("Caretaker");
+                    b.ToTable("Caretakers");
                 });
 
             modelBuilder.Entity("Company", b =>
@@ -139,6 +136,9 @@ namespace UserApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("CaretakerId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
@@ -159,23 +159,9 @@ namespace UserApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("caretakerId")
-                        .HasColumnType("int");
-
                     b.HasKey("UserId");
 
-                    b.HasIndex("caretakerId");
-
                     b.ToTable("PanelMembers");
-                });
-
-            modelBuilder.Entity("PanelMember", b =>
-                {
-                    b.HasOne("Caretaker", "caretaker")
-                        .WithMany()
-                        .HasForeignKey("caretakerId");
-
-                    b.Navigation("caretaker");
                 });
 #pragma warning restore 612, 618
         }

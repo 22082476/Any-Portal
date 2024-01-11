@@ -68,10 +68,7 @@ namespace UserApi.Migrations
             modelBuilder.Entity("Caretaker", b =>
                 {
                     b.Property<int>("CaretakerId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CaretakerId"));
 
                     b.Property<string>("Email")
                         .IsRequired()

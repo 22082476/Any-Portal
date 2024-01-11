@@ -44,7 +44,7 @@ public class TestPostfunction : IClassFixture<ResearchFixture>{
     public void Post_Participant_Null(){
         var controller = new ResearchController(_fixture.Context);
         var result = controller.CreateParticipant(null);
-        Assert.IsType<BadRequestResult>(result);+
+        Assert.IsType<BadRequestResult>(result);
     }
 
      [Fact]

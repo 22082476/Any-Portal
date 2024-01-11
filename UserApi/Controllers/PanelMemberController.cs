@@ -74,14 +74,14 @@ public class PanelMemberController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post ([FromBody] PanelMember panelMember)
+    public async Task<IActionResult> Post ([FromBody] RequestModel request)
     {
-        if(!_context.PanelMembers.Any((p) => p.UserId.Equals(panelMember.UserId))){
+        if(!_context.PanelMembers.Any((p) => p.UserId.Equals(request.PanelMemberNew.UserId))){
 
-        if(!await _context.AgeRanges.AnyAsync((a) => a.AgeId == panelMember.AgeId))
+        if(!await _context.AgeRanges.AnyAsync((a) => a.AgeId == request.PanelMemberNew.AgeId))
             return BadRequest("AgeRange niet gevonden");
 
-        var add = _context.PanelMembers.AddAsync(panelMember);
+        var add = _context.PanelMembers.AddAsync(request.PanelMemberNew);
 
 
         try
@@ -94,7 +94,7 @@ public class PanelMemberController : ControllerBase
             return StatusCode(500);
         }
 
-        return Ok(panelMember); 
+        return Ok(new { PanelMember = request.PanelMemberNew, Caretaker = request.Caretaker}); 
 
         }
         return BadRequest("Account bestaat al");        
@@ -102,7 +102,7 @@ public class PanelMemberController : ControllerBase
 
     [HttpPut]
     // public async Task<IActionResult> Put([FromServices] IHttpContextAccessor httpContextAccessor, [FromBody] PanelMember panelMember)
-    public async Task<IActionResult> Put([FromBody] RequestModel request)
+    public async Task<IActionResult> Put([FromBody] RequestModelPut request)
     {
         // var user = httpContextAccessor.HttpContext.User;
 
@@ -114,7 +114,7 @@ public class PanelMemberController : ControllerBase
          
             // string tenantId = tenantIdClaim.Value;
 
-        if(! await _context.PanelMembers.AnyAsync(p => p.UserId == request.PanelMemberNew.UserId))
+        if(! await _context.PanelMembers.AnyAsync(p => p.UserId == request.PanelMemberCurrent.UserId))
         {
             return NotFound("PanelMember niet gevonden");
         }else

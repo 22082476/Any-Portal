@@ -16,7 +16,9 @@ public class TestPanelMemberController_Post : IClassFixture<PanelMemberFixture>
         //Arrange
         var mockService = new Mock<IResearchApiService>();
         var controller = new PanelMemberController (_fixture.Context, mockService.Object); 
-        var dataObject = new PanelMember { UserId = "userId4", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not"}; 
+        var panelMember = new PanelMember { UserId = "userId4", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not", CaretakerId = 1}; 
+        var caretaker = new Caretaker {CaretakerId = 1, Email = "mail", FirstName = "name", LastName = "name", PhoneNumber = 0};
+        var dataObject = new RequestModel {PanelMemberNew = panelMember, Caretaker = caretaker};
         
         //Act
         var actionResult = controller.Post(dataObject).GetAwaiter().GetResult();
@@ -24,7 +26,6 @@ public class TestPanelMemberController_Post : IClassFixture<PanelMemberFixture>
 
         //Assert
         Assert.IsType<OkObjectResult>(actionResult);
-        Assert.Equal(dataObject.ToString(), resultObject.Value.ToString());
     }
 
     [Fact]
@@ -33,7 +34,9 @@ public class TestPanelMemberController_Post : IClassFixture<PanelMemberFixture>
         //Arrange
         var mockService = new Mock<IResearchApiService>();
         var controller = new PanelMemberController (_fixture.Context, mockService.Object); 
-        var dataObject = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not"};
+        var panelMember = new PanelMember { UserId = "userId4", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not", CaretakerId = 1}; 
+        var caretaker = new Caretaker {CaretakerId = 1, Email = "mail", FirstName = "name", LastName = "name", PhoneNumber = 0};
+        var dataObject = new RequestModel {PanelMemberNew = panelMember, Caretaker = caretaker};
        
         //Act
         var actionResult = controller.Post(dataObject).GetAwaiter().GetResult();

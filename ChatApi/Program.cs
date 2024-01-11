@@ -12,9 +12,9 @@ builder.Services.AddCors(options =>
             builder =>
             {
                 builder.WithOrigins(
-                    "http://localhost:5086/", // URL van je lokale ontwikkelingsserver
-                    "http://localhost:3000/",
-                    "https://22082476.github.io/" // GitHub Pages URL
+                    "http://localhost:5086", // URL van je lokale ontwikkelingsserver
+                    "http://localhost:3000",
+                    "https://22082476.github.io" // GitHub Pages URL
                 )
                 .AllowAnyHeader()
                 .AllowAnyMethod();
@@ -32,7 +32,7 @@ var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
-app.UseCors("AllowSpecificOrigin");
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -40,6 +40,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
 

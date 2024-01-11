@@ -5,12 +5,14 @@ import Header from './Header';
 import HeaderNav from './Header-nav';
 // import App from './App.js';
 import reportWebVitals from './reportWebVitals';
+import {ChatBubble} from './Chat/ChatBubble';
 import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
+    <ChatBubble />
   </React.StrictMode>
 );
 

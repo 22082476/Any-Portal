@@ -2,12 +2,12 @@ using System.Text.Json;
 
 public interface IResearchApiService 
 {
-   Task<bool?> GetFromResearchApi (string id);
+   Task<bool> GetFromResearchApi (string id);
 }
 
 public class ResearchApiService : IResearchApiService
 {
-    public async Task<bool?> GetFromResearchApi (string id)
+    public async Task<bool> GetFromResearchApi (string id)
     {
         using (HttpClient client = new HttpClient())
         {
@@ -29,13 +29,13 @@ public class ResearchApiService : IResearchApiService
                 else
                 {
                     Console.WriteLine("Fout: " + response.StatusCode);
-                    return null;
+                    return false;
                 }
             }
             catch (HttpRequestException e)
             {
                 Console.WriteLine("Er is een fout opgetreden bij het uitvoeren van het HTTP-verzoek: " + e.Message);
-                return null;
+                return false;
             }
         }
     }

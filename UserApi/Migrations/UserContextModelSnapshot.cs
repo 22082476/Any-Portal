@@ -67,11 +67,8 @@ namespace UserApi.Migrations
 
             modelBuilder.Entity("Caretaker", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("CaretakerId")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -88,9 +85,9 @@ namespace UserApi.Migrations
                     b.Property<long?>("PhoneNumber")
                         .HasColumnType("bigint");
 
-                    b.HasKey("Id");
+                    b.HasKey("CaretakerId");
 
-                    b.ToTable("Caretaker");
+                    b.ToTable("Caretakers");
                 });
 
             modelBuilder.Entity("Company", b =>
@@ -161,18 +158,7 @@ namespace UserApi.Migrations
 
                     b.HasKey("UserId");
 
-                    b.HasIndex("CaretakerId");
-
                     b.ToTable("PanelMembers");
-                });
-
-            modelBuilder.Entity("PanelMember", b =>
-                {
-                    b.HasOne("Caretaker", "Caretaker")
-                        .WithMany()
-                        .HasForeignKey("CaretakerId");
-
-                    b.Navigation("Caretaker");
                 });
 #pragma warning restore 612, 618
         }

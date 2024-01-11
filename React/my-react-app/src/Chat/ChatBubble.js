@@ -1,10 +1,23 @@
 import "./ChatBubble.css";
 import img from "./ChatIcon.png";
-export function ChatBubble ()
+import { ChatBox } from "./ChatBox";
+import { useState } from "react";
+export function ChatBubble (Props)
 {
+    const [ShowChats, SetShowChat, ShowMessages, SetShowMessages] = useState(false, false);
+
+    const toggleShowChat = () =>{
+        SetShowChat(!ShowChats);
+    }
+    const toggleShowMessages = () =>{
+        SetShowMessages(!ShowMessages);
+    }
     return (
-        <button className="ChatBubble">
-            <img src={img}/>
-        </button>
+        <div>
+            <button className="ChatBubble" onClick={toggleShowChat}>
+                <img src={img}/>
+            </button>
+            {ShowChats && <ChatBox onClick={toggleShowChat}/>}
+        </div>
     );
 }

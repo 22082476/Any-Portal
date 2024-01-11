@@ -14,5 +14,5 @@ image{
 
 .ChatBubble:hover{
     border: solid  black 0.2rem;
-    border-radius: 100%;
+    border-radius: 35%;
 }

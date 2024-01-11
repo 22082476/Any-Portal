@@ -6,8 +6,8 @@ public class ResearchFixture: ResearchContextFixture{
     {
         var context = new ResearchContext(options);
         context.Research.AddRange(
-            new Research {Title = "ABCD", Compensation = 1.0m, Type_Research = "ABCD", Link_Research = "ABCD", Disability_Type = new List<string>{"ABCD", "ABCD"}},
-            new Research {Title = "ABCD", Compensation = 1.0m, Type_Research = "ABCD", Link_Research = "ABCD", Disability_Type = new List<string>{"ABCD", "ABCD"}, Active = true}
+            new Research {Title = "ABCD", Company = "Dollef B.V.", Compensation = 1.0m, Type_Research = "ABCD", Link_Research = "ABCD", Disability_Type = new List<string>{"ABCD", "ABCD"}},
+            new Research {Title = "ABCD",Company = "Dollef B.V.", Compensation = 1.0m, Type_Research = "ABCD", Link_Research = "ABCD", Disability_Type = new List<string>{"ABCD", "ABCD"}, Active = true}
         );
         context.SaveChanges();
 

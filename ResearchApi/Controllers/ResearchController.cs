@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace ResearchApi;
 
 [ApiController]
 [Route("[controller]")]
@@ -14,7 +13,8 @@ public class ResearchController : ControllerBase{
     }
 
 
-    [HttpGet("{researchId}")]
+    [HttpGet]
+    [Route("{researchId}")]
     public IActionResult GetResearch(int researchId){
     var result = _context.Research.SingleOrDefault(s => s.Rcode == researchId);
        
@@ -25,7 +25,7 @@ public class ResearchController : ControllerBase{
     }
  
 
-    [HttpGet("GetAllResearch")]
+    [HttpGet]
     public IActionResult GetAllResearch(){
     var result = _context.Research.ToList();
 
@@ -36,7 +36,8 @@ public class ResearchController : ControllerBase{
     }
 
 
-    [HttpPost("CreateResearch")]
+    [HttpPost]
+    [Route("Research")]
     public IActionResult CreateResearch([FromBody] Research research){
         if(research == null){
             return BadRequest();
@@ -55,7 +56,8 @@ public class ResearchController : ControllerBase{
     }
 
 
-    [HttpPost("CreateParticipant")]
+    [HttpPost]
+    [Route("Participant")]
     public IActionResult CreateParticipant(Participant participant){
     
         if(participant == null){
@@ -74,7 +76,8 @@ public class ResearchController : ControllerBase{
     }
 
 
-    [HttpPost("CreateAllowed_AgeRange")]
+    [HttpPost]
+    [Route("CreateAllowed_AgeRange")]
     public IActionResult CreateAllowed_AgeRange(Allowed_AgeRange allowed_AgeRange){
 
         if(allowed_AgeRange == null){
@@ -94,7 +97,7 @@ public class ResearchController : ControllerBase{
     }
     
 
-    [HttpPost("PostalcodeRange")]
+    [HttpPost]
     public IActionResult CreatePostalcodeRange(PostalCodeRange postalCodeRange){
 
         if(postalCodeRange == null){
@@ -134,7 +137,8 @@ public class ResearchController : ControllerBase{
     }
    
 
-   [HttpPut("Update")]
+   [HttpPut]
+   [Route("Research/{id}")]
     public IActionResult UpdateResearch(int id, Research updatedResearch){
         var existingResearch = _context.Research.FirstOrDefault(r => r.Rcode == id);
 
@@ -157,7 +161,8 @@ public class ResearchController : ControllerBase{
 }
 
 
-[HttpPut("SetActive")]
+[HttpPut]
+[Route("Active/{id}")]
     public IActionResult SetActive(int id){
         var research = _context.Research.FirstOrDefault(r => r.Rcode == id);
 

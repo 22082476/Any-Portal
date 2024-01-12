@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace UserApi.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20240110102613_FixPanelMember")]
-    partial class FixPanelMember
+    [Migration("20240112131505_een")]
+    partial class een
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

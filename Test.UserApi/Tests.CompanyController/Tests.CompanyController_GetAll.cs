@@ -21,7 +21,7 @@ public class TestCompanyController_GetAll : IClassFixture<CompanyFixture>
         var controller = new CompanyController (_fixture.Context);
         
         //Act
-        var actionResult = controller.GetAll().GetAwaiter().GetResult();
+        var actionResult = controller.GetAll(false).GetAwaiter().GetResult();
         var resultObject = actionResult as OkObjectResult;
         
         //Assert
@@ -37,7 +37,7 @@ public class TestCompanyController_GetAll : IClassFixture<CompanyFixture>
         var controller = new CompanyController (_fixture.ContextWithout);
         
         //Act
-        var actionResult = controller.GetAll().GetAwaiter().GetResult();
+        var actionResult = controller.GetAll(false).GetAwaiter().GetResult();
         var resultObject = actionResult as OkObjectResult;
         
         //Assert

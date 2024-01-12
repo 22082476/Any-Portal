@@ -14,7 +14,7 @@ function App() {
     <Header />
     <HashRouter>
       <Routes>
-          <Route path="/"element={<Home Name="Testnaam" Role="PanelMember"/>} />
+          <Route path="/"element={<Home Name="Testnaam" Role="Admin"/>} />
           <Route path="/Onderzoek" element={<></>} />
           <Route path="/Account" element={<Account Role="PanelMember" />} />
           <Route path="/Uitloggen"/> 

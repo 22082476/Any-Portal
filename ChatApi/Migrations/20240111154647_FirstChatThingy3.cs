@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace UserApi.Migrations
+namespace ChatApi.Migrations
 {
     /// <inheritdoc />
-    public partial class FixPanelMember1 : Migration
+    public partial class FirstChatThingy3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

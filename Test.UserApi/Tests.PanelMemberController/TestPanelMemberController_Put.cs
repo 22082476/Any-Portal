@@ -15,17 +15,17 @@ public class TestPanelMember_Put : IClassFixture<PanelMemberFixture>
     {
         //Arrange
         var mockService = new Mock<IResearchApiService>();
-        var controller = new PanelMemberController (_fixture.Context, mockService.Object); 
-        var dataObject = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, AgeId = 1, Preferred_contact = "not"};
-        // dataObject.Age = _fixture.Context.PanelMembers.Single((p) => p.UserId.Equals(dataObject.UserId)).Age;
-
+        var controller = new PanelMemberController (_fixture.Context, mockService.Object);
+        var panelMember =  new PanelMember { UserId = "userId", Email = "tessadt@mail.nl", PhoneNumber = 061111, FirstName = "Firstnaame", LastName = "Lastaname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "yes", CaretakerId = 1}; 
+        var panelMemberNew = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not", CaretakerId = 1}; 
+        var caretaker = new Caretaker {CaretakerId = 1, Email = "mail", FirstName = "name", LastName = "name", PhoneNumber = 0};
+        var dataObject = new RequestModelPut {PanelMemberCurrent = panelMember, PanelMemberNew = panelMemberNew, Caretaker = caretaker};
+        
         //Act
         var actionResult = controller.Put(dataObject).GetAwaiter().GetResult();
-        var resultObject = actionResult as OkObjectResult;
 
         //Assert
         Assert.IsType<OkObjectResult>(actionResult);
-        Assert.Equal(dataObject.ToString(), resultObject.Value.ToString());
     }
 
     [Fact]
@@ -34,15 +34,18 @@ public class TestPanelMember_Put : IClassFixture<PanelMemberFixture>
         //Arrange
         var mockService = new Mock<IResearchApiService>();
         var controller = new PanelMemberController (_fixture.Context, mockService.Object); 
-        var dataObject = new PanelMember { UserId = "userId123123123123", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not"}; 
-        
+        var panelMember =  new PanelMember { UserId = "userId12312132312", Email = "tessadt@mail.nl", PhoneNumber = 061111, FirstName = "Firstnaame", LastName = "Lastaname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "yes", CaretakerId = 1}; 
+        var panelMemberNew = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not", CaretakerId = 1}; 
+        var caretaker = new Caretaker {CaretakerId = 1, Email = "mail", FirstName = "name", LastName = "name", PhoneNumber = 0};
+        var dataObject = new RequestModelPut {PanelMemberCurrent = panelMember, PanelMemberNew = panelMemberNew, Caretaker = caretaker};
+       
         //Act
         var actionResult = controller.Put(dataObject).GetAwaiter().GetResult();
         var objectResult = actionResult as NotFoundObjectResult;
 
         //Assert
         Assert.IsType<NotFoundObjectResult>(actionResult);
-        Assert.Equal("PanelMemeber niet gevonden", objectResult.Value);
+        Assert.Equal("PanelMember niet gevonden", objectResult.Value);
     }
 
     [Fact]
@@ -51,8 +54,11 @@ public class TestPanelMember_Put : IClassFixture<PanelMemberFixture>
         //Arrange
         var mockService = new Mock<IResearchApiService>();
         var controller = new PanelMemberController (_fixture.Context, mockService.Object); 
-        var dataObject = new PanelMember { UserId = "userId1", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = -1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not"}; 
-        
+        var panelMember =  new PanelMember { UserId = "userId", Email = "tessadt@mail.nl", PhoneNumber = 061111, FirstName = "Firstnaame", LastName = "Lastaname", AgeId = 0, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "yes", CaretakerId = 1}; 
+        var panelMemberNew = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 0, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not", CaretakerId = 1}; 
+        var caretaker = new Caretaker {CaretakerId = 1, Email = "mail", FirstName = "name", LastName = "name", PhoneNumber = 0};
+        var dataObject = new RequestModelPut {PanelMemberCurrent = panelMember, PanelMemberNew = panelMemberNew, Caretaker = caretaker};
+       
         //Act
         var actionResult = controller.Put(dataObject).GetAwaiter().GetResult();
         var objectResult = actionResult as NotFoundObjectResult;

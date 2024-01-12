@@ -5,7 +5,7 @@
 namespace UserApi.Migrations
 {
     /// <inheritdoc />
-    public partial class first : Migration
+    public partial class Newversion : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -29,13 +29,29 @@ namespace UserApi.Migrations
                 name: "AgeRanges",
                 columns: table => new
                 {
-                    RangeName = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    AgeId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     AgeStart = table.Column<long>(type: "bigint", nullable: false),
                     AgeEnd = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AgeRanges", x => x.RangeName);
+                    table.PrimaryKey("PK_AgeRanges", x => x.AgeId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Caretakers",
+                columns: table => new
+                {
+                    CaretakerId = table.Column<int>(type: "int", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Caretakers", x => x.CaretakerId);
                 });
 
             migrationBuilder.CreateTable(
@@ -46,8 +62,8 @@ namespace UserApi.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Website = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Website = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsValid = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -60,29 +76,20 @@ namespace UserApi.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<long>(type: "bigint", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AgeRangeName = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    postalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Preferred_contact = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<long>(type: "bigint", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AgeId = table.Column<int>(type: "int", nullable: false),
+                    PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Preferred_contact = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Availability = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CaretakerId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PanelMembers", x => x.UserId);
-                    table.ForeignKey(
-                        name: "FK_PanelMembers_AgeRanges_AgeRangeName",
-                        column: x => x.AgeRangeName,
-                        principalTable: "AgeRanges",
-                        principalColumn: "RangeName",
-                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PanelMembers_AgeRangeName",
-                table: "PanelMembers",
-                column: "AgeRangeName");
         }
 
         /// <inheritdoc />
@@ -92,13 +99,16 @@ namespace UserApi.Migrations
                 name: "Administrators");
 
             migrationBuilder.DropTable(
+                name: "AgeRanges");
+
+            migrationBuilder.DropTable(
+                name: "Caretakers");
+
+            migrationBuilder.DropTable(
                 name: "Companies");
 
             migrationBuilder.DropTable(
                 name: "PanelMembers");
-
-            migrationBuilder.DropTable(
-                name: "AgeRanges");
         }
     }
 }

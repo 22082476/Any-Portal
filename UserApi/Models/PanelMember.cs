@@ -14,6 +14,7 @@ public class PanelMember
 
     [Required] public string Preferred_contact { get; set; }  
     [Required] public string [] Availability { get; set; }
+    public int? CaretakerId { get; set;}
 
     public void UpdateToNull()
     {
@@ -23,5 +24,6 @@ public class PanelMember
         PhoneNumber = null;
         Preferred_contact = "";
         Availability = new string [0];
+        CaretakerId = null;
     }
 }

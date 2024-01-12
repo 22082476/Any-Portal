@@ -38,8 +38,8 @@ export function HomeInfo (props)
                 {props.Role === "Administrator" || "Admin" ? 
                 <table>
                     <tr>
-                        <th className="table-heading">Bedrijfsnaam</th>
-                        <th className="table-heading">Website</th>
+                        <th className="table-heading"><h3>Bedrijfsnaam</h3></th>
+                        <th className="table-heading"><h3>Website</h3></th>
                     </tr>
                         {data.map(company => 
                         <tr key={company.userId}>

@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './All_Researches_Administrator.css';
 import Kruisje from './Kruisje.png';
 import Vinkje from './Vinkje.png';
-import {Company} from './All_Researches_Companyname.js';
-
 
 export function AllResearches() {
   const [researchList, setResearches] = useState(null);
@@ -12,9 +10,9 @@ export function AllResearches() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const researchResponse = await fetch("http://localhost:5064/Research");
-        const researchResponseData = await researchResponse.json();
-        setResearches(researchResponseData);
+        const response = await fetch("http://localhost:5064/Research");
+        const responseData = await response.json();
+        setResearches(responseData);
       } catch (error) {
         console.error("Error fetching data from Researchapi:", error);
       }
@@ -56,7 +54,7 @@ export function AllResearches() {
             {filteredResearchList.map(research => (
               <tr key={research.rcode} className='Researchlist'>
                 <td className='Researchlist'>{research.title}</td>
-                <td className='Researchlist'><Company userId={research.company}/></td>
+                <td className='Researchlist'>{research.company}</td>
                 <td className='Researchlist'>
                   {research.active ? (
                     <img className = "ResearchPicture"

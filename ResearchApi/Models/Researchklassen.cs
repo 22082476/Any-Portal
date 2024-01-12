@@ -6,6 +6,8 @@ public class Research
     public int Rcode { get; set; }
 
     [Required]
+    public string CompanyId{ get; set; }
+     [Required]
     public string Company{ get; set; }
 
     public bool Active { get; set; }

@@ -23,8 +23,18 @@ public class ResearchController : ControllerBase{
         }
             return Ok(result);
     }
- 
 
+ 
+    [HttpGet]
+    [Route("{CompanyId}")]
+    public IActionResult GetAllResearch(string companyId){
+    var result = _context.Research.Where(s => s.Company == companyId).ToList();
+
+        if(result == null){
+            return NotFound();
+        }
+            return Ok(result);
+    }
     [HttpGet]
     public IActionResult GetAllResearch(){
     var result = _context.Research.ToList();

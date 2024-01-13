@@ -13,8 +13,10 @@ import { AlterAccountAdmin } from './AlterAccountAdmin';
 export function Account (props)
 {
     const [ isEdit, setEdit ] = useState(false);
-    const [ editData, setEditData ] = useState(null);
+    const [ userData, setUserData] = useState(null);
     const navigate = useNavigate();
+
+    const dataUpdate = (newdata) => { setUserData(newdata);};
 
     return(<>
         {!isEdit && ( 
@@ -22,9 +24,9 @@ export function Account (props)
                 <div>
                     <button className="BackButton" aria-label="Pagina sluiten" onClick={() =>  navigate('/')}>X</button>
                     <h2>Accountgegevens</h2>
-                    {props.Role === "PanelMember" ? <AccountPanelMember state={setEditData} userId=""/> : null}
-                    {props.Role === "Company" ? <AccountCompany state={setEditData} userId=""/> : null}
-                    {props.Role === "Administrator" ? <AccountAdmin state={setEditData} userId=""/> : null}
+                    {props.Role === "PanelMember" ? <AccountPanelMember data={dataUpdate} userId={props.userId}/> : null}
+                    {props.Role === "Company" ? <AccountCompany data={dataUpdate} userId={props.userId}/> : null}
+                    {props.Role === "Administrator" ? <AccountAdmin data={dataUpdate} userId={props.userId}/> : null}
                 </div>
                 <div className="button-div">
                 <button className="BlueButton" aria-label="Account wijzigen" onClick={() =>  setEdit(true)}>Account wijzigen</button>
@@ -36,9 +38,9 @@ export function Account (props)
                 <div>
                     <button className="BackButton" aria-label="Pagina sluiten" onClick={() =>  setEdit(false)}>X</button>
                     <h2>Accountgegevens wijzigen</h2>
-                    {props.Role === "PanelMember" ? <AlterAccountPanelMember state={setEdit} editData={editData}/> : null}
-                    {props.Role === "Company" ? <AlterAccountCompany state={setEdit} editData={editData}/> : null}
-                    {props.Role === "Administrator" ? <AlterAccountAdmin state={setEdit} editData={editData}/> : null}
+                    {props.Role === "PanelMember" ? <AlterAccountPanelMember state={setEdit} data={userData}/> : null}
+                    {props.Role === "Company" ? <AlterAccountCompany state={setEdit} data={userData}/> : null}
+                    {props.Role === "Administrator" ? <AlterAccountAdmin state={setEdit} editData={userData}/> : null}
                 </div>
             </div>
         )}

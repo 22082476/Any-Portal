@@ -12,15 +12,12 @@ export function AccountAdmin(props) {
               } catch (error) {
         console.error("Error fetching data from userapi:", error);
         }
-
-        props.state(userData);
     };
 
     fetchData();
-  }, []);
+    props.data(userData);
+  });
  
- 
-
   return (
     <>
         {userData ? (

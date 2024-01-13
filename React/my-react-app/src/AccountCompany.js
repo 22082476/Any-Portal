@@ -9,15 +9,15 @@ export function AccountCompany(props) {
         const response = await fetch("http://localhost:5177/Company/" + props.userId);
         const responseData = await response.json();
         setUserData(responseData);
-              } catch (error) {
+        } catch (error) {
         console.error("Error fetching data from userapi:", error);
         }
-
-        props.state(userData);
     };
 
     fetchData();
-  }, []);
+    props.data(userData);
+
+  });
  
   return (
     <>

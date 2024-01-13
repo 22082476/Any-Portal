@@ -22,11 +22,10 @@ export function AccountPanelMember(props) {
               } catch (error) {
         console.error("Error fetching data from medicalapi:", error);
       }
-
-      props.state(userData, medicalData);
     };
 
     fetchData();
+    props.data(userData, medicalData);
   }, []);
  
  

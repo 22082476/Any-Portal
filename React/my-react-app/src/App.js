@@ -17,7 +17,7 @@ function App() {
       <Routes>
           <Route path="/"element={<Home Name="Testnaam" Role="PanelMember"/>} />
           <Route path="/Onderzoek" element={<></>} />
-          <Route path="/Account" element={<Account Role="Company" />} />
+          <Route path="/Account" element={<Account userId="string192371237132" Role="Company" />} />
           <Route path="/Uitloggen"/> 
           <Route path='/PrivacyPolicy' element={<PrivacyPolicy />}/>   
       </Routes>

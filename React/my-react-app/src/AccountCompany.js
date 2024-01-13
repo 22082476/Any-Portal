@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 
-export function AccountCompany() {
+export function AccountCompany(props) {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5177/Company/string");
+        const response = await fetch("http://localhost:5177/Company/" + props.userId);
         const responseData = await response.json();
         setUserData(responseData);
               } catch (error) {
         console.error("Error fetching data from userapi:", error);
         }
+
+        props.state(userData);
     };
 
     fetchData();

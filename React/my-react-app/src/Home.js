@@ -30,7 +30,7 @@ export function Home (props)
         <div className="HomeScreen-div">
             <div className="HomeScreen-div-left">
                 <div className="Welcome-div">
-                    <h2>Welkom {props.Name}</h2>
+                    <h1>Welkom {props.Name}</h1>
                 </div>
                 <div className="News-div">
                     <h2>Nieuws</h2>

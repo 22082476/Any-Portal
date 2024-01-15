@@ -20,7 +20,7 @@ export function ChatBox (Props)
     return (
         <div className="ChatBox">
             <div className="ChatHeader">
-                <h3>Selecteer Chat</h3>
+                <h1>Selecteer Chat</h1>
                 <button className="BackButton" aria-label="Chats WegClicken" onClick={Props.onClick}>X</button>
             </div>
             <div className="UserChats">

@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
-export function AccountPanelMember() {
+export function AccountPanelMember(props) {
   const [userData, setUserData] = useState(null);
   const [medicalData, setMedicalData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5177/PanelMember/string");
+        const response = await fetch("http://localhost:5177/PanelMember/" + props.userId);
         const responseData = await response.json();
         setUserData(responseData);
               } catch (error) {
@@ -15,7 +15,7 @@ export function AccountPanelMember() {
       }
 
       try {
-        const response2 = await fetch("http://localhost:5173/string");
+        const response2 = await fetch("http://localhost:5173/" + props.userId);
         const responseData2 = await response2.json();
         setMedicalData(responseData2);
 
@@ -25,6 +25,7 @@ export function AccountPanelMember() {
     };
 
     fetchData();
+    props.data(userData, medicalData);
   }, []);
  
  

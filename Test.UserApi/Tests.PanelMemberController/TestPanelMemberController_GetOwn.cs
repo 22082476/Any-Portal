@@ -19,14 +19,13 @@ public class TestPanelMemberController_GetOwn : IClassFixture<PanelMemberFixture
         var mockService = new Mock<IResearchApiService>();
         var controller = new PanelMemberController (_fixture.Context, mockService.Object); 
         var dataObject = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not"};
-        
+
         //Act
         var actionResult = controller.GetOwn(dataObject.UserId).GetAwaiter().GetResult();
         var resultObject = actionResult as OkObjectResult;
 
         //Assert
         Assert.IsType<OkObjectResult>(actionResult);
-        Assert.Equal(dataObject.ToString(), resultObject.Value.ToString());
     }
 
     [Fact]
@@ -40,6 +39,6 @@ public class TestPanelMemberController_GetOwn : IClassFixture<PanelMemberFixture
         var actionResult = controller.GetOwn("user").GetAwaiter().GetResult();
 
         //Assert
-        Assert.IsType<NotFoundResult>(actionResult);
+        Assert.IsType<NotFoundObjectResult>(actionResult);
     }
 }

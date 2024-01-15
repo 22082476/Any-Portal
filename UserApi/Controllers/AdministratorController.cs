@@ -9,12 +9,11 @@ namespace UserApi.Controllers;
 public class AdministratorController : ControllerBase
 {
     private readonly UserContext _context;
-    // private readonly ILog<AdminLogger> _logger;
-    public AdministratorController (UserContext context)
+    private readonly ILog _logger;
+    public AdministratorController (UserContext context, ILog logger)
     {
        _context = context;
-    //    _logger = logger;
-    //    , ILog<AdminLogger> logger
+       _logger = logger;
     }
 
     [HttpGet]
@@ -88,7 +87,7 @@ public class AdministratorController : ControllerBase
             Console.WriteLine(e);
             return StatusCode(500);
         }
-            // _logger.Log(new LogMsg { ExecutedBy = admin, Source = "AdminController.Post()", Operation = "Toevoegen Beheerder", Msg = "Admin heeft beheerder toe gevoegd" });
+            _logger.Log(new LogMsg { ExecutedBy = "admin", Source = "AdminController.Post()", Operation = "Toevoegen Beheerder", Msg = "Admin heeft beheerder toe gevoegd" });
             return Ok(administrator); 
         }
 
@@ -156,7 +155,7 @@ public class AdministratorController : ControllerBase
             {
 
             await _context.SaveChangesAsync();
-            // _logger.Log(new LogMsg { ExecutedBy = tenantId, Source = "AdminController.Delete()", Operation = "Verwijderen Beheerder", Msg = $"Admin heeft beheerder {id} verwijderd" });
+            _logger.Log(new LogMsg { ExecutedBy = "tenantId", Source = "AdminController.Delete()", Operation = "Verwijderen Beheerder", Msg = $"Admin heeft beheerder id verwijderd" });
 
             return NoContent();
             }

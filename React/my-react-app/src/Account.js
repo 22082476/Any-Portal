@@ -1,62 +1,50 @@
-import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import './Account.css';
 
-export function Account() {
-  const [userData, setUserData] = useState(null);
-  const [medicalData, setMedicalData] = useState(null);
+import { AccountPanelMember } from './AccountPanelMember';
+import { AccountCompany } from './AccountCompany';
+import { AccountAdmin } from './AccountAdmin';
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:5177/PanelMember/string");
-        const responseData = await response.json();
-        setUserData(responseData);
-              } catch (error) {
-        console.error("Error fetching data from userapi:", error);
-      }
+import { AlterAccountPanelMember } from './AlterAccountPanelMember';
+import { AlterAccountCompany } from './AlterAccountCompany';
+import { AlterAccountAdmin } from './AlterAccountAdmin';
 
-      try {
-        const response2 = await fetch("http://localhost:5173/string");
-        const responseData2 = await response2.json();
-        setMedicalData(responseData2);
+export function Account (props)
+{
+    const [ isEdit, setEdit ] = useState(false);
+    const [ userData, setUserData] = useState(null);
+    const navigate = useNavigate();
 
-              } catch (error) {
-        console.error("Error fetching data from medicalapi:", error);
-      }
-    };
+    const dataUpdate = (newdata) => { setUserData(newdata);};
 
-    fetchData();
-  }, []);
- 
-  const navigate = useNavigate();
-
-  return (
-    <div className="AccountInfo-div">
-      {userData ? (
-        <div>
-          <button className="BackButton" aria-label="Pagina sluiten" onClick={() =>  navigate('/')}>X</button>
-          <p>Voornaam: {userData.firstName}</p>
-          <p>Achternaam: {userData.lastName}</p>
-          <p>Email: {userData.email}</p>
-          <p>Telefoonnummer Number: {userData.phoneNumber}</p>
-          <p>Postcode: {userData.postalCode}</p>
-          <p>AgeRange: {userData.ageId}</p>
-          <p>Voorkeur benadering: {userData.preferred_contact}</p>
-        </div>
-        ) : (
-        <p>Loading...</p>
-      )}
-      {medicalData ? (
-        <div>
-          <p>Beperking: {medicalData.disiblity}</p>
-          <p>Type: {medicalData.type}</p>
-          <p>Hulpmiddel: {medicalData.tool}</p>         
-
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  );
+    return(<>
+        {!isEdit && ( 
+            <div className="AccountInfo-div">
+                <div>
+                    <button className="BackButton" aria-label="Pagina sluiten" onClick={() =>  navigate('/')}>X</button>
+                    <h2>Accountgegevens</h2>
+                    {props.Role === "PanelMember" ? <AccountPanelMember data={dataUpdate} userId={props.userId}/> : null}
+                    {props.Role === "Company" ? <AccountCompany data={dataUpdate} userId={props.userId}/> : null}
+                    {props.Role === "Administrator" ? <AccountAdmin data={dataUpdate} userId={props.userId}/> : null}
+                </div>
+                <div className="button-div">
+                <button className="BlueButton" aria-label="Account wijzigen" onClick={() =>  setEdit(true)}>Account wijzigen</button>
+                </div>
+            </div>
+        )}
+        {isEdit && (
+            <div className="AccountInfo-div">
+                <div>
+                    <button className="BackButton" aria-label="Pagina sluiten" onClick={() =>  setEdit(false)}>X</button>
+                    <h2>Accountgegevens wijzigen</h2>
+                    {props.Role === "PanelMember" ? <AlterAccountPanelMember state={setEdit} data={userData}/> : null}
+                    {props.Role === "Company" ? <AlterAccountCompany state={setEdit} data={userData}/> : null}
+                    {props.Role === "Administrator" ? <AlterAccountAdmin state={setEdit} editData={userData}/> : null}
+                </div>
+            </div>
+        )}
+        
+        </>
+    );
 }

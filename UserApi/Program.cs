@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Expressions;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,35 +14,26 @@ builder.Services.AddDbContext<UserContext>((options) => options.UseSqlServer(con
 builder.Services.AddScoped<IResearchApiService, ResearchApiService>();
 
 builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("http://localhost:3000")
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        options.AddPolicy("AllowSpecificOrigin",
+            builder =>
+            {
+                builder.WithOrigins(
+                    "http://localhost:5177", // URL van je lokale ontwikkelingsserver
+                    "http://localhost:5173", // Andere URL van je lokale ontwikkelingsserver
+                    "http://localhost:3000",
+                    "https://22082476.github.io" // GitHub Pages URL
+                )
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+            });
     });
-});
 
-// builder.Services.AddHttpContextAccessor();
 
- //add service voor de zelfde gemaakte logger ILogger;
-// builder.Services.AddSingleton(sp =>
-//     {
-//         var logger = sp.GetRequiredService<ILog<AdminLogger>>();
-//         return new AdminLogger(config.GetConnectionString("LogFileSource"));
-//     });
+builder.Services.AddScoped<ILog, AdminLogger>();
 
 builder.Services.AddScoped<IResearchApiService, ResearchApiService>();
 
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(policy =>
-    {
-        policy.WithOrigins("http://localhost:3000")
-              .AllowAnyHeader()
-              .AllowAnyMethod();
-    });
-});
 
 var app = builder.Build();
 
@@ -52,11 +43,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+ app.UseHttpsRedirection();
 
 app.UseHsts();
 
-app.UseCors();
+app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
 

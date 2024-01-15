@@ -5,8 +5,8 @@ import './Footer.css'
     return(
         <div className="Footer-nav">
             <nav>
-                <a href="#/PrivacyPolicy">Privacy Policy</a> 
-                <a href="https://www.accessibility.nl/" target="_blank">Website stichting </a> 
+                <a href="#/PrivacyPolicy">Privacybeleid</a> 
+                <a href="https://www.accessibility.nl/" target="_blank">Website stichting accessibility</a> 
             </nav>
             <span>
                 <a href='tel:+030-2398270"'>Telefoonnummer: 030-2398270</a>

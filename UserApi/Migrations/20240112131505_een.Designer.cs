@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace UserApi.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20231214102658_ChangeNull")]
-    partial class ChangeNull
+    [Migration("20240112131505_een")]
+    partial class een
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,8 +50,11 @@ namespace UserApi.Migrations
 
             modelBuilder.Entity("AgeRange", b =>
                 {
-                    b.Property<string>("RangeName")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("AgeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AgeId"));
 
                     b.Property<long>("AgeEnd")
                         .HasColumnType("bigint");
@@ -59,7 +62,7 @@ namespace UserApi.Migrations
                     b.Property<long>("AgeStart")
                         .HasColumnType("bigint");
 
-                    b.HasKey("RangeName");
+                    b.HasKey("AgeId");
 
                     b.ToTable("AgeRanges");
                 });
@@ -74,7 +77,6 @@ namespace UserApi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -89,7 +91,6 @@ namespace UserApi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Website")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
@@ -102,9 +103,12 @@ namespace UserApi.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("AgeRangeName")
+                    b.Property<int>("AgeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Availability")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -118,30 +122,17 @@ namespace UserApi.Migrations
                     b.Property<long?>("PhoneNumber")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Preferred_contact")
+                    b.Property<string>("PostalCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("postalCode")
+                    b.Property<string>("Preferred_contact")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
 
-                    b.HasIndex("AgeRangeName");
-
                     b.ToTable("PanelMembers");
-                });
-
-            modelBuilder.Entity("PanelMember", b =>
-                {
-                    b.HasOne("AgeRange", "Age")
-                        .WithMany()
-                        .HasForeignKey("AgeRangeName")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Age");
                 });
 #pragma warning restore 612, 618
         }

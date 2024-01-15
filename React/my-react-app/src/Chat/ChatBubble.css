@@ -1,0 +1,22 @@
+.ChatBubble{
+    position: fixed;
+    right: 5%;
+    bottom: 10%;
+    border: none;
+    background-color: white;
+    border: solid transparent 0.2rem;
+    border-radius: 35%;
+    box-shadow: 3px 3px 10px rgba(185, 185, 185, 0.1), -3px 3px 10px rgba(185, 185, 185, 0.1), 0 3px 10px rgba(185, 185, 185, 0.1);
+
+}
+
+image{
+    display: block;
+    height: auto;
+    width: auto;
+}
+
+.ChatBubble:hover{
+    border: solid  black 0.2rem;
+    border-radius: 35%;
+}

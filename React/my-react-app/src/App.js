@@ -5,8 +5,9 @@ import { Header } from './Header';
 import { Home } from './Home';
 import { Account } from './Account';
 import { Footer } from './Footer';
-import { PrivacyPolicy } from './PrivacyPolicy'
-import { Logout } from './Login/LogoutPage'
+import { PrivacyPolicy } from './PrivacyPolicy';
+import { AlterAccount } from './AlterAccount';
+import {AllResearches} from './All_Researches_Administrator/All_Researches_Administrator';
 
 
 // Hoofdcomponent met router
@@ -15,19 +16,14 @@ function App() {
     <Header />
     <HashRouter>
       <Routes>
-          <Route path="/"element={<Home Name="Testnaam" Role="PanelMember"/>} />
+          <Route path="/"element={<Home Name="Testnaam" Role="Admin"/>} />
           <Route path="/Onderzoek" element={<></>} />
-          <Route path="/Account" element={<Account Role="PanelMember" />} />
+          <Route path="/Account" element={<Account userId="string192371237132" Role="Company" />} />
           <Route path="/Uitloggen"/> 
-          <Route path='/PrivacyPolicy' element={<PrivacyPolicy />}/> 
-          <Route path='/AlterAccount' element={<></>}/>
-          <Route path='/Logout' element={<Logout />}/>    
+          <Route path='/PrivacyPolicy' element={<PrivacyPolicy />}/>   
       </Routes>
     </HashRouter>
     <Footer />
     </>
   );
 }
-
-
-export default App;

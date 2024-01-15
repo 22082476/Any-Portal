@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
-export function AccountAdmin() {
+export function AccountAdmin(props) {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5177/Administrator/string12");
+        const response = await fetch("http://localhost:5177/Administrator/" + props.userId);
         const responseData = await response.json();
         setUserData(responseData);
               } catch (error) {
@@ -15,10 +15,9 @@ export function AccountAdmin() {
     };
 
     fetchData();
-  }, []);
+    props.data(userData);
+  });
  
- 
-
   return (
     <>
         {userData ? (

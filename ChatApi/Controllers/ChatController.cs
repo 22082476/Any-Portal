@@ -15,7 +15,7 @@ public class ChatController : ControllerBase
     }
 
     [HttpGet]
-    [Route("GetChat/{ChatId}")]
+    [Route("GetChat/{chatId}")]
     public async Task<IActionResult> GetChat(int chatId)
     { var chat = await _chatContext.Chats.SingleOrDefaultAsync(chat => chat.ChatId == chatId);
 
@@ -43,7 +43,7 @@ public class ChatController : ControllerBase
     }
 
     [HttpGet]
-    [Route("GetMessage/{ChatId}")]
+    [Route("GetMessage/{chatId}")]
     public async Task<IActionResult> GetMessages(int chatId)
     {
         var Messages = _chatContext.ChatMessages.Where(Messages => Messages.ChatId == chatId).ToList();
@@ -126,7 +126,6 @@ public class ChatController : ControllerBase
     private bool CheckChat(Chat chat)
     {
         if(
-            chat.ChatId == 0 ||
             chat.UserOne == null ||
             chat.UserTwo == null)
             {
@@ -138,7 +137,6 @@ public class ChatController : ControllerBase
     private bool CheckMessages(ChatMessage chatMessage)
     {
         if(
-            chatMessage.MessageId == 0 ||
             chatMessage.ChatId == 0 ||
             chatMessage.Message == null ||
             chatMessage.SentFrom == null

@@ -39,7 +39,7 @@ public class CompanyController : ControllerBase
 
     [HttpGet]
     // public async Task<IActionResult> GetAll ([FromServices] IHttpContextAccessor httpContextAccessor)
-    public async Task<IActionResult> GetAll ()
+    public async Task<IActionResult> GetAll ([FromQuery] bool validationFilter)
     {
         // var user = httpContextAccessor.HttpContext.User;
 
@@ -47,9 +47,16 @@ public class CompanyController : ControllerBase
 
         // if (tenantIdClaim != null)
         {   
+            var resultQuery = _context.Companies.AsQueryable();
             // string tenantId = tenantIdClaim.Value;
-
-            var result = _context.Companies.Select((c) => new { UserId = c.UserId, Email = c.Email, CompanyName = c.CompanyName, Location = c.Location, Website = c.Website, Description = c.Description });
+            if(validationFilter)
+            {
+                resultQuery = resultQuery.Where((c) => !c.IsValid);
+            }
+            
+            
+              var result = resultQuery.Select((c) => new { UserId = c.UserId, Email = c.Email, CompanyName = c.CompanyName, Location = c.Location, Website = c.Website, Description = c.Description });
+            
 
             if (result != null)
             {
@@ -59,7 +66,8 @@ public class CompanyController : ControllerBase
         }
     
         return NotFound();
-}
+    }
+    
 
 
     [HttpPost]

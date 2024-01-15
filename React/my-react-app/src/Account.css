@@ -19,13 +19,13 @@
     border: solid transparent 0.2rem;
 }
 
-.BackButton:hover
+.BackButton:hover, .BlueButton:hover, .WhiteButton:hover
 {
     cursor: pointer;
     border: solid #000 0.2rem;
 }
 
-.BlueButton
+.BlueButton, .WhiteButton
 {
     align-self: center;
     background-color: #57C0B8;
@@ -34,17 +34,18 @@
     border: solid transparent 0.2rem;
     font-weight: bolder;
     font-size: 1rem;
-
 }
 
-.BlueButton:hover
+.WhiteButton
 {
-    border: solid black 0.2rem;
+    background-color: #FFFF;
+    box-shadow: 3px 3px 10px rgba(185, 185, 185, 0.2), -3px 3px 10px rgba(185, 185, 185, 0.2), 0 3px 10px rgba(185, 185, 185, 0.2);
 }
 
+        
 .button-div
 {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 

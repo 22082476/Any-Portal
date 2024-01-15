@@ -1,0 +1,71 @@
+.coloredCornerRight {
+    width: 0;
+    height: 0;
+    border-left: 35vw solid transparent;
+    border-top: 30vh solid #21ACA1; 
+    position: absolute;
+    top: 0;
+    right: 0;
+    
+  }
+
+    .Login-div
+    {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 0 25vw;
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
+    }
+    .TitleLogout{
+      display: flex;
+      flex-direction: Row;
+      justify-content: space-evenly;
+      padding: 1em;
+    }
+
+    .ButtonContainer{
+      display: flex;
+      flex-direction: Row;
+      justify-content: space-evenly;
+      width: 100%;
+    }
+
+    .LogoutButton{
+        width: 40%;
+        border-radius: 20px;
+        padding: 1em;
+        border: none;
+        background-color: #57C0B8;
+    }
+
+    .LogoutButton:hover{
+      border: black solid 2px;
+  }
+
+    .CancelButton{
+        width: 40%;
+        border-radius: 20px;
+        padding: 1em;
+        border: none;
+    }
+
+    .CancelButton{
+      width: 40%;
+      border-radius: 20px;
+      padding: 1em;
+      border: none;
+  }
+
+  .coloredCornerLeft {
+    width: 0;
+    height: 0;
+    border-right: 50vw solid transparent;
+    border-bottom: 30vh solid #131B56;
+    position: absolute;
+    left: 0;
+    bottom: -0.px;
+
+  }

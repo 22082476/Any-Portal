@@ -34,7 +34,7 @@ public class TestDeleteChat : IClassFixture<ChatFixture>
     {
         //arrange
         var controller = new ChatController(_fixture.Context);
-        var chatfaulty = new Chat{UserTwo = "EFGH", UserOne = "ABCD"};
+        var chatfaulty = new Chat{UserOne = "ABCD"};
 
         //act
         BadRequestObjectResult result = controller.Delete(chatfaulty).GetAwaiter().GetResult() as BadRequestObjectResult; 

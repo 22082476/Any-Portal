@@ -1,6 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Expressions;
-using Microsoft.AspNetCore.HttpsPolicy;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,7 +29,6 @@ builder.Services.AddCors(options =>
             });
     });
 
-// builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<ILog, AdminLogger>();
 

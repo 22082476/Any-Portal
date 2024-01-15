@@ -1,34 +1,46 @@
+import { useState, useEffect} from "react";
+import { HomeInfo } from "./HomeInfo";
+import "./Home.css";
+
 export function Home (props)
 {
-    const ResearchTitle = ({Role}) => {
-        let text = "";
-        switch (Role)
-        {
-        case "Company": text = "Jouw actieve onderzoeken";
-        break;
-        case "PanelMember": text = "Nieuwe onderzoeken";
-        break;
-        case "Admin" || "Administrator": text = "Bedrijfs aanvragen";
-        break;
-        default: 
-        break;
-        };
+    const [researchTitle, setResearchTitle] = useState("");
 
-        return text;
-    }
+    useEffect(() => {
+        const ResearchTitle = (Role) => {
+            switch (Role)
+            {
+            case "Company": setResearchTitle("Jouw actieve onderzoeken");
+            break;
+            case "PanelMember": setResearchTitle("Nieuwe onderzoeken");
+            break;
+            case "Admin" || "Administrator": setResearchTitle("Bedrijfs aanvragen");
+            break;
+            default: 
+            setResearchTitle("Loading");
+            break;
+            };
+        }
+
+       ResearchTitle(props.Role); 
+    }, []);
+    
     
     return (
-        <div  style={{display: "flex", justifyContent:"center"}}>
-            <div>
-                <div>
-                    <h2>Welkom {props.Name}</h2>
+        <div className="HomeScreen-div">
+            <div className="HomeScreen-div-left">
+                <div className="Welcome-div">
+                    <h1>Welkom {props.Name}</h1>
                 </div>
-                <div>
+                <div className="News-div">
                     <h2>Nieuws</h2>
                 </div>    
             </div>
-            <div>
-                <h2> {ResearchTitle(props.Role)}</h2>
+            <div className="Info-div">
+                <h2> {researchTitle} </h2>
+                <div>
+                    <HomeInfo Role="Admin"/>
+                </div>
             </div>  
         </div>
     );

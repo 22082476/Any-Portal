@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 public class Caretaker
 {
-    public int Id { get; set;}
+    [Key] public int CaretakerId { get; set;}
     [Required] public string FirstName { get; set; }
     [Required] public string LastName { get; set; }
     [Required] public string Email { get; set; }

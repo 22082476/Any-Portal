@@ -17,7 +17,7 @@ public class TestPanelMemberController_Delete : IClassFixture<PanelMemberFixture
         //Arrange
         var dataObject = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not"};    
         var mockService = new Mock<IResearchApiService>();
-        mockService.Setup((m) => m.GetFromResearchApi(It.IsAny<string>())).ReturnsAsync(() => (bool?)true);
+        mockService.Setup((m) => m.GetFromResearchApi(It.IsAny<string>())).ReturnsAsync(() => true);
 
         var controller = new PanelMemberController (_fixture.Context, mockService.Object);    
 
@@ -37,7 +37,7 @@ public class TestPanelMemberController_Delete : IClassFixture<PanelMemberFixture
         //Arrange
         var dataObject = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not"};    
         var mockService = new Mock<IResearchApiService>();
-        mockService.Setup((m) => m.GetFromResearchApi(It.IsAny<string>())).ReturnsAsync(() => (bool?)false);
+        mockService.Setup((m) => m.GetFromResearchApi(It.IsAny<string>())).ReturnsAsync(() => false);
 
         var controller = new PanelMemberController (_fixture.Context, mockService.Object);    
 

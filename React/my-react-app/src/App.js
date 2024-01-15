@@ -6,7 +6,6 @@ import { Home } from './Home';
 import { Account } from './Account';
 import { Footer } from './Footer';
 import { PrivacyPolicy } from './PrivacyPolicy';
-import { AlterAccount } from './AlterAccount';
 import {AllResearches} from './All_Researches_Administrator/All_Researches_Administrator';
 
 
@@ -17,7 +16,7 @@ function App() {
     <HashRouter>
       <Routes>
           <Route path="/"element={<Home Name="Testnaam" Role="Admin"/>} />
-          <Route path="/Onderzoek" element={<></>} />
+          <Route path="/Onderzoek" element={<AllResearches />} />
           <Route path="/Account" element={<Account userId="string192371237132" Role="Company" />} />
           <Route path="/Uitloggen"/> 
           <Route path='/PrivacyPolicy' element={<PrivacyPolicy />}/>   

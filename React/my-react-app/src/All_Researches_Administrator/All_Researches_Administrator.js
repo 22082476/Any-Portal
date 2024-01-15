@@ -33,7 +33,7 @@ export function AllResearches() {
 
   return (
     <div className="Researchbox-div">
-      <h2 className='Researchlist'>Alle Onderzoeken</h2>
+      <h1 className='Researchlist'>Alle Onderzoeken</h1>
       <label htmlFor="companySearch">Zoek op bedrijfsnaam:</label>
       <input
         type="text"
@@ -47,7 +47,7 @@ export function AllResearches() {
           <tr className='Researchlist'> {/* Makes a row in the head for multiple head names*/}
               <th className='Researchlist'>Titel</th>
               <th className='Researchlist'>Bedrijf</th>
-              <th className='Researchlist'>Actief</th>
+              <th className='Researchlist'>Status</th>
             </tr>
           </thead>
           <tbody> {/*Table body*/}

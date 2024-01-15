@@ -7,6 +7,7 @@ import { Account } from './Account';
 import { Footer } from './Footer';
 import { PrivacyPolicy } from './PrivacyPolicy';
 import { AlterAccount } from './AlterAccount';
+import {AllResearches} from './All_Researches_Administrator/All_Researches_Administrator';
 
 
 // Hoofdcomponent met router

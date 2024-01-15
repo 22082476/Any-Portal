@@ -10,7 +10,7 @@ export function AllResearches() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5064/Research");
+        const response = await fetch("https://315d6kkf-5064.euw.devtunnels.ms/Research");
         const responseData = await response.json();
         setResearches(responseData);
       } catch (error) {

@@ -7,7 +7,7 @@ export function ChatBox (Props)
     useEffect(()=>{
         const getData = async () =>{
         try {
-            const response = await fetch("http://localhost:5086/Chat/GetChat/1");
+            const response = await fetch("https://315d6kkf-5086.euw.devtunnels.ms/Chat/GetChat/1");
             const data = await response.json();
 
             setChatData(data);

@@ -6,9 +6,9 @@ import { AccountPanelMember } from './AccountPanelMember';
 import { AccountCompany } from './AccountCompany';
 import { AccountAdmin } from './AccountAdmin';
 
-import { AlterAccountPanelMember } from './AlterAccountPanelMember';
-import { AlterAccountCompany } from './AlterAccountCompany';
-import { AlterAccountAdmin } from './AlterAccountAdmin';
+import { AlterAccountPanelMember } from './AlterAccount/AlterAccountPanelMember';
+import { AlterAccountCompany } from './AlterAccount/AlterAccountCompany';
+import { AlterAccountAdmin } from './AlterAccount/AlterAccountAdmin';
 
 export function Account (props)
 {

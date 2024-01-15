@@ -47,5 +47,52 @@
 {
     display: flex;
     justify-content: space-evenly;
+    margin-top: 3rem;
 }
 
+.AlterAccountdiv
+{
+    display: block;
+    height: 30vh;
+}
+
+.input-label
+{
+    padding: 1rem 3rem 1rem 3rem;
+    background-color: #FFFF;
+    box-shadow: 3px 3px 10px rgba(185, 185, 185, 0.2), -3px 3px 10px rgba(185, 185, 185, 0.2), 0 3px 10px rgba(185, 185, 185, 0.2);
+    border-radius: 20px;
+    margin: 1rem 1rem 0 0;
+}
+
+.inputfield, textarea
+{
+    padding: 1rem 0.5rem 1rem 0.5rem;
+    background-color: #FFFF;
+    box-shadow: 3px 3px 10px rgba(185, 185, 185, 0.2), -3px 3px 10px rgba(185, 185, 185, 0.2), 0 3px 10px rgba(185, 185, 185, 0.2);
+    border-radius: 20px;
+    margin: 1rem 1rem 0 0;
+    width: 60%;
+}
+
+label 
+{ 
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+}
+
+textarea
+{
+    resize: none;
+}
+
+table
+{
+    width: 50vw;
+}
+
+tr
+{
+    margin: auto;
+}

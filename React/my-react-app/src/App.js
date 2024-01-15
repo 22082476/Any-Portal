@@ -1,16 +1,16 @@
 import React from 'react';
 import { HashRouter, Routes, Route } from "react-router-dom";
 
-import { Header } from './Header';
-import { Home } from './Home';
-import { Account } from './Account';
-import { Footer } from './Footer';
-import { PrivacyPolicy } from './PrivacyPolicy';
+import { Header } from './Header/Header';
+import { Home } from './Home/Home';
+import { Account } from './Account/Account';
+import { Footer } from './Footer/Footer';
+import { PrivacyPolicy } from './PrivacyPolicy/PrivacyPolicy';
 import {AllResearches} from './All_Researches_Administrator/All_Researches_Administrator';
 
 
 // Hoofdcomponent met router
-function App() {
+export function App() {
   return (<>
     <Header />
     <HashRouter>

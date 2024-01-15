@@ -5,7 +5,7 @@
 namespace UserApi.Migrations
 {
     /// <inheritdoc />
-    public partial class een : Migration
+    public partial class _1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -40,6 +40,21 @@ namespace UserApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Caretakers",
+                columns: table => new
+                {
+                    CaretakerId = table.Column<int>(type: "int", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Caretakers", x => x.CaretakerId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Companies",
                 columns: table => new
                 {
@@ -68,7 +83,8 @@ namespace UserApi.Migrations
                     AgeId = table.Column<int>(type: "int", nullable: false),
                     PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Preferred_contact = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Availability = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Availability = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CaretakerId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -84,6 +100,9 @@ namespace UserApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "AgeRanges");
+
+            migrationBuilder.DropTable(
+                name: "Caretakers");
 
             migrationBuilder.DropTable(
                 name: "Companies");

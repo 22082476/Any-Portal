@@ -7,7 +7,7 @@ export function AccountPanelMember(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5177/PanelMember/" + props.userId);
+        const response = await fetch("https://315d6kkf-5177.euw.devtunnels.ms/PanelMember/" + props.userId);
         const responseData = await response.json();
         setUserData(responseData);
               } catch (error) {
@@ -15,7 +15,9 @@ export function AccountPanelMember(props) {
       }
 
       try {
-        const response2 = await fetch("http://localhost:5173/" + props.userId);
+          const response2 = await fetch("https://315d6kkf-5247.euw.devtunnels.ms/Medical/Dcode?Dcode=1");
+
+        // const response2 = await fetch("https://315d6kkf-5247.euw.devtunnels.ms/" + props.userId);
         const responseData2 = await response2.json();
         setMedicalData(responseData2);
 

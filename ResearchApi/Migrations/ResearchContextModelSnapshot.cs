@@ -100,6 +100,10 @@ namespace ResearchApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CompanyId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Compensation")
                         .HasColumnType("decimal(18,2)");
 

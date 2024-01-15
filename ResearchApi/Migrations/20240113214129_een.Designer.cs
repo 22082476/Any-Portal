@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ResearchApi.Migrations
 {
     [DbContext(typeof(ResearchContext))]
-    [Migration("20240112131430_een")]
+    [Migration("20240113214129_een")]
     partial class een
     {
         /// <inheritdoc />
@@ -100,6 +100,10 @@ namespace ResearchApi.Migrations
                         .HasDefaultValue(false);
 
                     b.Property<string>("Company")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

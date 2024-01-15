@@ -52,7 +52,6 @@ public class ResearchController : ControllerBase{
         if(research == null){
             return BadRequest();
         }
-
         try{
             research.Active = false;
             _context.Research.Add(research);

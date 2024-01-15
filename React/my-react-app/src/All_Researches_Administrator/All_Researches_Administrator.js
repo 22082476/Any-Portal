@@ -58,13 +58,13 @@ export function AllResearches() {
                 <td className='Researchlist'>
                   {research.active ? (
                     <img className = "ResearchPicture"
-                      src={Kruisje}
-                      alt="Niet Actief"
+                      src={Vinkje}
+                      alt="vActief"
                     />
                   ) : (
                     <img className = "ResearchPicture"
-                      src={Vinkje}
-                      alt="Actief"
+                      src={Kruisje}
+                      alt="Niet Actief"
                     />
                   )}
                 </td>

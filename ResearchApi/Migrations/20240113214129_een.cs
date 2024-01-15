@@ -59,6 +59,7 @@ namespace ResearchApi.Migrations
                 {
                     Rcode = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CompanyId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Company = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),

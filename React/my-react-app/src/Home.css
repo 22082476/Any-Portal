@@ -1,0 +1,53 @@
+.HomeScreen-div
+{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.HomeScreen-div-left
+{
+    display: block;
+}
+
+.Welcome-div
+{
+    text-align: center;
+    width: 39.5vw;
+    padding: 0.5rem 0 0.5rem 0;
+    border-radius: 40px;
+    box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
+
+}
+.News-div
+{
+    margin-top: 0.67rem;
+    width: auto;
+    height: 58vh;
+    box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
+    border-radius: 61px;
+}
+
+.News-div h2, .Info-div h2
+{
+    text-align: center;
+    padding: 1rem 0 1rem 0;
+    margin: 0;
+}
+
+.Info-div
+{
+    width: 39.5vw;
+    height: 71.36vh;
+    box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
+    border-radius: 61px;
+}
+
+.Info-div div
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+

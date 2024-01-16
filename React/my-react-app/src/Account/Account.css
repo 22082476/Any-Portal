@@ -1,3 +1,8 @@
+p
+{
+    color: #131B56;
+}
+
 .AccountInfo-div
 {
     display: flex;
@@ -97,7 +102,7 @@ tr
     margin: auto;
 }
 
-#delete-button
+.secondary-button
 {
-  color: #6c6c6c;
+  color: #545454;
 }

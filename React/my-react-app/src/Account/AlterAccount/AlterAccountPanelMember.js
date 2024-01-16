@@ -1,12 +1,13 @@
 import '../Account.css';
 import { useState, useEffect } from 'react';
+import { AgeDropDown } from './AgeDropDown';
 
 export function AlterAccountPanelMember(props) {
   const [panelMember, setPanelMember] = useState(props.data.panelMember);
   const [caretaker, setCaretaker] = useState(props.data.caretaker);
   const [deleteCare, setDeleteCare] = useState(false);
 
-  console.log(panelMember);
+  const updateAge = (newAge) => setPanelMember({...panelMember, ageId: newAge});
 
   useEffect(() => {
     if (panelMember.caretakerId !== null) {
@@ -63,6 +64,7 @@ export function AlterAccountPanelMember(props) {
             </td>
             <td>
               <input className="inputfield" type="text" id="fname" value={panelMember.firstName} onChange={(e) => setPanelMember({ ...panelMember, firstName: e.target.value })}></input>
+              *
             </td>
           </tr>
           <tr>
@@ -71,6 +73,7 @@ export function AlterAccountPanelMember(props) {
             </td>
             <td>
               <input className="inputfield" type="text" id="lname" value={panelMember.lastName} onChange={(e) => setPanelMember({ ...panelMember, lastName: e.target.value })}></input>
+              *
             </td>
           </tr>
           <tr>
@@ -78,7 +81,8 @@ export function AlterAccountPanelMember(props) {
                     <label className="input-label" htmlFor="email"><b>Email</b></label>
                 </td>
                 <td>
-                    <input className="inputfield" type="email" id='email' value={panelMember.AlterAccountPanelMemberemail} onChange={(e) => setPanelMember({ ...panelMember, email: e.target.value })}></input>
+                    <input className="inputfield" type="email" id='email' value={panelMember.email} onChange={(e) => setPanelMember({ ...panelMember, email: e.target.value })}></input>
+                    *
                 </td>
             </tr>
             <tr>
@@ -95,6 +99,7 @@ export function AlterAccountPanelMember(props) {
                 </td>
                 <td>
                     <input className="inputfield" type="zip" id="postalcode" value={panelMember.postalCode} onChange={(e) => setPanelMember({ ...panelMember, postalCode: e.target.value })}></input>
+                    *
                 </td>
             </tr>
             <tr>
@@ -102,7 +107,8 @@ export function AlterAccountPanelMember(props) {
                     <label className="input-label" htmlFor="age"><b>Leeftijdscategorie</b></label>
                 </td>
                 <td>
-                    <input className="inputfield" type="text" id="age" value={panelMember.ageId} onChange={(e) => setPanelMember({ ...panelMember, ageId: e.target.value })}></input>
+                    <AgeDropDown update={updateAge} ageId={panelMember.ageId}/>
+                    
                 </td>
             </tr>
             <tr>
@@ -111,14 +117,16 @@ export function AlterAccountPanelMember(props) {
                 </td>
                 <td>
                     <input className="inputfield" type="text" id="preferred_contact" value={panelMember.preferred_contact} onChange={(e) => setPanelMember({ ...panelMember, preferred_contact: e.target.value })}></input>
+                    *
                 </td>
             </tr>
             <tr>
                 <td>
-                    <label className="input-label" htmlFor="description"><b>Beschikbaarheid</b></label>
+                    <label className="input-label" htmlFor="availability"><b>Beschikbaarheid</b></label>
                 </td>
                 <td>
-                    <input className="inputfield" type="text" id="description" value={panelMember.availability} onChange={(e) => setPanelMember({ ...panelMember, availability: e.target.value })}></input>
+                    <input className="inputfield" type="text" id="availability" value={panelMember.availability} onChange={(e) => setPanelMember({ ...panelMember, availability: e.target.value })}></input>
+                    *
                 </td>
             </tr>
         </table>
@@ -126,6 +134,7 @@ export function AlterAccountPanelMember(props) {
         {panelMember.caretakerId !== null ? (
           <>
             <h2>Ouder/verzorger gegevens</h2>
+            <p>De invoervelden met een * zijn verplicht</p>
             <table>
               <tr>
                 <td>
@@ -133,6 +142,7 @@ export function AlterAccountPanelMember(props) {
                 </td>
                 <td>
                   <input className="inputfield" type="text" id="cfirstname" value={caretaker.firstName} onChange={(e) => setCaretaker({ ...caretaker, firstName: e.target.value })}></input>
+                  *
                 </td>
               </tr>
               <tr>
@@ -141,6 +151,7 @@ export function AlterAccountPanelMember(props) {
                 </td>
                 <td>
                     <input className="inputfield" type="text" id="clastname" value={caretaker.lastName} onChange={(e) => setCaretaker({ ...caretaker, lastName: e.target.value })}></input>
+                    *
                 </td>
             </tr>
             <tr>
@@ -149,6 +160,7 @@ export function AlterAccountPanelMember(props) {
                 </td>
                 <td>
                     <input className="inputfield" type="email" id="cemail" value={caretaker.email} onChange={(e) => setCaretaker({ ...caretaker, email: e.target.value })}></input>
+                    *
                 </td>
             </tr>
             <tr>
@@ -161,21 +173,21 @@ export function AlterAccountPanelMember(props) {
             </tr>
             </table>
             <div className="button-div">
-              <button className="WhiteButton" id="delete-button" onClick={del}>
+              <button className="WhiteButton secondary-button" onClick={del}>
                 Ouder/Voogd verwijderen
               </button>
             </div>
           </>
         ) : (
           <div className="button-div">
-            <button className="WhiteButton" onClick={() => addCareTaker(true)}>
+            <button className="WhiteButton secondary-button" onClick={() => addCareTaker(true)}>
               Ouder/Voogd toevoegen
             </button>
           </div>
         )}
 
         <div className="button-div">
-          <button className="WhiteButton" aria-label="Wijzigen annuleren" onClick={() => props.state(false)}>
+          <button className="WhiteButton secondary-button" aria-label="Wijzigen annuleren" onClick={() => props.state(false)}>
             Wijzigen annuleren
           </button>
           <input className="BlueButton" value="Wijzigen opslaan" type="submit" />

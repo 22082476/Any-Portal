@@ -44,13 +44,13 @@ export function Account (props)
                 <div>
                     <button className="BackButton" aria-label="Pagina sluiten" onClick={() =>  setEdit(false)}>X</button>
                     <h1>Accountgegevens wijzigen</h1>
+                    <p>De invoervelden met een * zijn verplicht</p>
                     {console.log(userData)}
                     {props.Role === "PanelMember" ? <AlterAccountPanelMember state={setEdit} data={userData} data2={exUserData}/> : null}
                     {props.Role === "Company" ? <AlterAccountCompany state={setEdit} data={userData}/> : null}
                 </div>
             </div>
         )}
-        
         </>
     );
 }

@@ -8,11 +8,11 @@ export function Logout ()
 
     return(<>
     <div className="Container">
-        <div className="Login-div">
+        <div className="Logout-div">
             <h2 className='TitleLogout'>Weet u zeker dat u wilt uitloggen?</h2>
             <div className='ButtonContainer'>
             <button className='LogoutButton'>Log uit</button>
-            <button className='CancelButton'>Ga terug</button>
+            <button className='CancelButton' onClick={() =>  navigate('/')}>Terug naar Home</button>
             </div>
         </div>
     </div>

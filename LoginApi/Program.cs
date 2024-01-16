@@ -1,4 +1,5 @@
 using LoginApi;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -11,7 +12,7 @@ builder.Services.AddCors(options =>
             builder =>
             {
                 builder.WithOrigins(
-                    "http://localhost:5177", // URL van je lokale ontwikkelingsserver
+                    "http://localhost:5097", // URL van je lokale ontwikkelingsserver
                     "http://localhost:3000",
                     "https://22082476.github.io" // GitHub Pages URL
                 )
@@ -22,6 +23,10 @@ builder.Services.AddCors(options =>
 
  builder.Services.AddDbContext<LoginContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+                    .AddEntityFrameworkStores<LoginContext>() 
+                    .AddDefaultTokenProviders();
+builder.Services.AddScoped<UserManager<IdentityUser>>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

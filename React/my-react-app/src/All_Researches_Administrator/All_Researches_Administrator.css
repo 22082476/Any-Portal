@@ -1,49 +1,28 @@
 .Researchbox-div {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column; /* Change to column direction */
-    margin: 0 25vw;
-    padding: 1rem;
-    box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
-    border-radius: 25px;
-  }
-  
-  h2.Researchlist {
-    text-align: center; 
-  }
-  
-  table.Researchlist{
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-  }
-  
-  th.Researchlist, td.Researchlist{
-    padding: 8px;
-    border: 1px solid #ddd;
-  }
-  
-  th.Researchlist {
-    text-align: left;
-  }
-  
-  td.Researchlist{
-    text-align: center;
-  }
-  
-  td:last-child.Researchlist{
-    text-align: right; 
-  }
-  
-  td:first-child.Researchlist{
-    text-align: left; 
-  }
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column; 
+  margin: 0 25vw;
+  padding: 1rem;
+  box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
+  border-radius: 25px;
+  overflow-y: auto;
+}
 
-  img.ResearchPicture{
-    width: 25px;
-    height: 25px; 
-    display: table-cell;
-    margin: 0 auto;
-  }
-  
+h2.Researchlist {
+  text-align: center; 
+}
+
+table.Researchlist{
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+img.ResearchPicture{
+  width: 25px;
+  height: 25px; 
+  display: table-cell;
+  margin: 0 auto;
+}

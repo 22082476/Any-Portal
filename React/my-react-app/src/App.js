@@ -7,6 +7,7 @@ import { Account } from './Account';
 import { Footer } from './Footer';
 import { PrivacyPolicy } from './PrivacyPolicy';
 import {AllResearches} from './All_Researches_Administrator/All_Researches_Administrator';
+import {Companyresearches} from './All_Researches_Company/All_Researches_Company'
 
 
 // Hoofdcomponent met router
@@ -26,3 +27,4 @@ function App() {
     </>
   );
 }
+export default App;

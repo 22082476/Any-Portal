@@ -14,7 +14,7 @@ public class ResearchController : ControllerBase{
 
 
     [HttpGet]
-    [Route("{researchId}")]
+    [Route("ByResearchId/{researchId}")]
     public IActionResult GetResearch(int researchId){
     var result = _context.Research.SingleOrDefault(s => s.Rcode == researchId);
        
@@ -26,11 +26,11 @@ public class ResearchController : ControllerBase{
 
  
     [HttpGet]
-    [Route("{CompanyId}")]
+    [Route("ByCompanyId/{companyId}")]
     public IActionResult GetAllResearch(string companyId){
-    var result = _context.Research.Where(s => s.Company == companyId).ToList();
+    var result = _context.Research.Where(s => s.CompanyId == companyId).ToList();
 
-        if(result == null){
+        if(result.Count == 0){
             return NotFound();
         }
             return Ok(result);
@@ -155,7 +155,7 @@ public class ResearchController : ControllerBase{
         return NotFound();
         }
 
-        if (existingResearch.Active){
+        if (existingResearch.Active!){
             existingResearch.Title = updatedResearch.Title;
             existingResearch.Compensation = updatedResearch.Compensation;
             existingResearch.Type_Research = updatedResearch.Type_Research;

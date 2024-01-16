@@ -59,7 +59,7 @@ export function AllResearches() {
                   {research.active ? (
                     <img className = "ResearchPicture"
                       src={Vinkje}
-                      alt="vActief"
+                      alt="Actief"
                     />
                   ) : (
                     <img className = "ResearchPicture"

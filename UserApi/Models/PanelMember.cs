@@ -14,7 +14,7 @@ public class PanelMember
 
     [Required] public string Preferred_contact { get; set; }  
     [Required] public string [] Availability { get; set; }
-    public int? CaretakerId { get; set;}
+    public string? CaretakerId { get; set;}
 
     public void UpdateToNull()
     {

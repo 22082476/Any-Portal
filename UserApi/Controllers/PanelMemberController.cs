@@ -134,7 +134,7 @@ public class PanelMemberController : ControllerBase
                 {
                     if(request.Caretaker != null)
                     {
-                       request.Caretaker.CaretakerId = request.PanelMemberCurrent.CaretakerId.Value;
+                       request.Caretaker.CaretakerId = request.PanelMemberCurrent.CaretakerId;
                        _context.Update(request.Caretaker);
                     }
                     

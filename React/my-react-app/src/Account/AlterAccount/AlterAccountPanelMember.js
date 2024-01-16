@@ -15,9 +15,46 @@ export function AlterAccountPanelMember(props) {
   const [ careFirstName, setCareFirstName] = useState(props.data.caretaker.firstName);
   const [ careLastName, setCareLastName] = useState(props.data.caretaker.lastName);
   const [ careEmail, setCareEmail] = useState(props.data.caretaker.email);
-  const [ carePhoneNumber, setCarePhoheNumber] = useState(props.data.caretaker.phoneNumber);
+  const [ carePhoneNumber, setCarePhoneNumber] = useState(props.data.caretaker.phoneNumber);
 
-  
+
+  let data = {
+    panelMemberNew: 
+    {
+        userId: props.data.userId,
+        email: email,
+        phoneNumber: phoneNumber,
+        firstName: firstName,
+        lastName: lastName,
+        ageId: ageId,
+        postalCode: postalCode,
+        preferred_contact: preferred_contact,
+        availability: availability,
+        caretakerId: caretakerId,
+    },
+    cartaker:
+    {
+        caretakerId: caretakerId,
+        firstName: careFirstName,
+        lastName: careLastName,
+        email: careEmail,
+        phoneNumber: carePhoneNumber
+
+    },
+    panelMemberCurrent:
+    {
+        userId: props.data.panelMember.userId,
+        email: props.data.panelMember.email,
+        phoneNumber: props.data.panelMember.phoneNumber,
+        firstName: props.data.panelMember.firstName,
+        lastName: props.data.lastName,
+        ageId: props.data.panelMember.ageId,
+        postalCode: props.data.panelMember.postalCode,
+        preferred_contact: props.data.panelMember.preferred_contact,
+        availability: props.data.panelMember.availability,
+        caretakerId: props.data.panelMember.caretakerId,
+    }
+}
 
   const handleUpdate = () => {
     console.log(props.userId);
@@ -27,43 +64,7 @@ export function AlterAccountPanelMember(props) {
         headers: {
             'Content-type': 'application/json'
         },
-        body: JSON.stringify({
-            panelMemberNew: 
-            {
-                userId: props.data.userId,
-                email: email,
-                phoneNumber: phoneNumber,
-                firstName: firstName,
-                lastName: lastName,
-                ageId: ageId,
-                postalCode: postalCode,
-                preferred_contact: preferred_contact,
-                availability: availability,
-                caretakerId: caretakerId,
-            },
-            cartaker:
-            {
-                caretakerId: caretakerId,
-                firstName: careFirstName,
-                lastName: careLastName,
-                email: careEmail,
-                phoneNumber: carePhoneNumber
-
-            },
-            panelMemberCurrent:
-            {
-                userId: props.data.panelMember.userId,
-                email: props.data.panelMember.email,
-                phoneNumber: props.data.panelMember.phoneNumber,
-                firstName: props.data.panelMember.firstName,
-                lastName: props.data.lastName,
-                ageId: props.data.panelMember.ageId,
-                postalCode: props.data.panelMember.postalCode,
-                preferred_contact: props.data.panelMember.preferred_contact,
-                availability: props.data.panelMember.availability,
-                caretakerId: props.data.panelMember.caretakerId,
-            }
-        }) // Zet de URLSearchParams om naar een string
+        body: JSON.stringify(data) // Zet de URLSearchParams om naar een string
       })
         .then(response => response.json())
         .then(result => console.log(result))
@@ -177,14 +178,19 @@ export function AlterAccountPanelMember(props) {
                     <label className="input-label" htmlFor="cphone"><b>Telefoonnummer</b></label>
                 </td>
                 <td>
-                    <input className="inputfield" type="tel" id="cphone" value={carePhoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}></input>
+                    <input className="inputfield" type="tel" id="cphone" value={carePhoneNumber} onChange={(e) => setCarePhoneNumber(e.target.value)}></input>
                 </td>
             </tr>
         </table>
+        <div className="button-div">
+            <button className="WhiteButton" id="delete-button" onClick={() => setCaretakerId(null)}>Ouder/Voogd verwijderen</button>
+        </div>
         </>
         ) :
         (
-        <></>
+        <div className="button-div">
+            <button className="WhiteButton" onClick={() => setCaretakerId(props.data.panelMember.userId)}>Ouder/Voogd toevoegen</button>
+        </div>
         )
         }
         <div className="button-div">

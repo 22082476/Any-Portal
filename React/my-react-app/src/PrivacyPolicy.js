@@ -4,19 +4,19 @@ export function PrivacyPolicy ()
 {
     return (
         <div className='PrivacyDiv'>
-            <h2>Privacybeleid</h2>
-            <h3>Onze rol in jouw privacy</h3>
+            <h1>Privacybeleid</h1>
+            <h2>Onze rol in jouw privacy</h2>
             <p>Als Any-Portal vragen wij normale/bijzondere persoonsgegevens als gebruiker.<br />
               Wij vragen alleen om informatie die wij ook daadwerkelijk gaan gebruiken, <br /> 
               om ervoor te zorgen dat Any-Portal optimaal kan functioneren. <br /> 
               Wij proberen de privacy van onze gebruikers zoveel mogelijk te beschermen.</p>
             <br />
-            <h3>Welke data verwerken wij</h3>
+            <h2>Welke data verwerken wij</h2>
             <p>Beheerder/Admin accounts zijn werknemers van Stichting Accessibillity. <br /> 
             zij zijn de beheerders van alle data in Any-Portal,<br /> 
             ze kunnen alle informatie inzien. (Met uitzondering op chatberichten, deze zijn privé tussen twee partijen) 
                 <br />
-                <h4>Panellid (normale, bijzondere en overige informatie):</h4> 
+                <h3>Panellid (normale, bijzondere en overige informatie):</h3> 
                 <br />
                 Informatie die door bedrijven gezien kan worden als er meegedaan wordt aan een onderzoek
                 <br />
@@ -96,7 +96,7 @@ export function PrivacyPolicy ()
                 Wanneer een panellid niet meedoet aan een onderzoek, <br /> 
                 wordt alle data verwijderd als het account wordt verwijderd.
                 <br />
-                <h4>Bedrijfsgegevens: </h4>
+                <h3>Bedrijfsgegevens: </h3>
                 <ul>
                     <li>
                         Bedrijfsnaam 
@@ -131,7 +131,7 @@ export function PrivacyPolicy ()
                 </ul> 
                 Informatie van bedrijven is voor iedereen beschikbaar binnen de applicatie
                 <br />
-                <h4>Onderzoekgegevens: </h4>
+                <h3>Onderzoekgegevens: </h3>
                 <ul>
                     <li>
                         Panellid informatie die hieraan meegedaan heeft
@@ -176,7 +176,7 @@ export function PrivacyPolicy ()
                 Chatgegevens worden na 2 maanden verwijderd. 
             </p>
             <br />
-            <h3>Waarom verwerken wij jouw gegevens</h3>
+            <h2>Waarom verwerken wij jouw gegevens</h2>
             <p>Any-Portal is bedoeld de mogelijkheid te geven voor bedrijven, <br /> 
             om hun toegankelijkheid te laten testen. <br /> 
             Een bedrijf maakt daarvoor een onderzoek met selectie eisen.<br /> 
@@ -197,7 +197,7 @@ export function PrivacyPolicy ()
             zodat een panellid, beheerder en bedrijf terug kan zien welk contact er is geweest en met wie. <br />
             De gegevens worden bewaard zodat de chatgeschiedenis voor 2 maanden beschikbaar is na het contact. </p>
             <br />
-            <h3>Wat doen wij om je gegevens te waarborgen</h3>
+            <h2>Wat doen wij om je gegevens te waarborgen</h2>
             <p>Om jou gegevens zo goed mogelijk te waarborgen houden wij alle gegevens gescheiden in verschillende databases. <br />
             Elke gegeven is zo onherleidbaar mogelijk gemaakt om gevolgen te verminderen bij een datalek. <br /> 
             We maken gebruik van toegangsbeheersing, zodat niet iedereen zomaar je gegevens kan lezen. <br /> 

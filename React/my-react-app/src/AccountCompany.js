@@ -28,7 +28,7 @@ export function AccountCompany(props) {
             <p><b>Email:</b> {userData.email}</p>
             <p><b>Omschrijving:</b> {userData.description}</p>
             <p><b>Website: </b> <a href={userData.website}>{userData.website}</a></p>
-            <p><b>Gevalideerd: </b>{userData.isValid ? "gevalideerd" : "niet gevalideerd"}</p>
+            <p><b>Status: </b>{userData.isValid ? "gevalideerd" : "niet gevalideerd"}</p>
         </div>
         ) : (
         <p>Loading...</p>

@@ -16,7 +16,7 @@ export function AccountAdmin(props) {
 
     fetchData();
     props.data(userData);
-  });
+  }, []);
  
   return (
     <>

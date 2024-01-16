@@ -1,5 +1,5 @@
 import '../Account.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function AlterAccountPanelMember(props) {
   const [ firstName, setFirstName ] = useState(props.data.panelMember.firstName);
@@ -10,18 +10,56 @@ export function AlterAccountPanelMember(props) {
   const [ availability, setAvailablity] = useState(props.data.panelMember.availability);
   const [ preferred_contact, setPreferred_contact] = useState(props.data.panelMember.preferred_contact);
   const [ ageId, setAgeId] = useState(props.data.panelMember.ageId);
+    
 
-  const [ caretakerId, setCaretakerId] = useState(props.data.panelMember.caretakerId);
-  const [ careFirstName, setCareFirstName] = useState(props.data.caretaker.firstName);
-  const [ careLastName, setCareLastName] = useState(props.data.caretaker.lastName);
-  const [ careEmail, setCareEmail] = useState(props.data.caretaker.email);
-  const [ carePhoneNumber, setCarePhoneNumber] = useState(props.data.caretaker.phoneNumber);
+    const [ caretakerId, setCaretakerId] = useState(props.data.panelMember.caretakerId);
+    
+    const [ careFirstName, setCareFirstName] = useState(null);
+    const [ careLastName, setCareLastName] = useState(null);
+    const [ careEmail, setCareEmail] = useState(null);
+    const [ carePhoneNumber, setCarePhoneNumber] = useState(null);
+
+    const [deleteCare, setDeleteCare ] = useState(false);
+
+ useEffect(() =>
+ {
+    //   console.log(caretakerId);
+    if(caretakerId !== null){
+        if(props.data.caretaker !== null)
+        {
+            setCareFirstName(props.data.caretaker.firstName);
+            setCareLastName(props.data.caretaker.lastName);
+            setCareEmail(props.data.caretaker.email);
+            setCarePhoneNumber(props.data.caretaker.phoneNumber);
+        }else
+        {
+            addCareTaker(false);
+        }
+    }   
+
+ }, []);
+
+
+    const addCareTaker = (e) => {
+        if(e)
+            setCaretakerId(props.data.panelMember.userId);
+
+        setCareFirstName("");
+        setCareLastName("");
+        setCareEmail("");
+        setCarePhoneNumber("");
+    };
+
+    const del = () => { 
+        setCaretakerId(null);
+        setDeleteCare(true);
+    }
 
 
   let data = {
     panelMemberNew: 
     {
-        userId: props.data.userId,
+        userId: props.data.panelMember.userId,
         email: email,
         phoneNumber: phoneNumber,
         firstName: firstName,
@@ -30,16 +68,15 @@ export function AlterAccountPanelMember(props) {
         postalCode: postalCode,
         preferred_contact: preferred_contact,
         availability: availability,
-        caretakerId: caretakerId,
+        caretakerId: deleteCare ? null : caretakerId,
     },
-    cartaker:
+    caretaker: deleteCare ? null :
     {
         caretakerId: caretakerId,
         firstName: careFirstName,
         lastName: careLastName,
         email: careEmail,
         phoneNumber: carePhoneNumber
-
     },
     panelMemberCurrent:
     {
@@ -183,13 +220,13 @@ export function AlterAccountPanelMember(props) {
             </tr>
         </table>
         <div className="button-div">
-            <button className="WhiteButton" id="delete-button" onClick={() => setCaretakerId(null)}>Ouder/Voogd verwijderen</button>
+            <button className="WhiteButton" id="delete-button" onClick={() => del()}>Ouder/Voogd verwijderen</button>
         </div>
         </>
         ) :
         (
         <div className="button-div">
-            <button className="WhiteButton" onClick={() => setCaretakerId(props.data.panelMember.userId)}>Ouder/Voogd toevoegen</button>
+            <button className="WhiteButton" onClick={() => addCareTaker(true)}>Ouder/Voogd toevoegen</button>
         </div>
         )
         }

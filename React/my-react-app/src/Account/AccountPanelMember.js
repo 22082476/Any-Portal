@@ -50,7 +50,7 @@ export function AccountPanelMember(props) {
                 <p><b>Voornaam: </b> {userData.caretaker.firstName}</p>
                 <p><b>Achternaam: </b> {userData.caretaker.lastName}</p>
                 <p><b>Email: </b> {userData.caretaker.email}</p>
-                <p><b>Telefoonnummer: </b> {userData.caretaker.phoneNumber ? userData.phoneNumber : "geen telefoonnummer"}</p>
+                <p><b>Telefoonnummer: </b> {userData.caretaker.phoneNumber ? userData.caretaker.phoneNumber : "geen telefoonnummer"}</p>
               </div>
             ) : (
               <></>

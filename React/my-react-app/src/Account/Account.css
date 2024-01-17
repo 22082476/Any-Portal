@@ -23,6 +23,7 @@ h1, h2, .input-label, label, .inputfield, textarea, p
     padding: 3rem;
     border-radius: 25px;
     box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
+    width: 45vw;
 }
 
 .BackButton
@@ -85,6 +86,11 @@ h1, h2, .input-label, label, .inputfield, textarea, p
     box-shadow: 3px 3px 10px rgba(185, 185, 185, 0.2), -3px 3px 10px rgba(185, 185, 185, 0.2), 0 3px 10px rgba(185, 185, 185, 0.2);
     border-radius: 20px;
     margin: 1rem 1rem 0 0;
+    width: 60%;
+    display: inline-block;
+    width: 60%;
+    text-align: center;
+    color: #000;
 }
 
 .inputfield, textarea
@@ -94,33 +100,23 @@ h1, h2, .input-label, label, .inputfield, textarea, p
     box-shadow: 3px 3px 10px rgba(185, 185, 185, 0.2), -3px 3px 10px rgba(185, 185, 185, 0.2), 0 3px 10px rgba(185, 185, 185, 0.2);
     border-radius: 20px;
     margin: 1rem 1rem 0 0;
-    width: 60%;
+    width: 70%;
     color: #000;
 }
 
-label 
-{ 
-    display: inline-block;
-    width: 50%;
-    text-align: center;
-    color: #000;
-
-}
 
 textarea
 {
     resize: none;
 }
 
-table
+.alterCompany-table
 {
+    margin-left: 5rem;
     width: 50vw;
+    border-spacing: 0.5rem;
 }
 
-tr
-{
-    margin: auto;
-}
 
 .secondary-button
 {

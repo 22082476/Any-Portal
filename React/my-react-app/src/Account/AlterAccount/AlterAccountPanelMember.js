@@ -61,7 +61,7 @@ export function AlterAccountPanelMember(props) {
   return (
     <div>
       <form onSubmit={handleUpdate}>
-        <table>
+        <table className="AlterAccount-table">
           <tr>
             <td>
               <label className="input-label" htmlFor="fname"><b>Voornaam</b></label>

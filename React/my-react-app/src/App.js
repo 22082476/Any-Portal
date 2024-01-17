@@ -8,9 +8,8 @@ import { Footer } from './Footer';
 import { PrivacyPolicy } from './PrivacyPolicy';
 import { Logout } from './Login/LogoutPage';
 import {AllResearches} from './All_Researches_Administrator/All_Researches_Administrator';
+import {Companyresearches} from './All_Researches_Company/All_Researches_Company'
 
-
-// Hoofdcomponent met router
 export default
     function App() {
     return (<>
@@ -27,6 +26,4 @@ export default
       <Footer />
       </>
     );
-  }
-
-
+}

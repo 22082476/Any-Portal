@@ -1,6 +1,7 @@
 import '../Account.css';
 import { useState, useEffect } from 'react';
 import { AgeDropDown } from './AgeDropDown';
+import { AvailabilityDropDown } from './AvailabilityDropDown'
 
 export function AlterAccountPanelMember(props) {
   const [panelMember, setPanelMember] = useState(props.data.panelMember);
@@ -8,6 +9,7 @@ export function AlterAccountPanelMember(props) {
   const [deleteCare, setDeleteCare] = useState(false);
 
   const updateAge = (newAge) => setPanelMember({...panelMember, ageId: newAge});
+  const updateAvailability = (newAvailability) => setPanelMember({...panelMember, availability: newAvailability});
 
   useEffect(() => {
     if (panelMember.caretakerId !== null) {
@@ -41,6 +43,8 @@ export function AlterAccountPanelMember(props) {
       caretaker: deleteCare ? null : caretaker,
       panelMemberCurrent: props.data.panelMember,
     };
+
+    console.log(data);
 
     fetch('http://localhost:5177/PanelMember', {
       method: 'PUT',
@@ -125,7 +129,8 @@ export function AlterAccountPanelMember(props) {
                     <label className="input-label" htmlFor="availability"><b>Beschikbaarheid</b></label>
                 </td>
                 <td>
-                    <input className="inputfield" type="text" id="availability" value={panelMember.availability} onChange={(e) => setPanelMember({ ...panelMember, availability: e.target.value })}></input>
+                    <AvailabilityDropDown update={updateAvailability} availability={panelMember.availability}/>
+                    {/* <input className="inputfield" type="text" id="availability" value={panelMember.availability} onChange={(e) => setPanelMember({ ...panelMember, availability: e.target.value })}></input> */}
                     *
                 </td>
             </tr>

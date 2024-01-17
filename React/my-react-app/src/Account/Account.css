@@ -106,3 +106,14 @@ tr
 {
   color: #545454;
 }
+
+.dropdown-Availability
+{
+    width: 25%;
+    border: solid 0.1rem
+}
+
+#availability2
+{
+    margin-left: 1rem;
+}

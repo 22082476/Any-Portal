@@ -14,14 +14,14 @@ export function AccountPanelMember(props) {
         console.error("Error fetching data from userapi:", error);
       }
 
-      try {
-        const response2 = await fetch("http://localhost:5173/" + props.userId);
-        const responseData2 = await response2.json();
-        setMedicalData(responseData2);
+      // try {
+      //   const response2 = await fetch("http://localhost:5173/" + props.userId);
+      //   const responseData2 = await response2.json();
+      //   setMedicalData(responseData2);
 
-              } catch (error) {
-        console.error("Error fetching data from medicalapi:", error);
-      }
+      //         } catch (error) {
+      //   console.error("Error fetching data from medicalapi:", error);
+      // }
     };
 
     fetchData();

@@ -1,71 +1,149 @@
 .coloredCornerRight {
-    width: 0;
-    height: 0;
-    border-left: 35vw solid transparent;
-    border-top: 30vh solid #21ACA1; 
-    position: absolute;
-    top: 0;
-    right: 0;
-    
-  }
+  z-index: -9999999;
+  width: 0;
+  height: 0;
+  border-left: 35vw solid transparent;
+  border-top: 30vh solid #21ACA1; 
+  position: absolute;
+  top: 0;
+  right: 0;
+  
+}
 
-    .Login-div
-    {
+  .Container{
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    margin: 0 25vw;
-    padding: 3rem;
-    border-radius: 25px;
-    box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
-    }
-    .TitleLogout{
-      display: flex;
-      flex-direction: Row;
-      justify-content: space-evenly;
-      padding: 1em;
-    }
-
-    .ButtonContainer{
-      display: flex;
-      flex-direction: Row;
-      justify-content: space-evenly;
-      width: 100%;
-    }
-
-    .LogoutButton{
-        width: 40%;
-        border-radius: 20px;
-        padding: 1em;
-        border: none;
-        background-color: #57C0B8;
-    }
-
-    .LogoutButton:hover{
-      border: black solid 2px;
+    justify-content: space-around;
+    flex-direction: row;
+    margin: auto;
+    margin-top: 10vh;
   }
 
-    .CancelButton{
-        width: 40%;
-        border-radius: 20px;
-        padding: 1em;
-        border: none;
-    }
+  .LogoImg{
+    width: 20vw;
+  }
 
-    .CancelButton{
+  .input-label
+{
+    display: block;
+    width: 50%;
+    padding: 1rem 3rem 1rem 3rem;
+    background-color: #FFFF;
+    box-shadow: 3px 3px 10px rgba(185, 185, 185, 0.2), -3px 3px 10px rgba(185, 185, 185, 0.2), 0 3px 10px rgba(185, 185, 185, 0.2);
+    border-radius: 20px;
+    margin: 1rem 1rem 0 0;
+}
+
+.BlueButton, .WhiteButton
+{
+    align-self: center;
+    background-color: #57C0B8;
+    border-radius: 20px;
+    padding: 0.75rem 4rem 0.75rem 4rem;
+    border: solid transparent 0.2rem;
+    font-weight: bolder;
+    font-size: 1rem;
+}
+
+.WhiteButton
+{
+    background-color: #FFFF;
+    box-shadow: 3px 3px 10px rgba(185, 185, 185, 0.2), -3px 3px 10px rgba(185, 185, 185, 0.2), 0 3px 10px rgba(185, 185, 185, 0.2);
+}
+
+.inputfield
+{
+    padding: 1rem 0.5rem 1rem 0.5rem;
+    background-color: #FFFF;
+    box-shadow: 3px 3px 10px rgba(185, 185, 185, 0.2), -3px 3px 10px rgba(185, 185, 185, 0.2), 0 3px 10px rgba(185, 185, 185, 0.2);
+    border-radius: 20px;
+    margin: 1rem 1rem 0 0;
+}
+  .Logout-div
+  {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0 25vw;
+  padding: 3rem;
+  border-radius: 25px;
+  box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
+  }
+
+  .Login-div
+  {
+  background-color: white;
+  right: 10vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 40vw;
+  padding: 3rem;
+  border-radius: 25px;
+  box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
+  }
+
+  .Login-div table{
+    width: 100%;
+  }
+
+  .Login-div table td{
+    width: 50%;
+  }
+
+  .TitleLogout{
+    display: flex;
+    flex-direction: Row;
+    justify-content: space-evenly;
+    padding: 1em;
+  }
+
+  .ButtonContainer{
+    display: flex;
+    flex-direction: Row;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .LogoutButton{
+      width: 40%;
+      border-radius: 20px;
+      padding: 1em;
+      border: none;
+      background-color: #57C0B8;
+  }
+
+  .LogoutButton:hover, .CancelButton:hover{
+    border: black solid 2px;
+}
+
+  .CancelButton{
       width: 40%;
       border-radius: 20px;
       padding: 1em;
       border: none;
   }
 
-  .coloredCornerLeft {
-    width: 0;
-    height: 0;
-    border-right: 50vw solid transparent;
-    border-bottom: 30vh solid #131B56;
-    position: absolute;
-    left: 0;
-    bottom: -0.px;
+.coloredCornerLeft {
+  width: 0;
+  height: 0;
+  border-right: 50vw solid transparent;
+  border-bottom: 30vh solid #131B56;
+  position: absolute;
+  left: 0;
+  bottom: -0.px;
 
-  }
+}
+
+.BackButton:hover, .BlueButton:hover, .WhiteButton:hover
+{
+    cursor: pointer;
+    border: solid #000 0.2rem;
+}
+
+.TenPx-FontSize{
+  font-size: 10px;
+}
+
+.ThreeRem-FontSize{
+  font-size: 3rem;
+}

@@ -12,7 +12,7 @@ export function HeaderNav()
                 <a className="nav-link" href="#/">Thuispagina</a>
                 <a className="nav-link" href="#/Onderzoek">Onderzoek</a>
                 <a className="nav-link" href="#/Account">Account</a>
-                <a className="nav-link" href="#/Logout">Logout</a>
+                <a className="nav-link" href="#/Uitloggen">Logout</a>
             </div>
         </div>
     );

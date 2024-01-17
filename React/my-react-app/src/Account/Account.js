@@ -12,6 +12,7 @@ import { AlterAccountCompany } from './AlterAccount/AlterAccountCompany';
 export function Account (props)
 {
     const [ isEdit, setEdit ] = useState(false);
+    const [ isDelete, setDelete] = useState(false);
     const [ userData, setUserData] = useState(null);
     const [ exUserData, setExUserData] = useState(null);
     const navigate = useNavigate();
@@ -30,8 +31,10 @@ export function Account (props)
                     {props.Role === "Administrator" || props.Role === "Admin" ? <AccountAdmin data={dataUpdate} userId={props.userId}/> : null}
                 </div>
                 <div className="button-div">
-                {userData != null &&   !(props.Role === "Administrator" || props.Role === "Admin") ? (   
-                    <button className="BlueButton" aria-label="Account wijzigen" onClick={() =>  setEdit(true)}>Account wijzigen</button>        
+                {userData != null &&   !(props.Role === "Administrator" || props.Role === "Admin") ? (   <>
+                    <button className="WhiteButton secondary-button" style={{boxShadow: 'none'}} aria-label="Account verwijderen" onClick={() =>  setDelete(true)}>Account verwijderen</button>  
+                    <button className="BlueButton" aria-label="Account wijzigen" onClick={() =>  setEdit(true)}>Account wijzigen</button>  
+                    </>      
                 )
                 : (
                     <></>
@@ -44,7 +47,7 @@ export function Account (props)
                 <div>
                     <button className="BackButton" aria-label="Pagina sluiten" onClick={() =>  setEdit(false)}>X</button>
                     <h1>Accountgegevens wijzigen</h1>
-                    <p>De invoervelden met een * zijn verplicht</p>
+                    <p className="blue-title">De invoervelden met een * zijn verplicht</p>
                     {console.log(userData)}
                     {props.Role === "PanelMember" ? <AlterAccountPanelMember state={setEdit} data={userData} data2={exUserData}/> : null}
                     {props.Role === "Company" ? <AlterAccountCompany state={setEdit} data={userData}/> : null}

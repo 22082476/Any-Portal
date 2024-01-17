@@ -66,7 +66,7 @@ export function AlterAccountPanelMember(props) {
             <td>
               <label className="input-label" htmlFor="fname"><b>Voornaam</b></label>
             </td>
-            <td>
+            <td className="blue-text">
               <input className="inputfield" type="text" id="fname" value={panelMember.firstName} onChange={(e) => setPanelMember({ ...panelMember, firstName: e.target.value })}></input>
               *
             </td>
@@ -75,7 +75,7 @@ export function AlterAccountPanelMember(props) {
             <td>
               <label className="input-label" htmlFor="lname"><b>Achternaam</b></label>
             </td>
-            <td>
+            <td className="blue-text">
               <input className="inputfield" type="text" id="lname" value={panelMember.lastName} onChange={(e) => setPanelMember({ ...panelMember, lastName: e.target.value })}></input>
               *
             </td>
@@ -84,7 +84,7 @@ export function AlterAccountPanelMember(props) {
                 <td>
                     <label className="input-label" htmlFor="email"><b>Email</b></label>
                 </td>
-                <td>
+                <td className="blue-text">
                     <input className="inputfield" type="email" id='email' value={panelMember.email} onChange={(e) => setPanelMember({ ...panelMember, email: e.target.value })}></input>
                     *
                 </td>
@@ -101,7 +101,7 @@ export function AlterAccountPanelMember(props) {
                 <td>
                     <label className="input-label" htmlFor="postalcode"><b>Postcode</b></label>
                 </td>
-                <td>
+                <td className="blue-text">
                     <input className="inputfield" type="zip" id="postalcode" value={panelMember.postalCode} onChange={(e) => setPanelMember({ ...panelMember, postalCode: e.target.value })}></input>
                     *
                 </td>
@@ -119,7 +119,7 @@ export function AlterAccountPanelMember(props) {
                 <td>
                     <label className="input-label" htmlFor="preferred_contact"><b>Voorkeur benadering</b></label>
                 </td>
-                <td>
+                <td className="blue-text">
                     <input className="inputfield" type="text" id="preferred_contact" value={panelMember.preferred_contact} onChange={(e) => setPanelMember({ ...panelMember, preferred_contact: e.target.value })}></input>
                     *
                 </td>
@@ -128,9 +128,8 @@ export function AlterAccountPanelMember(props) {
                 <td>
                     <label className="input-label" htmlFor="availability"><b>Beschikbaarheid</b></label>
                 </td>
-                <td>
+                <td className="blue-text">
                     <AvailabilityDropDown update={updateAvailability} availability={panelMember.availability}/>
-                    {/* <input className="inputfield" type="text" id="availability" value={panelMember.availability} onChange={(e) => setPanelMember({ ...panelMember, availability: e.target.value })}></input> */}
                     *
                 </td>
             </tr>
@@ -139,13 +138,13 @@ export function AlterAccountPanelMember(props) {
         {panelMember.caretakerId !== null ? (
           <>
             <h2>Ouder/verzorger gegevens</h2>
-            <p>De invoervelden met een * zijn verplicht</p>
+            <p className="blue-title">De invoervelden met een * zijn verplicht</p>
             <table>
               <tr>
                 <td>
                   <label className="input-label" htmlFor="cfirstname"><b>Voornaam</b></label>
                 </td>
-                <td>
+                <td className="blue-text">
                   <input className="inputfield" type="text" id="cfirstname" value={caretaker.firstName} onChange={(e) => setCaretaker({ ...caretaker, firstName: e.target.value })}></input>
                   *
                 </td>
@@ -154,7 +153,7 @@ export function AlterAccountPanelMember(props) {
                 <td>
                     <label className="input-label" htmlFor="clastname"><b>Achternaam</b></label>
                 </td>
-                <td>
+                <td className="blue-text">
                     <input className="inputfield" type="text" id="clastname" value={caretaker.lastName} onChange={(e) => setCaretaker({ ...caretaker, lastName: e.target.value })}></input>
                     *
                 </td>
@@ -163,7 +162,7 @@ export function AlterAccountPanelMember(props) {
                 <td>
                     <label className="input-label" htmlFor="cemail"><b>Email</b></label>
                 </td>
-                <td>
+                <td className="blue-text">
                     <input className="inputfield" type="email" id="cemail" value={caretaker.email} onChange={(e) => setCaretaker({ ...caretaker, email: e.target.value })}></input>
                     *
                 </td>

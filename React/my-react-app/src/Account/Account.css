@@ -1,6 +1,18 @@
-p
+.blue-title
+{
+    font-size: 1.2rem;
+    color: #131B56;
+}
+
+.blue-text
 {
     color: #131B56;
+    font-size: 1.5rem;
+}
+
+h1, h2, .input-label, label, .inputfield, textarea, p
+{
+    color: #000;
 }
 
 .AccountInfo-div
@@ -78,6 +90,7 @@ p
     border-radius: 20px;
     margin: 1rem 1rem 0 0;
     width: 60%;
+    color: #000;
 }
 
 label 
@@ -85,6 +98,8 @@ label
     display: inline-block;
     width: 50%;
     text-align: center;
+    color: #000;
+
 }
 
 textarea

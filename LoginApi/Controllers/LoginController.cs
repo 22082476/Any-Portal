@@ -40,12 +40,14 @@ public class LoginController : ControllerBase
 
         if (result.Succeeded)
         {
-            // You can customize this response based on your requirements
-            return Ok(new { Message = "Login successful" });
-        }
+            var userId = _userManager.GetUserId(User);
 
-        // Login failed, return errors
-        return BadRequest("Invalid login attempt");
+            return Ok(new { UserId = userId });
+        }
+        else
+        {
+            return BadRequest("Invalid login attempt");
+        }
     }
 
     [HttpPost("logout")]

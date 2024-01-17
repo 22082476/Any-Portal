@@ -17,7 +17,7 @@ export function App() {
       <Routes>
           <Route path="/"element={<Home Name="Testnaam" Role="Admin"/>} />
           <Route path="/Onderzoek" element={<AllResearches />} />
-          <Route path="/Account" element={<Account userId="string" Role="PanelMember" />} />
+          <Route path="/Account" element={<Account userId="string" Role="Company" />} />
           <Route path="/Uitloggen"/> 
           <Route path='/PrivacyPolicy' element={<PrivacyPolicy />}/>   
       </Routes>

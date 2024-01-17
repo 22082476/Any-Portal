@@ -18,14 +18,14 @@ h1, h2, .input-label, label, .inputfield, textarea, p
 .AccountInfo-div
 {
     display: flex;
-    flex-direction: column;;
+    flex-direction: column;
     margin: 0 25vw;
     padding: 3rem;
     border-radius: 25px;
     box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
 }
 
-.AccountInfo-div .BackButton
+.BackButton
 {
     float: right;
     padding: 20px;
@@ -34,6 +34,11 @@ h1, h2, .input-label, label, .inputfield, textarea, p
     font-size: 2rem;
     border-radius: 20px;
     border: solid transparent 0.2rem;
+}
+
+#deleteButton
+{
+    float: right;
 }
 
 .BackButton:hover, .BlueButton:hover, .WhiteButton:hover

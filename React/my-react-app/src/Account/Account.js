@@ -20,9 +20,28 @@ export function Account (props)
     const dataUpdate = (newdata) => { setUserData(newdata);};
     const dataUpdate2 = (newdata) => { setExUserData(newdata);};
 
+    const deleteAccount = async () => 
+    { 
+        const response = await fetch("http://localhost:5177/" + props.Role + "/" + props.userId, 
+        {
+            method: "DELETE"
+        });
+        
+        //Add delete medical stuff
+
+        if(response.ok)
+        {
+            sessionStorage.removeItem("UserId");
+            navigate("/");
+        }
+    };
+
     return(<>
         {!isEdit && ( 
-            <div className="AccountInfo-div">
+            <>
+            {!isDelete && 
+            (
+                <div className="AccountInfo-div">
                 <div>
                     <button className="BackButton" aria-label="Pagina sluiten" onClick={() =>  navigate('/')}>X</button>
                     <h1>Accountgegevens</h1>
@@ -41,6 +60,8 @@ export function Account (props)
                 )}
                 </div>
             </div>
+            )}
+            </>
         )}
         {isEdit && (
             <div className="AccountInfo-div">
@@ -51,6 +72,18 @@ export function Account (props)
                     {console.log(userData)}
                     {props.Role === "PanelMember" ? <AlterAccountPanelMember state={setEdit} data={userData} data2={exUserData}/> : null}
                     {props.Role === "Company" ? <AlterAccountCompany state={setEdit} data={userData}/> : null}
+                </div>
+            </div>
+        )}
+        {isDelete && (
+            <div className="AccountInfo-div">
+                <div>
+                    <button className="BackButton" id="deleteButton" aria-label="Pagina sluiten" onClick={() =>  setDelete(false)}>X</button>
+                    <h1>Weet u zeker dat u uw account wilt verwijderen?</h1>
+                    <div className="button-div">
+                        <button className="WhiteButton secondary-button" style={{boxShadow: 'none'}} aria-label="Account verwijderen" onClick={() =>  deleteAccount()}>Account verwijderen</button>  
+                        <button className="BlueButton" aria-label="Annuleren" onClick={() =>  setDelete(false)}>Annuleren</button>  
+                    </div>
                 </div>
             </div>
         )}

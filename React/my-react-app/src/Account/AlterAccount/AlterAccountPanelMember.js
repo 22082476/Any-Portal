@@ -5,6 +5,7 @@ import { AvailabilityDropDown } from './AvailabilityDropDown'
 
 export function AlterAccountPanelMember(props) {
   const [panelMember, setPanelMember] = useState(props.data.panelMember);
+  console.log(panelMember);
   const [caretaker, setCaretaker] = useState(props.data.caretaker);
   const [deleteCare, setDeleteCare] = useState(false);
 
@@ -139,7 +140,7 @@ export function AlterAccountPanelMember(props) {
           <>
             <h2>Ouder/verzorger gegevens</h2>
             <p className="blue-title">De invoervelden met een * zijn verplicht</p>
-            <table>
+            <table className="AlterCare-table">
               <tr>
                 <td>
                   <label className="input-label" htmlFor="cfirstname"><b>Voornaam</b></label>

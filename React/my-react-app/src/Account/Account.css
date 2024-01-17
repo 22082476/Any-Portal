@@ -86,9 +86,8 @@ h1, h2, .input-label, label, .inputfield, textarea, p
     box-shadow: 3px 3px 10px rgba(185, 185, 185, 0.2), -3px 3px 10px rgba(185, 185, 185, 0.2), 0 3px 10px rgba(185, 185, 185, 0.2);
     border-radius: 20px;
     margin: 1rem 1rem 0 0;
-    width: 60%;
+    width: 50%;
     display: inline-block;
-    width: 60%;
     text-align: center;
     color: #000;
 }
@@ -100,7 +99,7 @@ h1, h2, .input-label, label, .inputfield, textarea, p
     box-shadow: 3px 3px 10px rgba(185, 185, 185, 0.2), -3px 3px 10px rgba(185, 185, 185, 0.2), 0 3px 10px rgba(185, 185, 185, 0.2);
     border-radius: 20px;
     margin: 1rem 1rem 0 0;
-    width: 70%;
+    width: 60%;
     color: #000;
 }
 
@@ -110,13 +109,17 @@ textarea
     resize: none;
 }
 
-.alterCompany-table
+.alterCompany-table, .AlterAccount-table, .AlterCare-table
 {
-    margin-left: 5rem;
-    width: 50vw;
+    margin-left: 3rem;
+    width: 45vw;
     border-spacing: 0.5rem;
 }
 
+.account-tr
+{
+    width: 100vw,
+}
 
 .secondary-button
 {

@@ -1,8 +1,8 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './MakeResearch.css';
 import React, { useState } from 'react';
 
-export function MakeResearch(props) {
+export function MakeResearch() {
 
     const navigate = useNavigate();
 
@@ -20,6 +20,10 @@ export function MakeResearch(props) {
 
     const handleSubmit = async () => {
         try {
+            if (formData.Disability_Type.length > 0) {
+                requestBody.Disability_Type = formData.Disability_Type;
+            }
+
             const response1 = await fetch('http://localhost:5064/Research/Research', {
                 method: 'POST',
                 headers: {
@@ -27,7 +31,7 @@ export function MakeResearch(props) {
                 },
                 body: JSON.stringify(formData),
                 ...formData,
-                rcode: formData.researchId, // Set rcode to researchId value
+                rcode: formData.researchId,
             });
 
             console.log('Request Payload:', JSON.stringify(formData));
@@ -42,11 +46,10 @@ export function MakeResearch(props) {
 
             console.log('Response Data 1:', data1);
 
-            // Pass researchId to the next component
             navigate('/MakeResearchFinalStep', {
                 state: {
                     researchId: data1.researchId,
-                    rcode: data1.researchId, // Pass rcode to the next component
+                    rcode: data1.researchId,
                 },
             });
                         
@@ -61,6 +64,11 @@ export function MakeResearch(props) {
             : [...formData.Disability_Type, type];
 
         setFormData({ ...formData, Disability_Type: updatedDisabilityTypes });
+    };
+
+    const [expanded, setExpanded] = useState(false);
+    const handleExpand = () => {
+        setExpanded(!expanded);
     };
 
     return (
@@ -98,6 +106,31 @@ export function MakeResearch(props) {
                     />
                 </div>
 
+                <div className="Type-D-div">
+                    <h3 className="TypeDisability">Type Beperking:</h3>
+                    {['Visueel', 'Fysiek'].map((type) => (
+                        <div key={type}>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    value={type}
+                                    checked={formData.Disability_Type.includes(type)}
+                                    onChange={() => handleCheckboxChange(type)}
+                                />
+                                {type}
+                            </label>
+                        </div>
+                    ))}
+                    <div>
+                        <h3 className="SelectedTypeDisabilities">Geselecteerde Beperkingen:</h3>
+                        <ul>
+                            {formData.Disability_Type.map((type, index) => (
+                                <li key={index}>{type}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+
                 <div className="Type-R-div">
                     <h3 className="TypeResearch">Type Onderzoek:*</h3>
                     <input
@@ -118,39 +151,17 @@ export function MakeResearch(props) {
                     />
                 </div>
 
-                <div className="Description-div">
+                <div className={`D-div ${expanded ? 'Expanded' : ''}`}>
                     <h3 className="Description">Beschrijving:</h3>
-                    <input
-                        type="text"
+                    <textarea
                         className="D-TextField"
                         value={formData.Description}
                         onChange={(e) => setFormData({ ...formData, Description: e.target.value })}
+                        style={{ maxWidth: '300px', }}
                     />
-                </div>
-
-                <div className="Type-D-div">
-                    <h3 className="TypeDisability">Type Beperking:</h3>
-                    {['Visueel', 'Fysiek'].map((type) => (
-                        <div key={type}>
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    value={type}
-                                    checked={formData.Disability_Type.includes(type)}
-                                    onChange={() => handleCheckboxChange(type)}
-                                />
-                                {type}
-                            </label>
-                        </div>
-                    ))}
-                    <div>
-                        <h3 className="TypeDisability">Geselecteerde Beperkingen:</h3>
-                        <ul>
-                            {formData.Disability_Type.map((type, index) => (
-                                <li key={index}>{type}</li>
-                            ))}
-                        </ul>
-                    </div>
+                    <button className="ExpandButton" onClick={handleExpand}>
+                        {expanded ? 'Read less' : 'Read more'}
+                    </button>
                 </div>
 
                 <div className="button-div">

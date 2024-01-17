@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import './MakeResearchFinalStep.css';
 import React, { useState } from 'react';
 
-export function MakeResearchFinalStep(props) {
+export function MakeResearchFinalStep() {
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -10,7 +10,7 @@ export function MakeResearchFinalStep(props) {
     const [formData, setFormData] = useState({
         From_Postalcode: '',
         Till_PostalCode: '',
-        Allowed_AgeRangeId: '',
+        Allowed_AgeRangeId: 0,
         postalCodeRange: 0,
         researchId: location.state ? location.state.researchId : 0,
     });
@@ -29,7 +29,7 @@ export function MakeResearchFinalStep(props) {
                 },
                 body: JSON.stringify(updatedFormData),
                 ...updatedFormData,
-                rcode: location.state?.rcode || 0, // Set rcode from the state
+                rcode: location.state?.rcode || 0,
             });
 
             console.log('Request Payload:', JSON.stringify(updatedFormData));
@@ -111,9 +111,12 @@ export function MakeResearchFinalStep(props) {
                         value={formData.Allowed_AgeRangeId}
                         onChange={(e) => setFormData({ ...formData, Allowed_AgeRangeId: parseInt(e.target.value) })}
                     >
-                        <option value={0}>Selecteer Leeftijdscategorie</option>
+                        <option value={0}>Selecteer Leeftijdscategorieën</option>
                         <option value={1}>4 t/m 17 jaar</option>
                         <option value={2}>18 t/m 30 jaar</option>
+                        <option value={3}>31 t/m 50 jaar</option>
+                        <option value={4}>50+ jaar</option>
+
                     </select>
                 </div>
 

@@ -28,7 +28,7 @@ export function AlterAccountPanelMember(props) {
       firstName: '',
       lastName: '',
       email: '',
-      phoneNumber: '',
+      phoneNumber: ' ',
     });
   };
 

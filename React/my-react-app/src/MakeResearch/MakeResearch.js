@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './MakeResearch.css';
 import React, { useState } from 'react';
 
@@ -13,13 +13,9 @@ export function MakeResearch(props) {
         Compensation: '0',
         Type_Research: '',
         Link_Research: '',
+        Description: '',
         Disability_Type: [],
         research: '',
-        From_Postalcode: '',
-        Till_PostlaCode: '',
-        Allowed_AgeRangeId: '',
-        description: '',
-
     });
 
     const handleSubmit = async () => {
@@ -30,61 +26,41 @@ export function MakeResearch(props) {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formData),
+                ...formData,
+                rcode: formData.researchId, // Set rcode to researchId value
             });
 
             console.log('Request Payload:', JSON.stringify(formData));
 
             if (!response1.ok) {
                 const errorMessage = await response1.text();
-                console.error('Error:', errorMessage);
-                throw new Error('Netwerkreactie was niet in orde');
-            }
-
-            const response2 = await fetch('http://localhost:5064/Research', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            console.log('Request Payload:', JSON.stringify(formData));
-
-            if (!response2.ok) {
-                const errorMessage = await response2.text();
-                console.error('Error:', errorMessage);
-                throw new Error('Netwerkreactie was niet in orde');
-            }
-
-            const response3 = await fetch('http://localhost:5064/Research/CreateAllowed_AgeRange', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            console.log('Request Payload:', JSON.stringify(formData));
-
-            if (!response3.ok) {
-                const errorMessage = await response3.text();
-                console.error('Error:', errorMessage);
-                throw new Error('Netwerkreactie was niet in orde');
+                console.error('Error in /Research/Research::', errorMessage);
+                throw new Error('Failed to create research.');
             }
 
             const data1 = await response1.json();
-            const data2 = await response2.json();
-            const data3 = await response3.json();
 
             console.log('Response Data 1:', data1);
-            console.log('Response Data 2:', data2);
-            console.log('Response Data 3:', data3);
 
-            //navigate('/');
-
+            // Pass researchId to the next component
+            navigate('/MakeResearchFinalStep', {
+                state: {
+                    researchId: data1.researchId,
+                    rcode: data1.researchId, // Pass rcode to the next component
+                },
+            });
+                        
         } catch (error) {
             console.error('Error:', error);
         }
+    };
+
+    const handleCheckboxChange = (type) => {
+        const updatedDisabilityTypes = formData.Disability_Type.includes(type)
+            ? formData.Disability_Type.filter((selectedType) => selectedType !== type)
+            : [...formData.Disability_Type, type];
+
+        setFormData({ ...formData, Disability_Type: updatedDisabilityTypes });
     };
 
     return (
@@ -142,76 +118,55 @@ export function MakeResearch(props) {
                     />
                 </div>
 
-                <div className="Type-D-div">
-                    <h3 className="TypeDisability">Type Beperking:</h3>
-                    <select
-                        className="Type-D-Select"
-                        value={formData.Disability_Type}
-                        onChange={(e) => setFormData({ ...formData, Disability_Type: Array.from(e.target.selectedOptions, option => option.value) })}
-                    >
-                        <option value="">Selecteer Type Beperking</option>
-                        <option value="Visueel">Visueel</option>
-                        <option value="Fysiek">Fysiek</option>
-                    </select>
-                </div>
-
-                <div className="FPC-div">
-                    <h3 className="FromPostalCode">Van Postcode:*</h3>
-                    <input
-                        type="text"
-                        className="FPC-TextField"
-                        value={formData.From_Postalcode}
-                        onChange={(e) => setFormData({ ...formData, From_Postalcode: e.target.value })}
-                    />
-                </div>
-
-                <div className="TPC-div">
-                    <h3 className="TillPostalCode">Tot Postcode:*</h3>
-                    <input
-                        type="text"
-                        className="TPC-TextField"
-                        value={formData.Till_PostalCode}
-                        onChange={(e) => setFormData({ ...formData, Till_PostalCode: e.target.value })}
-                    />
-                </div>
-
-                <div className="AC-div">
-                    <h3 className="AgeCategory">Leeftijdcategorieën:*</h3>
-                    <select
-                        className="AC-Select"
-                        value={formData.Allowed_AgeRangeId}
-                        onChange={(e) => setFormData({ ...formData, Allowed_AgeRangeId: parseInt(e.target.value) })}
-                    >
-                        <option value={0}>Selecteer Leeftijdscategorie</option>
-                        <option value={1}>4 t/m 17 jaar</option>
-                        <option value={2}>18 t/m 30 jaar</option>
-                    </select>
-                </div>
-
                 <div className="Description-div">
                     <h3 className="Description">Beschrijving:</h3>
                     <input
                         type="text"
                         className="D-TextField"
-                        value={formData.description}
-                        onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                        value={formData.Description}
+                        onChange={(e) => setFormData({ ...formData, Description: e.target.value })}
                     />
                 </div>
 
-            <div className="button-div">
-                <button
-                    className="BlueButton"
-                    aria-label="MakeResearch"
-                    onClick={handleSubmit}
-                >
-                    Maak Onderzoek
-                </button>
-                <button
-                    className="WhiteButton"
-                    aria-label="Cancel"
-                    onClick={() => navigate('/')}>Annuleren
-                </button>
-            </div>
+                <div className="Type-D-div">
+                    <h3 className="TypeDisability">Type Beperking:</h3>
+                    {['Visueel', 'Fysiek'].map((type) => (
+                        <div key={type}>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    value={type}
+                                    checked={formData.Disability_Type.includes(type)}
+                                    onChange={() => handleCheckboxChange(type)}
+                                />
+                                {type}
+                            </label>
+                        </div>
+                    ))}
+                    <div>
+                        <h3 className="TypeDisability">Geselecteerde Beperkingen:</h3>
+                        <ul>
+                            {formData.Disability_Type.map((type, index) => (
+                                <li key={index}>{type}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="button-div">
+                    <button
+                        className="BlueButton"
+                        aria-label="MakeResearch"
+                        onClick={handleSubmit}
+                    >
+                        Volgende stap
+                    </button>
+                    <button
+                        className="WhiteButton"
+                        aria-label="Cancel"
+                        onClick={() => navigate('/')}>Annuleren
+                    </button>
+                </div>
         </div>
     );
 }

@@ -9,6 +9,9 @@ import { PrivacyPolicy } from './PrivacyPolicy';
 import {AllResearches} from './All_Researches_Administrator/All_Researches_Administrator';
 import {Companyresearches} from './All_Researches_Company/All_Researches_Company'
 
+import { MakeResearch  } from './MakeResearch/MakeResearch';
+import { MakeResearchFinalStep } from './MakeResearch/MakeResearchFinalStep';
+
 
 // Hoofdcomponent met router
 function App() {
@@ -17,7 +20,11 @@ function App() {
     <HashRouter>
       <Routes>
           <Route path="/"element={<Home Name="Testnaam" Role="Admin"/>} />
-          <Route path="/Onderzoek" element={<AllResearches />} />
+
+          <Route path="/Onderzoek" element={<MakeResearch />} />
+          <Route path="/MakeResearch" element={<MakeResearch />} />
+          <Route path="/MakeResearchFinalStep" element={<MakeResearchFinalStep />} />
+
           <Route path="/Account" element={<Account userId="string192371237132" Role="Company" />} />
           <Route path="/Uitloggen"/> 
           <Route path='/PrivacyPolicy' element={<PrivacyPolicy />}/>

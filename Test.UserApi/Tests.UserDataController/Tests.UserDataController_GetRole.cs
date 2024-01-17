@@ -17,7 +17,7 @@ public class TestUserDataController_GetRole : IClassFixture<UserDataFixture>
     {
         //Arrange
         var controller = new UserDataController (_fixture.Context);
-        var dataObject = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not"};
+        var dataObject = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = "", Preferred_contact = "not"};
 ;
 
         

@@ -7,14 +7,17 @@ export function HomeInfo (props)
     const endPoint = (Role) => {
         switch (Role) {
             case "PanelMember":
-                return "https://315d6kkf-5177.euw.devtunnels.ms/PanelMember/";
+                // return "https://315d6kkf-5177.euw.devtunnels.ms/PanelMember/";
+                return "http://localhost:5177/PanelMember/";
             case "Company":
-                return "https://315d6kkf-5177.euw.devtunnels.ms/Research/";
+                // return "https://315d6kkf-5177.euw.devtunnels.ms/Research/";
+                return "http://localhost:5086/Research/";
             case "Admin":
             case "Administrator":
-                return "https://315d6kkf-5177.euw.devtunnels.ms/Company/";
-            default:
+                // return "https://315d6kkf-5177.euw.devtunnels.ms/Company/";
                 return "";
+            default:
+                return "http://localhost:5177/Company/";
         }
     }
     useEffect(() =>

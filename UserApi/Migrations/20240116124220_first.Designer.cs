@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace UserApi.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20240112131505_een")]
-    partial class een
+    [Migration("20240116124220_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,6 +67,31 @@ namespace UserApi.Migrations
                     b.ToTable("AgeRanges");
                 });
 
+            modelBuilder.Entity("Caretaker", b =>
+                {
+                    b.Property<string>("CaretakerId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("PhoneNumber")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("CaretakerId");
+
+                    b.ToTable("Caretakers");
+                });
+
             modelBuilder.Entity("Company", b =>
                 {
                     b.Property<string>("UserId")
@@ -108,6 +133,9 @@ namespace UserApi.Migrations
 
                     b.Property<string>("Availability")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CaretakerId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")

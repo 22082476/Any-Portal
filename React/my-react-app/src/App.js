@@ -8,7 +8,6 @@ import { Footer } from './Footer';
 import { PrivacyPolicy } from './PrivacyPolicy';
 import { Logout } from './Login/LogoutPage';
 import {AllResearches} from './All_Researches_Administrator/All_Researches_Administrator';
-import {Companyresearches} from './All_Researches_Company/All_Researches_Company'
 
 export default
     function App() {
@@ -21,6 +20,7 @@ export default
             <Route path="/Account" element={<Account userId="string192371237132" Role="Company" />} />
             <Route path="/Uitloggen" element={<Logout />}/>
             <Route path='/PrivacyPolicy' element={<PrivacyPolicy />}/>   
+
         </Routes>
       </HashRouter>
       <Footer />

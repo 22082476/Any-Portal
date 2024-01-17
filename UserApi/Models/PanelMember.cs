@@ -13,8 +13,8 @@ public class PanelMember
     [Required] public string PostalCode { get; set; }
 
     [Required] public string Preferred_contact { get; set; }  
-    [Required] public string [] Availability { get; set; }
-    public int? CaretakerId { get; set;}
+    [Required] public string Availability { get; set; }
+    public string? CaretakerId { get; set;}
 
     public void UpdateToNull()
     {
@@ -23,7 +23,7 @@ public class PanelMember
         Email = null;
         PhoneNumber = null;
         Preferred_contact = "";
-        Availability = new string [0];
+        Availability = "Niet";
         CaretakerId = null;
     }
 }

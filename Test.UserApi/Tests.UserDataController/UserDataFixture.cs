@@ -14,9 +14,9 @@ public class UserDataFixture : UserContextFixture
         );
 
         context.PanelMembers.AddRange(
-        new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not"},
-        new PanelMember { UserId = "userId2", Email = "test323@mail.nl", PhoneNumber = 0611, FirstName = "Firstname12", LastName = "Lastname12", AgeId = 2, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "phone"},
-        new PanelMember { UserId = "userId3", Email = "test322@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 3, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "mail"}
+        new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = "", Preferred_contact = "not"},
+        new PanelMember { UserId = "userId2", Email = "test323@mail.nl", PhoneNumber = 0611, FirstName = "Firstname12", LastName = "Lastname12", AgeId = 2, PostalCode = "2002 ET", Availability = "", Preferred_contact = "phone"},
+        new PanelMember { UserId = "userId3", Email = "test322@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 3, PostalCode = "2002 ET", Availability = "", Preferred_contact = "mail"}
         );
 
         context.Companies.AddRange(

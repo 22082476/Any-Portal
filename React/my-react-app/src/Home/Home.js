@@ -22,7 +22,7 @@ export function Home (props)
             };
         }
 
-       ResearchTitle(props.Role); 
+       ResearchTitle(sessionStorage.getItem("Role")); 
     }, []);
     
     

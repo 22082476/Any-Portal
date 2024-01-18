@@ -13,6 +13,7 @@ import { Admin } from './Admin/Admin';
 
 export function App() {
     sessionStorage.setItem("Role", "Admin");
+    sessionStorage.setItem("UserId", "string");
 
     return (
       <>

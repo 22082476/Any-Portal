@@ -103,6 +103,12 @@ h1, h2, .input-label, label, .inputfield, textarea, p
     color: #000;
 }
 
+.input-checkbox
+{
+    width: 4vw;
+    height: 4vh;
+}
+
 
 textarea
 {

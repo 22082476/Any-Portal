@@ -8,5 +8,5 @@ public class Administrator
     [Required] public string FirstName { get; set; }
     [Required] public string LastName { get; set; }
     [AllowNull] public string? PhoneNumber { get; set; }
-    [Required] public bool IsAdmin { get; set; } = false;
+    [Required] public Boolean IsAdmin { get; set; } = false;
 }

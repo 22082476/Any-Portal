@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Admin.css';
+import { Account } from '../Account/Account';
 
 export function Admin() {
     const navigate = useNavigate();
 
     const [ administrator, setAdministrators ] = useState(null);
+    const [ detail, setDetail ] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,10 +22,18 @@ export function Admin() {
         };
 
         fetchData();
-    }, []);
+    });
+
+    const isVisibile = (e) => setDetail(e);
 
     return (
         <>
+            {detail ? (<>
+                {<Account userId={detail.userId} Role={detail.role} visability={isVisibile} />}
+                </>
+            ) 
+            : 
+            (
             <div className="users-div">
                 <div>
                     <button className="BackButton" aria-label="Pagina sluiten" onClick={() => navigate('/')}>X</button>
@@ -31,10 +41,7 @@ export function Admin() {
                     <table className="Admin-table">
                         <tr>
                             <th>
-                                Voornaam
-                            </th>
-                            <th>
-                                Achternaam
+                                Naam
                             </th>
                             <th>
                                 Email
@@ -45,23 +52,30 @@ export function Admin() {
                             <th>
                                 Rol
                             </th>
+                            <th>
+                                Details
+                            </th>
                         </tr>
                         {administrator && (
                             <>
                                 {administrator.map((item, index) => (
                                     <tr  key={index}>
-                                        <td className="table-data"><b>{item.firstName}</b></td>
-                                        <td className="table-data"><b>{item.lastName}</b></td>
-                                        <td className="table-data"><b>{item.email}</b></td>
-                                        <td className="table-data"><b>{item.phoneNumber ? (item.phoneNumber) : ("Geen telefoonnummer")}</b></td>
+                                        <td className="table-data"><b>{item.firstName} {item.lastName}</b></td>
+                                        <td className="table-data"><b><a href={'mailto:' + item.email }>{item.email}</a></b></td>
+                                        <td className="table-data-phone"><b>{item.phoneNumber ? (<a href={'tel:' + item.phoneNumber}>{item.phoneNumber}</a>) : ("Geen telefoonnummer")}</b></td>
                                         <td className="table-data"><b>{item.isAdmin ? ("Admin") : ("Beheerder")}</b></td>
+                                        <td ><button className="detail-button"  onClick={() => setDetail({userId: item.userId, role: "Administrator"})}><b>Details</b></button></td>
                                     </tr>
                                 ))}
                             </>
                         )}
                     </table>
                 </div>
+                <div className='button-div'>
+                    <button className="BlueButton" aria-label="Account wijzigen" onClick={() =>  {""}}>Beheerder toevoegen</button>  
+                </div>
             </div>
+            )}
         </>
     );
 }

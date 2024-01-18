@@ -9,26 +9,35 @@
     width: 45vw;
 }
 
-.table-data
+.table-data, .table-data-phone
 {
     text-align: center;
     padding: 0.5rem 2.5rem 0.5rem 2.5rem;
     background-color: #FFFF;
     box-shadow: 3px 3px 10px rgba(185, 185, 185, 0.2), -3px 3px 10px rgba(185, 185, 185, 0.2), 0 3px 10px rgba(185, 185, 185, 0.2);
     border-radius: 20px;
-    width: 50%;
+    width: 60%;
 
+}
+
+.table-data-phone
+{
+    padding: 0 1.1rem 0 1.1rem;
 }
 
 .Admin-table
 {
-    width: 40vw;
+    width: 45vw;
     border-spacing: 1rem;
 }
 
-
-
-tr
+a
 {
-    margin: auto;
+    color: #000;            
+    text-decoration: none;
+}
+    
+a:hover, span a:hover
+{
+    text-decoration: underline #000;
 }

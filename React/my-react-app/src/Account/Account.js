@@ -8,6 +8,7 @@ import { AccountAdmin } from './AccountAdmin';
 
 import { AlterAccountPanelMember } from './AlterAccount/AlterAccountPanelMember';
 import { AlterAccountCompany } from './AlterAccount/AlterAccountCompany';
+import { AlterAccountAdmin } from './AlterAccount/AlterAccountAdmin';
 
 export function Account (props)
 {
@@ -59,17 +60,30 @@ export function Account (props)
                     <h1>Accountgegevens</h1>
                     {props.Role === "PanelMember" ? <AccountPanelMember data={dataUpdate} data2={dataUpdate2} userId={props.userId}/> : null}
                     {props.Role === "Company" ? <AccountCompany data={dataUpdate} userId={props.userId}/> : null}
-                    {props.Role === "Administrator" || props.Role === "Admin" ? <AccountAdmin data={dataUpdate} userId={props.userId}/> : null}
+                    {props.Role === "Administrator" || props.Role === "Admin" ? <AccountAdmin data={dataUpdate2} userId={props.userId}/> : null}
                 </div>
                 <div className="button-div">
-                {userData != null &&   !(props.Role === "Administrator" || props.Role === "Admin") ? (   <>
-                    <button className="WhiteButton secondary-button" style={{boxShadow: 'none'}} aria-label="Account verwijderen" onClick={() =>  setDelete(true)}>Account verwijderen</button>  
-                    <button className="BlueButton" aria-label="Account wijzigen" onClick={() =>  setEdit(true)}>Account wijzigen</button>  
-                    </>      
-                )
-                : (
-                    <></>
-                )}
+                {userData !== null ? 
+                    (<>
+                        {!(props.Role === "Administrator" || props.Role === "Admin") ? 
+                        (<>
+                            <button className="WhiteButton secondary-button" style={{boxShadow: 'none'}} aria-label="Account verwijderen" onClick={() =>  setDelete(true)}>Account verwijderen</button>  
+                            <button className="BlueButton" aria-label="Account wijzigen" onClick={() =>  setEdit(true)}>Account wijzigen</button>  
+                        </>
+                        ) : (
+                        <></>
+                        )}
+                        </>      
+                    )
+                    : (<>
+                        
+                        {sessionStorage.getItem("Role") === "Admin" && props.userId !== sessionStorage.getItem("UserId") ? (
+                            <>
+                            <button className="WhiteButton secondary-button" style={{boxShadow: 'none'}} aria-label="Account verwijderen" onClick={() =>  setDelete(true)}>Account verwijderen</button>  
+                            <button className="BlueButton" aria-label="Account wijzigen" onClick={() =>  setEdit(true)}>Account wijzigen</button>  
+                        </>
+                    ) : (<></>)}
+                    </>)}
                 </div>
             </div>
             )}
@@ -81,9 +95,9 @@ export function Account (props)
                     <button className="BackButton" aria-label="Pagina sluiten" onClick={() =>  setEdit(false)}>X</button>
                     <h1>Accountgegevens wijzigen</h1>
                     <p className="blue-title">De invoervelden met een * zijn verplicht</p>
-                    {console.log(userData)}
                     {props.Role === "PanelMember" ? <AlterAccountPanelMember state={setEdit} data={userData} data2={exUserData}/> : null}
                     {props.Role === "Company" ? <AlterAccountCompany state={setEdit} data={userData}/> : null}
+                    {props.Role === "Administrator" ? <AlterAccountAdmin state={setEdit} data={exUserData}/> : null}
                 </div>
             </div>
         )}

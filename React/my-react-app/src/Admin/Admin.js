@@ -72,7 +72,7 @@ export function Admin() {
                     </table>
                 </div>
                 <div className='button-div'>
-                    <button className="BlueButton" aria-label="Account wijzigen" onClick={() =>  {""}}>Beheerder toevoegen</button>  
+                    <button className="BlueButton" aria-label="Account wijzigen" onClick={() =>  navigate("/Admin/Toevoegen")}>Beheerder toevoegen</button>  
                 </div>
             </div>
             )}

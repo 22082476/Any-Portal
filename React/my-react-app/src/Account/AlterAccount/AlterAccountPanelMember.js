@@ -113,7 +113,7 @@ export function AlterAccountPanelMember(props) {
                 </td>
                 <td>
                     <AgeDropDown update={updateAge} ageId={panelMember.ageId}/>
-                    
+                    *
                 </td>
             </tr>
             <tr>

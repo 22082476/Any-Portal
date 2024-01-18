@@ -19,7 +19,7 @@ export function AlterAccountAdmin(props)
         headers: {
             'Content-type': 'application/json'
         },
-        body: JSON.stringify(data), isAdmin: administrator.isAdmin 
+        body: JSON.stringify(data)
       })
         .then(response => response.json())
         .then(result => console.log(result))
@@ -40,6 +40,7 @@ export function AlterAccountAdmin(props)
                 </td>
                 <td>
                     <input className="inputfield" type="text" id="fname" value={administrator.firstName} onChange={(e) => setAdministrator({...administrator, firstName: e.target.value})}></input>
+                    *
                 </td>
             </tr>
             <tr>
@@ -48,6 +49,7 @@ export function AlterAccountAdmin(props)
                 </td>
                 <td>
                     <input className="inputfield" type="text" id='lname' value={administrator.lastName} onChange={(e) => setAdministrator({...administrator, lastName: e.target.value})}></input>
+                    *
                 </td>
             </tr>
             <tr>
@@ -56,6 +58,7 @@ export function AlterAccountAdmin(props)
                 </td>
                 <td>
                     <input className="inputfield" type="text" id="email" value={administrator.email} onChange={(e) => setAdministrator({...administrator, email: e.target.value})}></input>
+                    *
                 </td>
             </tr>
             <tr>
@@ -75,6 +78,7 @@ export function AlterAccountAdmin(props)
                         <option value={true}>Admin</option>
                         <option value={false}>Beheerder</option>
                     </select>
+                    *
                 </td>
             </tr>
         </table>

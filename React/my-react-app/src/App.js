@@ -10,10 +10,9 @@ import { Logout } from './Login/LogoutPage';
 import {AllResearches} from './All_Researches_Administrator/All_Researches_Administrator';
 import { AdminRoute } from './Admin/AdminRoute';
 import { Admin } from './Admin/Admin';
+import { AddAdministrator } from './Admin/AddAdministrator'
 
 export function App() {
-    sessionStorage.setItem("Role", "Admin");
-    sessionStorage.setItem("UserId", "string");
 
     return (
       <>
@@ -26,7 +25,8 @@ export function App() {
             <Route path="/Uitloggen" element={<Logout />} />
             <Route path='/PrivacyPolicy' element={<PrivacyPolicy />} />
             <Route path='/Administrator' element={<AdminRoute />} />
-            <Route path='/Admin' element={<Admin />} />    
+            <Route path='/Admin' element={<Admin />} />  
+            <Route path='/Admin/Toevoegen' element={<AddAdministrator />} />
         </Routes>
       </HashRouter>
       <Footer />

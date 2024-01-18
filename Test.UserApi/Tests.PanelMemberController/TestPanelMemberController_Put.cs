@@ -16,9 +16,9 @@ public class TestPanelMember_Put : IClassFixture<PanelMemberFixture>
         //Arrange
         var mockService = new Mock<IResearchApiService>();
         var controller = new PanelMemberController (_fixture.Context, mockService.Object);
-        var panelMember =  new PanelMember { UserId = "userId", Email = "tessadt@mail.nl", PhoneNumber = "061111", FirstName = "Firstnaame", LastName = "Lastaname", AgeId = 1, PostalCode = "2002 ET", Availability = "", Preferred_contact = "yes", CaretakerId = "1"}; 
-        var panelMemberNew = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = "0611", FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = "", Preferred_contact = "not", CaretakerId = "1"}; 
-        var caretaker = new Caretaker {CaretakerId = "1", Email = "mail", FirstName = "name", LastName = "name", PhoneNumber = "0"};
+        var panelMember =  new PanelMember { UserId = "userId", Email = "tessadt@mail.nl", PhoneNumber = "061111", FirstName = "Firstnaame", LastName = "Lastaname", AgeId = 1, PostalCode = "2002 ET", Availability = "", Preferred_contact = "yes", CaretakerId = "3"}; 
+        var panelMemberNew = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = "0611", FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = "", Preferred_contact = "not", CaretakerId = "4"}; 
+        var caretaker = new Caretaker {CaretakerId = "4", Email = "mail", FirstName = "name", LastName = "name", PhoneNumber = "0"};
         var dataObject = new RequestModelPut {PanelMemberCurrent = panelMember, PanelMemberNew = panelMemberNew, Caretaker = caretaker};
         
         //Act

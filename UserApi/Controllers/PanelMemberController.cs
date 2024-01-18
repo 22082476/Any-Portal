@@ -76,13 +76,18 @@ public class PanelMemberController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post ([FromBody] RequestModel request)
     {
-        if(!_context.PanelMembers.Any((p) => p.UserId.Equals(request.PanelMemberNew.UserId))){
+        if(!_context.PanelMembers.Any((p) => p.UserId.Equals(request.PanelMemberNew.UserId)) 
+
+        || !_context.Caretakers.Any((p) => p.CaretakerId.Equals(request.Caretaker.CaretakerId))){
 
         if(!await _context.AgeRanges.AnyAsync((a) => a.AgeId == request.PanelMemberNew.AgeId))
             return BadRequest("AgeRange niet gevonden");
 
         var add = _context.PanelMembers.AddAsync(request.PanelMemberNew);
 
+        if(request.Caretaker != null){
+            var add2 =  await _context.Caretakers.AddAsync(request.Caretaker);
+        }
 
         try
         {

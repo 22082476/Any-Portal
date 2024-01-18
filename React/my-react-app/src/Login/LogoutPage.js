@@ -25,8 +25,9 @@ export function Logout ()
                 console.error('Success:', response.statusText);
             }
 
-            const data = await response.json();
             sessionStorage.removeItem("UserId");
+            sessionStorage.removeItem("Role");
+            sessionStorage.clear();
         } catch (error) {
             console.error('Error:', error);
         }
@@ -38,7 +39,7 @@ export function Logout ()
             <h2 className='TitleLogout'>Weet u zeker dat u wilt uitloggen?</h2>
             <div className='ButtonContainer'>
             <button className='LogoutButton' onClick={() =>  navigate('/')}>Annuleren</button>
-            <button className='CancelButton'onClick={() =>  {Logout();  navigate('/'); location.reload()}}>Uitloggen</button>
+            <button className='CancelButton'onClick={async () =>  { await Logout();  navigate('/'); location.reload()}}>Uitloggen</button>
             </div>
         </div>
     </div>

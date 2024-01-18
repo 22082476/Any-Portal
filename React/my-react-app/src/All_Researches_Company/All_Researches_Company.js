@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Kruisje from './Kruisje.png';
 import Vinkje from './Vinkje.png';
 import './All_Researches_Company.css';
@@ -40,7 +41,12 @@ export function Companyresearches() {
           <tbody>
             {researchList.map(research => (
               <tr key={research.id} className='Researchlist'>
-                <td className='Researchlist'>{research.title}</td>
+
+                <td className='Researchlist'>
+                  <button className="Buttongrey" onClick={() => handleResearchClick(research.id)}>
+                    {research.title}
+                  </button>
+                </td>
                 <td className='Researchlist'>
                   {research.active ? (
                     <img className="ResearchPicture" src={Vinkje} alt="Onderzoek is actief" />
@@ -58,7 +64,8 @@ export function Companyresearches() {
     </div>
   );
 
-  function handleCreateResearch() {
-    console.log("knop gedrukt");
+
+  function handleCreateResearch(id) {
+    <a className="nav-link" href="#/All_Researches_Updatescherm/"></a>
   }
 }

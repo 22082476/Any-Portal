@@ -1,30 +1,33 @@
 import { useEffect, useState } from 'react';
 
-export function AccountAdmin(props) {
-  const [userData, setUserData] = useState(null);
-
+export function AccountAdmin(props) 
+{
+  const [data, setData] = useState(null);
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch("http://localhost:5177/Administrator/" + props.userId);
         const responseData = await response.json();
-        setUserData(responseData);
+        setData(responseData);
               } catch (error) {
         console.error("Error fetching data from userapi:", error);
         }
     };
 
     fetchData();
-    props.data(userData);
-  }, []);
+    props.data(data);
+  });
  
   return (
-    <>
-        {userData ? (
+    <>  {data ? (
           <div>
-            <p><b>Voornaam:</b> {userData.firstName}</p>
-            <p><b>Achternaam:</b> {userData.lastName}</p>
-            <p><b>Email:</b> {userData.email}</p>
+            <p><b>Voornaam:</b> {data.firstName}</p>
+            <p><b>Achternaam:</b> {data.lastName}</p>
+            <p><b>Email:</b> {data.email}</p>
+            <p><b>Telefoonnummer:</b> {data.phoneNumber ? (data.phoneNumber) : "Geen telefoonnummer"}</p>
+            <p><b>Rol:</b> {data.isAdmin ? ("Admin") : ("Beheerder")}</p>
+
         </div>
         ) : (
         <p>Loading...</p>

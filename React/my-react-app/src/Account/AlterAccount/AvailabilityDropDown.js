@@ -29,7 +29,7 @@ export function AvailabilityDropDown(props) {
   };
 
   return (
-    <div style={{ display: "inline" }}>
+    <div style={{ display: "inline", color: "#000", fontSize: "1rem" }}>
       <select
         id="availability1"
         aria-label="Beschikbaarheid vanaf"

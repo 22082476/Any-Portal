@@ -36,9 +36,9 @@ export function AlterAccountCompany(props) {
   };
 
   return (
-    <div>
+    <div style={{display: "flex", justifyContent: "center"}}>
       <form onSubmit={() => handleUpdate()}>
-        <table>
+        <table className="alterCompany-table">
             <tr>
                 <td>
                     <label className="input-label" htmlFor="name"><b>Bedrijfsnaam</b></label>

@@ -3,7 +3,7 @@ import './LoginStyle.css';
 import Logo from './icon_accessibility.png';
 
 import {ChatBubble} from '../Chat/ChatBubble';
-import App from '../App';
+import { App } from '../App';
 import { useState, useEffect } from "react";
     
 

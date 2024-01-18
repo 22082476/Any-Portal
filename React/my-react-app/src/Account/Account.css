@@ -23,6 +23,7 @@ h1, h2, .input-label, label, .inputfield, textarea, p
     padding: 3rem;
     border-radius: 25px;
     box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
+    width: 45vw;
 }
 
 .BackButton
@@ -85,6 +86,10 @@ h1, h2, .input-label, label, .inputfield, textarea, p
     box-shadow: 3px 3px 10px rgba(185, 185, 185, 0.2), -3px 3px 10px rgba(185, 185, 185, 0.2), 0 3px 10px rgba(185, 185, 185, 0.2);
     border-radius: 20px;
     margin: 1rem 1rem 0 0;
+    width: 50%;
+    display: inline-block;
+    text-align: center;
+    color: #000;
 }
 
 .inputfield, textarea
@@ -98,28 +103,28 @@ h1, h2, .input-label, label, .inputfield, textarea, p
     color: #000;
 }
 
-label 
-{ 
-    display: inline-block;
-    width: 50%;
-    text-align: center;
-    color: #000;
-
+.input-checkbox
+{
+    width: 4vw;
+    height: 4vh;
 }
+
 
 textarea
 {
     resize: none;
 }
 
-table
+.alterCompany-table, .AlterAccount-table, .AlterCare-table
 {
-    width: 50vw;
+    margin-left: 3rem;
+    width: 45vw;
+    border-spacing: 0.5rem;
 }
 
-tr
+.account-tr
 {
-    margin: auto;
+    width: 100vw,
 }
 
 .secondary-button

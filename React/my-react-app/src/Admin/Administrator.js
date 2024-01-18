@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Administrator.css';
+import { Account } from '../Account/Account';
 
 export function Administrator () {
     const navigate = useNavigate();
 
     const [companies, setCompanies] = useState(null);
     const [panelMembers, setPanelMembers] = useState(null);
+    const [detail, setDetail] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,9 +32,17 @@ export function Administrator () {
         fetchData();
     }, []);
 
+    const isVisibile = (e) => setDetail(e);
+
     return (
         <>
-            <div className="users-div">
+            {detail ? (<>
+                {<Account userId={detail.userId} Role={detail.role} visability={isVisibile} />}
+                </>
+            ) 
+            : 
+            (
+                <div className="users-div">
                 <div>
                     <button className="BackButton" aria-label="Pagina sluiten" onClick={() => navigate('/')}>X</button>
                     <h1>Gebruikers</h1>
@@ -41,8 +51,9 @@ export function Administrator () {
                             <>
                                 {companies.map((item, index) => (
                                     <tr  key={index}>
-                                        <td className="table-data-Adminstrators"><b>{item.companyName}</b></td>
-                                        <td className="table-data-Adminstrators"><b>Bedrijf</b></td>
+                                        <td className="table-data-Administrators" ><b>{item.companyName}</b></td>
+                                        <td className="table-data-Administrators"><b>Bedrijf</b></td>
+                                        <td ><button className="detail-button"  onClick={() => setDetail({userId: item.userId, role:  "Company"})}><b>Details</b></button></td>
                                     </tr>
                                 ))}
                             </>
@@ -51,8 +62,9 @@ export function Administrator () {
                             <>
                                 {panelMembers.map((item, index) => (
                                     <tr key={index}>
-                                        <td className="table-data-Adminstrators"><b>{item.firstName} {item.lastName}</b> </td>
-                                        <td className="table-data-Adminstrators"><b>PanelLid</b></td>
+                                        <td className="table-data-Administrators"><b>{item.firstName} {item.lastName}</b></td>
+                                        <td className="table-data-Administrators"><b>PanelLid</b></td>
+                                        <td><button className="detail-button" onClick={() => setDetail({userId: item.userId, role:  "PanelMember"}) }><b>Details</b></button></td>
                                     </tr>
                                 ))}
                             </>
@@ -60,6 +72,7 @@ export function Administrator () {
                     </table>
                 </div>
             </div>
-        </>
+            )}
+        </>    
     );
 }

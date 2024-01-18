@@ -15,6 +15,7 @@ export function Account (props)
     const [ isDelete, setDelete] = useState(false);
     const [ userData, setUserData] = useState(null);
     const [ exUserData, setExUserData] = useState(null);
+
     const navigate = useNavigate();
 
     const dataUpdate = (newdata) => { setUserData(newdata);};
@@ -32,9 +33,20 @@ export function Account (props)
         if(response.ok)
         {
             sessionStorage.removeItem("UserId");
-            navigate("/");
+            handleReturn();
         }
     };
+
+    const handleReturn = () => 
+    {
+        if(props.visability !== undefined)
+        {
+            props.visability(false);
+        }else
+        {
+            navigate("/");
+        }
+    }
 
     return(<>
         {!isEdit && ( 
@@ -43,7 +55,7 @@ export function Account (props)
             (
                 <div className="AccountInfo-div">
                 <div>
-                    <button className="BackButton" aria-label="Pagina sluiten" onClick={() =>  navigate('/')}>X</button>
+                    <button className="BackButton" aria-label="Pagina sluiten" onClick={() =>  handleReturn()}>X</button>
                     <h1>Accountgegevens</h1>
                     {props.Role === "PanelMember" ? <AccountPanelMember data={dataUpdate} data2={dataUpdate2} userId={props.userId}/> : null}
                     {props.Role === "Company" ? <AccountCompany data={dataUpdate} userId={props.userId}/> : null}

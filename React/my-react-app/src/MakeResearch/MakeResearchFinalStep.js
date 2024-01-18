@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import './MakeResearchFinalStep.css';
 import React, { useState } from 'react';
 
-export function MakeResearchFinalStep() {
+export function MakeResearchFinalStep(props) {
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -11,24 +11,51 @@ export function MakeResearchFinalStep() {
         From_Postalcode: '',
         Till_PostalCode: '',
         Allowed_AgeRangeId: 0,
+        postalCodeRangeList: [],
         postalCodeRange: 0,
         researchId: location.state ? location.state.researchId : 0,
     });
 
-    const handleSubmit = async () => {
+    const handleAddPostalCodeRange = async () => {
+        const { From_Postalcode, Till_PostalCode } = formData;
+
+        if (From_Postalcode && Till_PostalCode) {
+            const newRange = `${From_Postalcode} - ${Till_PostalCode}`;
+            setFormData({
+                ...formData,
+                postalCodeRangeList: [...formData.postalCodeRangeList, newRange],
+                From_Postalcode: '',
+                Till_PostalCode: '',
+            });
+
+            // Call the method for adding postal code range
+            addPostalCodeRange(newRange);
+
+            // Call the method for making fetch request on /research
+            await makeResearchRequest();
+        }
+    };
+
+    // Method to add postal code range
+    const addPostalCodeRange = (newRange) => {
+        // Add your logic here for adding postal code range
+        console.log('Postal Code Range Added:', newRange);
+    };
+
+    // Method to make fetch request on /research
+    const makeResearchRequest = async () => {
         try {
             const updatedFormData = {
                 ...formData,
                 researchId: location.state?.researchId || 0,
             };
-            
+
             const response2 = await fetch('http://localhost:5064/Research', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(updatedFormData),
-                ...updatedFormData,
                 rcode: location.state?.rcode || 0,
             });
 
@@ -37,8 +64,29 @@ export function MakeResearchFinalStep() {
             if (!response2.ok) {
                 const errorMessage = await response2.text();
                 console.error('Error in /Research:', errorMessage);
-                throw new Error('Failed to create postalcode');
+                throw new Error('Failed to create postal code');
             }
+
+            const data = await response2.json();
+            console.log('Response Data:', data);
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    const handleSubmit = async () => {
+        try {
+            if (formData.postalCodeRangeList.length === 0) {
+                console.error('Postal Code Range List is empty. Cannot submit the form.');
+                return;
+            }
+            
+            const updatedFormData = {
+                ...formData,
+                researchId: location.state?.researchId || 0,
+                postalCodeRange: formData.postalCodeRangeList.join(','),
+            };
 
             const response3 = await fetch('http://localhost:5064/Research/CreateAllowed_AgeRange', {
                 method: 'POST',
@@ -56,10 +104,8 @@ export function MakeResearchFinalStep() {
                 throw new Error('Failed to create age range');
             }
 
-            const data2 = await response2.json();
             const data3 = await response3.json();
 
-            console.log('Response Data 2:', data2);
             console.log('Response Data 3:', data3);
 
             navigate('/');
@@ -71,14 +117,7 @@ export function MakeResearchFinalStep() {
 
     return (
         <div className="MakeResearchFinalStep-div">
-                <button className="BackButton"
-                    aria-label="Pagina sluiten"
-                    onClick={() => navigate('/')}>X
-                </button>
-
-                <div className="PageTitle-div">
-                    <h2>Titel Onderzoek</h2>
-                </div>
+                <h2>Onderzoek Maken</h2>
 
                 <div className="Text1-div">
                     <h4>Invoervelden met een * moeten verplicht ingevuld worden</h4>
@@ -90,6 +129,7 @@ export function MakeResearchFinalStep() {
                         type="text"
                         className="FPC-TextField"
                         value={formData.From_Postalcode}
+                        placeholder="Voer hier de 'van' postcode in."
                         onChange={(e) => setFormData({ ...formData, From_Postalcode: e.target.value })}
                     />
                 </div>
@@ -100,8 +140,29 @@ export function MakeResearchFinalStep() {
                         type="text"
                         className="TPC-TextField"
                         value={formData.Till_PostalCode}
+                        placeholder="Voer hier de 'tot' postcode in."
                         onChange={(e) => setFormData({ ...formData, Till_PostalCode: e.target.value })}
                     />
+                    <button 
+                        className="AddPostalCodeButton"
+                        onClick={handleAddPostalCodeRange}>Voeg toe
+                    </button>
+                </div>
+
+                <div className="AddedPostcodeRange-div">
+                    <h3 className="APCRange">Toegevoegde Postcode Ranges 'Van - Tot':</h3>
+                    <select
+                        className="PostalCodeDropdown"
+                        value={formData.selectedPostalCodeRange || ''}
+                        onChange={(e) => setFormData({ ...formData, selectedPostalCodeRange: e.target.value })}
+                    >
+                        <option value="">Toon gemaakte Postcode Ranges</option>
+                        {formData.postalCodeRangeList.map((range, index) => (
+                            <option key={index} value={range}>
+                                {range}
+                            </option>
+                        ))}
+                    </select>
                 </div>
 
                 <div className="AC-div">
@@ -127,11 +188,6 @@ export function MakeResearchFinalStep() {
                         onClick={handleSubmit}
                     >
                         Maak Onderzoek
-                    </button>
-                    <button
-                        className="WhiteButton"
-                        aria-label="Cancel"
-                        onClick={() => navigate('/MakeResearch')}>Terug
                     </button>
                 </div>
         </div>

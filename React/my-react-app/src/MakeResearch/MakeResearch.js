@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import './MakeResearch.css';
 import React, { useState } from 'react';
 
-export function MakeResearch() {
+export function MakeResearch(props) {
 
     const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ export function MakeResearch() {
     const handleSubmit = async () => {
         try {
             if (formData.Disability_Type.length > 0) {
-                requestBody.Disability_Type = formData.Disability_Type;
+                formData.Disability_Type = formData.Disability_Type;
             }
 
             const response1 = await fetch('http://localhost:5064/Research/Research', {
@@ -78,26 +78,25 @@ export function MakeResearch() {
                     onClick={() => navigate('/')}>X
                 </button>
 
-                <div className="PageTitle-div">
-                    <h2>Titel Onderzoek</h2>
-                </div>
+                <h2>Onderzoek Maken</h2>
 
                 <div className="Text1-div">
                     <h4>Invoervelden met een * moeten verplicht ingevuld worden</h4>
                 </div>
 
                 <div className="Title-R-div">
-                    <h3 className="TitleResearch">Titel Onderzoek:*</h3>
+                    <h3 className="TitleResearch">Titel:*</h3>
                     <input
                         type="text"
                         className="Title-R-TextField"
                         value={formData.Title}
+                        placeholder="Voer hier de titel in."
                         onChange={(e) => setFormData({ ...formData, Title: e.target.value })}
                     />
                 </div>
 
                 <div className="C-div">
-                    <h3 className="Compensation">Compensatie:*</h3>
+                    <h3 className="Compensation">Compensatie €:*</h3>
                     <input
                         type="number"
                         className="C-TextField"
@@ -108,7 +107,7 @@ export function MakeResearch() {
 
                 <div className="Type-D-div">
                     <h3 className="TypeDisability">Type Beperking:</h3>
-                    {['Visueel', 'Fysiek'].map((type) => (
+                    {['Visueel', 'Fysiek', 'Cognitief', 'Auditief', 'Spraak', 'Ouderen'].map((type) => (
                         <div key={type}>
                             <label>
                                 <input
@@ -121,32 +120,26 @@ export function MakeResearch() {
                             </label>
                         </div>
                     ))}
-                    <div>
-                        <h3 className="SelectedTypeDisabilities">Geselecteerde Beperkingen:</h3>
-                        <ul>
-                            {formData.Disability_Type.map((type, index) => (
-                                <li key={index}>{type}</li>
-                            ))}
-                        </ul>
-                    </div>
                 </div>
 
                 <div className="Type-R-div">
-                    <h3 className="TypeResearch">Type Onderzoek:*</h3>
+                    <h3 className="TypeResearch">Type:*</h3>
                     <input
                         type="text"
                         className="Type-R-TextField"
                         value={formData.Type_Research}
+                        placeholder="Voer hier de type in."
                         onChange={(e) => setFormData({ ...formData, Type_Research: e.target.value })}
                     />
                 </div>
 
                 <div className="Link-R-div">
-                    <h3 className="LinkResearch">Link Onderzoek:*</h3>
+                    <h3 className="LinkResearch">Link:*</h3>
                     <input
                         type="text"
                         className="Link-R-TextField"
                         value={formData.Link_Research}
+                        placeholder="Voer hier de link in."
                         onChange={(e) => setFormData({ ...formData, Link_Research: e.target.value })}
                     />
                 </div>
@@ -156,6 +149,7 @@ export function MakeResearch() {
                     <textarea
                         className="D-TextField"
                         value={formData.Description}
+                        placeholder="Voer hier een beschrijving in."
                         onChange={(e) => setFormData({ ...formData, Description: e.target.value })}
                         style={{ maxWidth: '300px', }}
                     />

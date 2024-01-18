@@ -65,7 +65,7 @@ h1, h2, .input-label, label, .inputfield, textarea, p
 }
 
         
-.button-div
+.ButtonContainer
 {
     display: flex;
     justify-content: space-evenly;

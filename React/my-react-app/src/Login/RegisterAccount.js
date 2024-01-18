@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export function Register(props) {
 
-  const [panelMember, setPanelMember] = useState({userId:uuidv4(), email:"", phoneNumber:"", firstName:"", lastName:"", ageId:1, postalCode:"", preferred_contact:"", Availability:"", CaretakerId:""});
+  const [panelMember, setPanelMember] = useState({userId:uuidv4(), email:"", phoneNumber:"", firstName:"", lastName:"", ageId:1, postalCode:"", preferred_contact:"", availability:"", caretakerId: null});
   const [account, setAccount] = useState({userId:panelMember.userId, email:"", password:""});
   const [caretaker, setCaretaker] = useState(null);
   const [deleteCare, setDeleteCare] = useState(false);
@@ -14,11 +14,12 @@ export function Register(props) {
   const updateAge = (newAge) => setPanelMember({...panelMember, ageId: newAge});
   const updateAvailability = (newAvailability) => setPanelMember({...panelMember, availability: newAvailability});
 
-  useEffect(() => {
-    if (panelMember.caretakerId !== null) {
-        addCareTaker(false);
-      }
-    }, []);
+  // useEffect(() => {
+  //   if (panelMember.caretakerId !== null) {
+  //       addCareTaker(false);
+  //     }
+  //   }, []);
+
   const addCareTaker = (e) => {
     if (e) setPanelMember({ ...panelMember, caretakerId:  panelMember.userId});
     setCaretaker({
@@ -69,7 +70,7 @@ export function Register(props) {
   return (
     <div className="AccountInfo-div">
       <div>
-        <button className="BackButton" aria-label="Pagina sluiten" onClick={props.onClick}>X</button>
+        <button className="BackButton" aria-label="Pagina sluiten" onClick={() => props.state(false)}>X</button>
         <h1>Register</h1>
         <div>
           <form onSubmit={handleUpdate}>
@@ -103,7 +104,7 @@ export function Register(props) {
                 </tr>
                 <tr>
                     <td>
-                        <label className="input-label" htmlFor="Password"><b>Password</b></label>
+                        <label className="input-label" htmlFor="Password"><b>Wachtwoord</b></label>
                     </td>
                     <td className="blue-text">
                         <input className="inputfield" type="password" id='Password' onChange={(e) => setAccount({...account, password: e.target.value})}></input>
@@ -212,7 +213,7 @@ export function Register(props) {
             )}
 
             <div className="button-div">
-              <button className="WhiteButton secondary-button" aria-label="Annuleren" onClick={() =>props.state(false)}>
+              <button className="WhiteButton" aria-label="Annuleren" onClick={() =>props.state(false)}>
                 Annuleren
               </button>
               <input className="BlueButton" value="Registreren" type="submit" />

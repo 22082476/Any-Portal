@@ -70,29 +70,29 @@ export function LoginForm(props) {
         </div>
         <div className="Login-div">
             <form onSubmit={ handleLoginSubmit}>
-                <h2>Login</h2>
+                <h2>Inloggen</h2>
                 <table>
                 <tbody>
                     <tr>
                     <td>
-                        <label className='input-label'>Username:</label>
+                        <label className='input-label' htmlFor='email'>Email</label>
                     </td>
                     <td>
-                        <input className='inputfield' type='text' onChange={(e) => setLoginData({...loginData, userName: e.target.value})} />
+                        <input className='inputfield' id='email' type='text' onChange={(e) => setLoginData({...loginData, userName: e.target.value})} />
                     </td>
                     </tr>
                     <tr>
                     <td>
-                        <label className='input-label'>Password:</label>
+                        <label className='input-label' htmlFor='password'>Wachtwoord</label>
                     </td>
                     <td>
-                        <input className='inputfield' type='password' onChange={(e) => setLoginData({...loginData, password: e.target.value})} />
+                        <input className='inputfield' type='password' id='password' onChange={(e) => setLoginData({...loginData, password: e.target.value})} />
                     </td>
                     </tr>
                 </tbody>
                 </table>
                 <div className='ButtonContainer'>
-                <button className='WhiteButton' aria-label="Go to register" onClick={() => props.state(true)}>Register</button>
+                <button className='WhiteButton' aria-label="Registeren" onClick={() => props.state(true)}>Registeren</button>
                 <input type='submit' className='BlueButton' value={"Inloggen"} />
                 </div>
             </form>

@@ -20,7 +20,7 @@ export function LoginForm(props) {
     };
         
         async function Login(){
-            
+            sessionStorage.clear();
             try {
                 const response = await fetch("http://localhost:5097/api/Login/Login", {
                     method: "post",
@@ -35,7 +35,7 @@ export function LoginForm(props) {
                     return;
                 }
                 const data = await response.json();
-                sessionStorage.setItem("UserId", data.userId)
+                sessionStorage.setItem("UserId", data.userId);
             } catch (error) {
                 console.error('Error:', error);
             }

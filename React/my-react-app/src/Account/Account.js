@@ -76,7 +76,7 @@ export function Account (props)
                         </>      
                     )
                     : (<>
-                        
+                        {console.log(sessionStorage.getItem("Role"), props.userId, sessionStorage.getItem("UserId"))}
                         {sessionStorage.getItem("Role") === "Admin" && props.userId !== sessionStorage.getItem("UserId") ? (
                             <>
                             <button className="WhiteButton secondary-button" style={{boxShadow: 'none'}} aria-label="Account verwijderen" onClick={() =>  setDelete(true)}>Account verwijderen</button>  

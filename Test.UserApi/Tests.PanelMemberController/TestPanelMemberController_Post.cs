@@ -16,8 +16,8 @@ public class TestPanelMemberController_Post : IClassFixture<PanelMemberFixture>
         //Arrange
         var mockService = new Mock<IResearchApiService>();
         var controller = new PanelMemberController (_fixture.Context, mockService.Object); 
-        var panelMember = new PanelMember { UserId = "userId4", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = "", Preferred_contact = "not", CaretakerId = "1"}; 
-        var caretaker = new Caretaker {CaretakerId = "1", Email = "mail", FirstName = "name", LastName = "name", PhoneNumber = 0};
+        var panelMember = new PanelMember { UserId = "userId4", Email = "test@mail.nl", PhoneNumber = "0611", FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = "", Preferred_contact = "not", CaretakerId = "1"}; 
+        var caretaker = new Caretaker {CaretakerId = "1", Email = "mail", FirstName = "name", LastName = "name", PhoneNumber = "0"};
         var dataObject = new RequestModel {PanelMemberNew = panelMember, Caretaker = caretaker};
         
         //Act
@@ -34,8 +34,8 @@ public class TestPanelMemberController_Post : IClassFixture<PanelMemberFixture>
         //Arrange
         var mockService = new Mock<IResearchApiService>();
         var controller = new PanelMemberController (_fixture.Context, mockService.Object); 
-        var panelMember = new PanelMember { UserId = "userId4", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = "", Preferred_contact = "not", CaretakerId = "1"}; 
-        var caretaker = new Caretaker {CaretakerId = "1", Email = "mail", FirstName = "name", LastName = "name", PhoneNumber = 0};
+        var panelMember = new PanelMember { UserId = "userId4", Email = "test@mail.nl", PhoneNumber = "0611", FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = "", Preferred_contact = "not", CaretakerId = "1"}; 
+        var caretaker = new Caretaker {CaretakerId = "1", Email = "mail", FirstName = "name", LastName = "name", PhoneNumber = "0"};
         var dataObject = new RequestModel {PanelMemberNew = panelMember, Caretaker = caretaker};
        
         //Act

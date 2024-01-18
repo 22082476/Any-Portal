@@ -39,7 +39,7 @@ export function HomeInfo (props)
                 {props.Role === "PanelMember" ? "" : ""}
                 {props.Role === "Company" ? <table>{data.map(obj => <tr key={obj.rcode}><td>obj.title</td><td></td></tr>)}</table> : ""}
                 {props.Role === "Administrator" || "Admin" ? 
-                <table>
+                <table className="HomeInfo-table">
                     <tr>
                         <th className="table-heading"><h3>Bedrijfsnaam</h3></th>
                         <th className="table-heading"><h3>Website</h3></th>

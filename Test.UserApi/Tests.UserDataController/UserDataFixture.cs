@@ -14,9 +14,9 @@ public class UserDataFixture : UserContextFixture
         );
 
         context.PanelMembers.AddRange(
-        new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = "", Preferred_contact = "not"},
-        new PanelMember { UserId = "userId2", Email = "test323@mail.nl", PhoneNumber = 0611, FirstName = "Firstname12", LastName = "Lastname12", AgeId = 2, PostalCode = "2002 ET", Availability = "", Preferred_contact = "phone"},
-        new PanelMember { UserId = "userId3", Email = "test322@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 3, PostalCode = "2002 ET", Availability = "", Preferred_contact = "mail"}
+        new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = "0611", FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = "", Preferred_contact = "not"},
+        new PanelMember { UserId = "userId2", Email = "test323@mail.nl", PhoneNumber = "0611", FirstName = "Firstname12", LastName = "Lastname12", AgeId = 2, PostalCode = "2002 ET", Availability = "", Preferred_contact = "phone"},
+        new PanelMember { UserId = "userId3", Email = "test322@mail.nl", PhoneNumber = "0611", FirstName = "Firstname", LastName = "Lastname", AgeId = 3, PostalCode = "2002 ET", Availability = "", Preferred_contact = "mail"}
         );
 
         context.Companies.AddRange(
@@ -25,8 +25,8 @@ public class UserDataFixture : UserContextFixture
             );
 
         context.Administrators.AddRange(
-                new Administrator { UserId = "userId6", Email = "test@mail.nl", FirstName = "Firstname", LastName = "Lastname", IsAdmin = false },
-                new Administrator { UserId = "userId7", Email = "test2@mail.nl", FirstName = "Firstname2", LastName = "Lastname2", IsAdmin = true }
+                new Administrator { UserId = "userId6", Email = "test@mail.nl", FirstName = "Firstname", LastName = "Lastname", PhoneNumber = "+31 606060", IsAdmin = false },
+                new Administrator { UserId = "userId7", Email = "test2@mail.nl", FirstName = "Firstname2", LastName = "Lastname2", PhoneNumber = "+31 606060", IsAdmin = true }
             );
 
         context.SaveChanges();

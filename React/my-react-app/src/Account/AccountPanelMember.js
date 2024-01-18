@@ -24,7 +24,7 @@ export function AccountPanelMember(props) {
       // }
     };
 
-    fetchData();
+     fetchData();
     props.data(userData);
     props.data2(medicalData);
   });

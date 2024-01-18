@@ -1,5 +1,4 @@
 import './LoginStyle.css';
-
 import { ChatBubble } from '../Chat/ChatBubble';
 import App from '../App';
 import { useState, useEffect } from "react";

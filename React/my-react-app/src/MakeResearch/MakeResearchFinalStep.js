@@ -16,6 +16,8 @@ export function MakeResearchFinalStep(props) {
         researchId: location.state ? location.state.researchId : 0,
     });
 
+    const [error, setError] = useState('');
+
     const handleAddPostalCodeRange = async () => {
         const { From_Postalcode, Till_PostalCode } = formData;
 
@@ -28,21 +30,16 @@ export function MakeResearchFinalStep(props) {
                 Till_PostalCode: '',
             });
 
-            // Call the method for adding postal code range
             addPostalCodeRange(newRange);
 
-            // Call the method for making fetch request on /research
             await makeResearchRequest();
         }
     };
 
-    // Method to add postal code range
     const addPostalCodeRange = (newRange) => {
-        // Add your logic here for adding postal code range
         console.log('Postal Code Range Added:', newRange);
     };
 
-    // Method to make fetch request on /research
     const makeResearchRequest = async () => {
         try {
             const updatedFormData = {
@@ -78,7 +75,12 @@ export function MakeResearchFinalStep(props) {
     const handleSubmit = async () => {
         try {
             if (formData.postalCodeRangeList.length === 0) {
-                console.error('Postal Code Range List is empty. Cannot submit the form.');
+                setError('Postcode range(s) is vereist.');
+                return;
+            }
+
+            if (formData.Allowed_AgeRangeId === 0) {
+                setError('Leeftijdscategorie is vereist.');
                 return;
             }
             
@@ -145,12 +147,12 @@ export function MakeResearchFinalStep(props) {
                     />
                     <button 
                         className="AddPostalCodeButton"
-                        onClick={handleAddPostalCodeRange}>Voeg toe
+                        onClick={handleAddPostalCodeRange}>Voeg postcodes toe
                     </button>
                 </div>
 
                 <div className="AddedPostcodeRange-div">
-                    <h3 className="APCRange">Toegevoegde Postcode Ranges 'Van - Tot':</h3>
+                    <h3 className="APC-Range"> Toegevoegde Postcode 'Van - Tot' :</h3>
                     <select
                         className="PostalCodeDropdown"
                         value={formData.selectedPostalCodeRange || ''}
@@ -163,6 +165,7 @@ export function MakeResearchFinalStep(props) {
                             </option>
                         ))}
                     </select>
+                        {error && <p className="PostcodeListError">{error}</p>}
                 </div>
 
                 <div className="AC-div">
@@ -177,8 +180,8 @@ export function MakeResearchFinalStep(props) {
                         <option value={2}>18 t/m 30 jaar</option>
                         <option value={3}>31 t/m 50 jaar</option>
                         <option value={4}>50+ jaar</option>
-
                     </select>
+                    {error && formData.Allowed_AgeRangeId === 0 && <p className="AgeCategoryError">Leeftijdscategorie is vereist.</p>}
                 </div>
 
                 <div className="button-div">

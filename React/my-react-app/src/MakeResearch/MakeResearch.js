@@ -10,7 +10,7 @@ export function MakeResearch(props) {
         CompanyId: 'HardCodedCompanyId',
         Company: 'HardCodedCompany',
         Title: '',
-        Compensation: '0',
+        Compensation: '',
         Type_Research: '',
         Link_Research: '',
         Description: '',
@@ -18,8 +18,32 @@ export function MakeResearch(props) {
         research: '',
     });
 
+    const [formErrors, setFormErrors] = useState({
+        Title: '',
+        Compensation: '',
+        Type_Research: '',
+        Link_Research: '',
+    });
+
     const handleSubmit = async () => {
         try {
+            setFormErrors({
+                Title: '',
+                Compensation: '',
+                Type_Research: '',
+                Link_Research: '',
+            });
+        
+            if (!formData.Title || !formData.Compensation || !formData.Type_Research || !formData.Link_Research) {
+                setFormErrors({
+                    Title: !formData.Title ? 'Titel is vereist' : '',
+                    Compensation: !formData.Compensation ? 'Compensatie is vereist' : '',
+                    Type_Research: !formData.Type_Research ? 'Type is vereist' : '',
+                    Link_Research: !formData.Link_Research ? 'Link is vereist' : '',
+            });
+                return;
+            }
+
             if (formData.Disability_Type.length > 0) {
                 formData.Disability_Type = formData.Disability_Type;
             }
@@ -67,9 +91,6 @@ export function MakeResearch(props) {
     };
 
     const [expanded, setExpanded] = useState(false);
-    const handleExpand = () => {
-        setExpanded(!expanded);
-    };
 
     return (
         <div className="MakeResearch-div">
@@ -93,16 +114,19 @@ export function MakeResearch(props) {
                         placeholder="Voer hier de titel in."
                         onChange={(e) => setFormData({ ...formData, Title: e.target.value })}
                     />
+                        {formErrors.Title && <p className="TitleError">{formErrors.Title}</p>}
                 </div>
 
                 <div className="C-div">
-                    <h3 className="Compensation">Compensatie €:*</h3>
+                    <h3 className="Compensation">Compensatie in € :*</h3>
                     <input
                         type="number"
                         className="C-TextField"
                         value={formData.Compensation}
+                        placeholder="Voer hier de compensatie in."
                         onChange={(e) => setFormData({ ...formData, Compensation: parseFloat(e.target.value) })}
                     />
+                        {formErrors.Compensation && <p className="CompensationError">{formErrors.Compensation}</p>}
                 </div>
 
                 <div className="Type-D-div">
@@ -131,6 +155,7 @@ export function MakeResearch(props) {
                         placeholder="Voer hier de type in."
                         onChange={(e) => setFormData({ ...formData, Type_Research: e.target.value })}
                     />
+                        {formErrors.Type_Research && <p className="TypeError">{formErrors.Type_Research}</p>}
                 </div>
 
                 <div className="Link-R-div">
@@ -142,6 +167,7 @@ export function MakeResearch(props) {
                         placeholder="Voer hier de link in."
                         onChange={(e) => setFormData({ ...formData, Link_Research: e.target.value })}
                     />
+                        {formErrors.Link_Research && <p className="LinkError">{formErrors.Link_Research}</p>}
                 </div>
 
                 <div className={`D-div ${expanded ? 'Expanded' : ''}`}>
@@ -153,9 +179,6 @@ export function MakeResearch(props) {
                         onChange={(e) => setFormData({ ...formData, Description: e.target.value })}
                         style={{ maxWidth: '300px', }}
                     />
-                    <button className="ExpandButton" onClick={handleExpand}>
-                        {expanded ? 'Read less' : 'Read more'}
-                    </button>
                 </div>
 
                 <div className="button-div">

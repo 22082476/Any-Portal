@@ -21,7 +21,7 @@ function App() {
       <Routes>
           <Route path="/"element={<Home Name="Testnaam" Role="Admin"/>} />
 
-          <Route path="/Onderzoek" element={<MakeResearch />} />
+          <Route path="/Onderzoek" element={<MakeResearchFinalStep />} />
           <Route path="/MakeResearch" element={<MakeResearch />} />
           <Route path="/MakeResearchFinalStep" element={<MakeResearchFinalStep />} />
 

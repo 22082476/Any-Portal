@@ -43,12 +43,16 @@ h2 {
 }
 .FromPostalCode {
     color: #000000;
-    margin-right: 68px;
+    margin-right: 10px;
 }
 .FPC-TextField {
     width: 200px;
     border-radius: 25px;
     margin-left: auto;
+    display: flex;
+    align-items: center;
+    line-height: 2;
+    text-align: center;
 }
 
 .TPC-div {
@@ -62,39 +66,64 @@ h2 {
 }
 .TillPostalCode {
     color: #000000;
-    margin-right: 73px;
+    margin-right: 10px;
 }
 .TPC-TextField {
     width: 200px;
     border-radius: 25px;
     margin-right: 10px;
+    display: flex;
+    align-items: center;
+    line-height: 2;
+    text-align: center;
 }
 
 .AddPostalCodeButton {
+    align-self: center;
+    position: absolute;
+    top: 80px;
+    right: 3px;
+    background-color: #57C0B8;
+    border-radius: 20px;    
+    padding: 0.5rem 2rem;
+    border: solid transparent 0.2rem;
+    font-weight: bolder;
+    font-size: 1rem;
+    box-shadow: 3px 3px 10px
+        rgba(185, 185, 185), -3px 3px 10px
+        rgba(185, 185, 185), 0 3px 10px
+        rgba(185, 185, 185);
 }
 
 .AddedPostcodeRange-div {
     position: absolute;
-    top: 330px;
+    top: 400px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     display: flex;
     align-items: center;
 }
-
-.APCRange {
-    
+.APC-Range {
+    color: #000000;
+    margin-right: 10px;
 }
 
 .PostalCodeDropdown {
-    border-radius: 25px;
+    border-radius: 20px;
     margin-right: 10px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+}
+.PostcodeListError {
+    color: #ff0000;
+    position: absolute;
+    top: -25px;
 }
 
 .AC-div {
     position: absolute;
-    top: 430px;
+    top: 530px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -106,8 +135,15 @@ h2 {
     margin-right: 10px;
 }
 .AC-Select {
-    border-radius: 25px;
+    border-radius: 20px;
     margin-right: 10px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+}
+.AgeCategoryError {
+    color: #ff0000;
+    position: absolute;
+    top: -25px;
 }
 
 .BackButton:hover
@@ -118,7 +154,7 @@ h2 {
 
 .BlueButton
 {
-    align-self: flex-end;
+    align-self: center;
     position: absolute;
     bottom: 30px;
     right: 300px;

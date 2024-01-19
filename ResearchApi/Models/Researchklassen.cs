@@ -25,4 +25,6 @@ public class Research
     public string Link_Research { get; set; }
 
     public IList<string>? Disability_Type { get; set; }
+
+    public string Description { get; set;}
 }

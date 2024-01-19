@@ -36,15 +36,34 @@ h2 {
 }
 
 .Name-R-div {
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
 .NameResearch {
     color: #000000;
+    margin-right: 10px;
+}
+.Name-R-Text {
+    display: flex;
+    align-items: center;
+    line-height: 2;
+    text-align: center;
 }
 
 .Com-div {
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
 .Compensation {
     color: #000000;
+    margin-right: 10px;
+}
+.Com-Text {
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 .Type-D-div {
@@ -54,21 +73,48 @@ h2 {
 }
 
 .Type-R-div {
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
 .TypeResearch {
     color: #000000;
+    margin-right: 10px;
+}
+.Type-R-Text {
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 .Link-R-div {
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
 .LinkResearch {
     color: #000000;
+    margin-right: 10px;
+}
+.Link-R-Text {
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 .Des-div {
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
 .Description {
     color: #000000;
+    margin-right: 10px;
+}
+.Description-Text {
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 .Pos-div {
@@ -78,9 +124,18 @@ h2 {
 }
 
 .Age-div {
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
 .AgeRange {
-    color: #000000
+    color: #000000;
+    margin-right: 10px;
+}
+.Age-Text {
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 .button-div

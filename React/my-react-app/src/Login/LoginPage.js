@@ -1,24 +1,35 @@
-import { useNavigate } from 'react-router-dom';
 import './LoginStyle.css';
+import { ChatBubble } from '../Chat/ChatBubble';
+import { App } from '../App';
+import { useState, useEffect } from "react";
+import { Register } from './RegisterAccount';
+import { LoginForm } from './LoginForm';
+    
 
-export function LoginPage ()
-{
+    
 
-    const navigate = useNavigate();
+export function LoginPage() {
+    const [isRegister, setIsRegister] = useState(false);
 
-    return(<>
-        <div className='coloredCornerRight'></div>
-        <div className="Container">
-            <div className="Logo">
-                <img href = "./icon_accessibility"/>
-                <h1>Any-Portal</h1>
-            </div>
-            <div className="Login-div">
-                <h2>login</h2>
-                <button>Log in</button>
-            </div>
-        </div>
-        <div className='coloredCornerLeft'></div>
-        </>
+    const changeIsRegister = (e) => setIsRegister(e);
+  
+    return (
+      <>
+        {sessionStorage.getItem("UserId") !== null && sessionStorage.getItem("Role") !== null ? (
+          // Render a different component or page when logged in
+          <>
+            <App />
+            <ChatBubble />
+          </>
+        ) : (
+          <>
+            {isRegister ? (
+              <Register state={changeIsRegister}/>
+            ) : (
+              <LoginForm state={changeIsRegister} />
+            )}
+          </>
+        )}
+      </>
     );
-}
+  }

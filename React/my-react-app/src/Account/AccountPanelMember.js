@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import './Account.css';
 
 export function AccountPanelMember(props) {
   const [userData, setUserData] = useState(null);
@@ -59,11 +60,11 @@ export function AccountPanelMember(props) {
         ) : (
         <p>Loading...</p>
       )}
-      <h2>Medische gegevens</h2>
       {console.log(medicalData)}
       {medicalData ? (
         <div>
-          <table>
+          <h2>Medische gegevens</h2>
+          <table className="Account-table">
             <thead>
               <tr>
                 <th>Typebeperking</th>
@@ -74,9 +75,9 @@ export function AccountPanelMember(props) {
             <tbody>
               {medicalData.map((item) => (
                 <tr key={item.disability.dcode}>
-                  <td>{item.disability.type}</td>
-                  <td>{item.disability.name}</td>
-                  <td>
+                  <td className="table-data-phone">{item.disability.type}</td>
+                  <td className="table-data">{item.disability.name}</td>
+                  <td className="table-data">
                     <ul>
                       {item.tools.length ? (<>
                         {item.tools.map((tool) => (

@@ -27,6 +27,8 @@ export function AlterAccountAdmin(props)
     };
 
     update();
+
+    alert("wijzigingen opgeslagen");
     props.state(false)
   };
 

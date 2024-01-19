@@ -56,6 +56,7 @@ export function AlterAccountPanelMember(props) {
       .then(result => console.log(result))
       .catch(error => console.error('Error:', error));
 
+    alert("wijzigingen opgeslagen");
     props.state(false);
   };
 

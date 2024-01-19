@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import './Account.css';
 
 export function AccountPanelMember(props) {
   const [userData, setUserData] = useState(null);
@@ -14,14 +15,14 @@ export function AccountPanelMember(props) {
         console.error("Error fetching data from userapi:", error);
       }
 
-      // try {
-      //   const response2 = await fetch("http://localhost:5173/" + props.userId);
-      //   const responseData2 = await response2.json();
-      //   setMedicalData(responseData2);
+      try {
+        const response2 = await fetch("http://localhost:5247/Medical/" + props.userId);
+        const responseData2 = await response2.json();
+        setMedicalData(responseData2);
 
-      //         } catch (error) {
-      //   console.error("Error fetching data from medicalapi:", error);
-      // }
+              } catch (error) {
+        console.error("Error fetching data from medicalapi:", error);
+      }
     };
 
      fetchData();
@@ -59,16 +60,43 @@ export function AccountPanelMember(props) {
         ) : (
         <p>Loading...</p>
       )}
-    
+      {console.log(medicalData)}
       {medicalData ? (
         <div>
-          <p><b>Beperking:</b> {medicalData.disiblity}</p>
-          <p><b>Type:</b> {medicalData.type}</p>
-          <p><b>Hulpmiddel:</b> {medicalData.tool}</p>         
-
+          <h2>Medische gegevens</h2>
+          <table className="Account-table">
+            <thead>
+              <tr>
+                <th>Typebeperking</th>
+                <th>Naam</th>
+                <th>Hulpmiddelen</th>
+              </tr>
+            </thead>
+            <tbody>
+              {medicalData.map((item) => (
+                <tr key={item.disability.dcode}>
+                  <td className="table-data-phone">{item.disability.type}</td>
+                  <td className="table-data">{item.disability.name}</td>
+                  <td className="table-data">
+                    <ul>
+                      {item.tools.length ? (<>
+                        {item.tools.map((tool) => (
+                          <li key={tool.id}>{tool.name}</li>
+                        ))}
+                      </>) : (
+                        <li>Geen hulpmiddelen</li>
+                      )}
+                      
+                    </ul>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       ) : (
         <p>Loading...</p>
       )}
-    </>);
+    </>
+  );
 }

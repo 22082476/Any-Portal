@@ -15,6 +15,7 @@ import { Admin } from './Admin/Admin';
 import { AddAdministrator } from './Admin/AddAdministrator'
 
 import { DeleteResearch } from './DeleteResearch/DeleteResearch';
+import { Companyresearches } from './All_Researches_Company/All_Researches_Company';
 
 export function App() {
     sessionStorage.setItem("Role","PanelMember");

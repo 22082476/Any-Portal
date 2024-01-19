@@ -6,7 +6,10 @@ export function DeleteResearch(props) {
     const navigate = useNavigate();
   
     const [constantsData, setConstantsData] = useState(null);
-  
+    const [loading, setLoading] = useState(true);
+
+    const researchId = 43;
+
     const Title = '';
 
     const Compensation = '';
@@ -36,7 +39,7 @@ export function DeleteResearch(props) {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response1 = await fetch('http://localhost:5064/Research/ByResearchId/{researchId}', {
+          const response1 = await fetch(`http://localhost:5064/Research/ByResearchId/${researchId}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -51,16 +54,22 @@ export function DeleteResearch(props) {
   
           const data = await response1.json();
           setConstantsData(data);
+          setLoading(false); 
   
           console.log('Response Data:', data);
   
         } catch (error) {
           console.error('Error:', error);
+          setLoading(false);
         }
       };
   
       fetchData();
-    }, []); // Empty dependency array ensures the effect runs only once after initial render  
+    }, []);
+
+    if (loading) {
+        return <div>Laden... Een ogenblik geduld.</div>;
+    }
 
 return (
     <div className="DeleteResearch-div">

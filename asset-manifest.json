@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/Any-Portal/static/css/main.47f4df6f.css",
-    "main.js": "/Any-Portal/static/js/main.6a514659.js",
+    "main.js": "/Any-Portal/static/js/main.e101bd65.js",
     "static/js/787.38f16daf.chunk.js": "/Any-Portal/static/js/787.38f16daf.chunk.js",
     "static/media/ChatIcon.png": "/Any-Portal/static/media/ChatIcon.156703ea0cf5fad643a1.png",
     "static/media/Vinkje.png": "/Any-Portal/static/media/Vinkje.2ef8de796abc588bacb5.png",
     "static/media/icon_accessibility.png": "/Any-Portal/static/media/icon_accessibility.082af1b2a2209f5b7e2f.png",
     "index.html": "/Any-Portal/index.html",
     "main.47f4df6f.css.map": "/Any-Portal/static/css/main.47f4df6f.css.map",
-    "main.6a514659.js.map": "/Any-Portal/static/js/main.6a514659.js.map",
+    "main.e101bd65.js.map": "/Any-Portal/static/js/main.e101bd65.js.map",
     "787.38f16daf.chunk.js.map": "/Any-Portal/static/js/787.38f16daf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.47f4df6f.css",
-    "static/js/main.6a514659.js"
+    "static/js/main.e101bd65.js"
   ]
 }

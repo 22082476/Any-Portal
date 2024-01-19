@@ -6,19 +6,17 @@ import './All_Researches_Company.css';
 
 
 
-export function Companyresearches() {
+export function Companyresearches(props) {
 
   const [researchList, setResearches] = useState(null);
   const [editAccountId, setEditAccountId] = useState(null);
-  const companyId = "2";
-
 
   const changeScreen = (change) => {setEditAccountId(change)}
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:5064/Research/ByCompanyId/${companyId}`);
+        const response = await fetch(`http://localhost:5064/Research/ByCompanyId/${props.companyId}`);
         const responseData = await response.json();
         setResearches(responseData);
       } catch (error) {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './All_Research_Updatescherm.css';
 
-export const UpdateResearch = () => {
-  const [researchId] = useState(2);
+export const UpdateResearch = (props) => {
+  const [researchId, setResearchId] = useState(props.id);
   const [research, setResearch] = useState({});
   const [postalCode, setPostalCode] = useState(null);
   const [allowedAgeRange, setAllowedAgeRange] = useState(null);
@@ -10,6 +10,7 @@ export const UpdateResearch = () => {
   const [newPostalCodeRange, setNewPostalCodeRange] = useState({from_Postalcode: '', till_Postalcode: ''});
   const [postalCodeRanges, setPostalCodeRanges] = useState([]);
   const [markedForDeletion, setMarkedForDeletion] = useState([]);
+
 
   useEffect(() => { 
     const fetchData = async () => {
@@ -141,16 +142,16 @@ export const UpdateResearch = () => {
         {research && (
           <div>
             <label>Titel: </label>
-            <input className='Textfields' type="text" value={research.title} onChange={(e) => setResearch({ ...research, title: e.target.value })} />
+            <input className='Textfields' type="text" value={research.title || ''} onChange={(e) => setResearch({ ...research, title: e.target.value })} />
 
             <label>Compensatie: </label>
-            <input className='Textfields' type="number" value={research.compensation} onChange={(e) => setResearch({ ...research, compensation: e.target.value })} />
+            <input className='Textfields' type="number" value={research.compensation || ''} onChange={(e) => setResearch({ ...research, compensation: e.target.value })} />
         
             <label>Link onderzoek: </label>
-            <input className='Textfields' type="text" value={research.link_Research} onChange={(e) => setResearch({ ...research, link_Research: e.target.value })} />
+            <input className='Textfields' type="text" value={research.link_Research || ''} onChange={(e) => setResearch({ ...research, link_Research: e.target.value })} />
 
             <label>Beschrijving: </label>
-            <input className='Textfields' type="text" value={research.description} onChange={(e) => setResearch({ ...research, description: e.target.value })} />
+            <input className='Textfields' type="text" value={research.description || ''} onChange={(e) => setResearch({ ...research, description: e.target.value })} />
           </div>
         )}
 
@@ -158,7 +159,7 @@ export const UpdateResearch = () => {
         {allowedAgeRange && (
           <div>
             <label>Age Range ID: </label>
-            <input className='Textfields' type="number" value={allowedAgeRange.allowed_AgeRangeId} onChange={(e) => setAllowedAgeRange({ ...allowedAgeRange, allowed_AgeRangeId: e.target.value })} />
+            <input className='Textfields' type="number" value={allowedAgeRange.allowed_AgeRangeId || ''} onChange={(e) => setAllowedAgeRange({ ...allowedAgeRange, allowed_AgeRangeId: e.target.value })} />
           </div>
         )}
       </div>
@@ -181,7 +182,7 @@ export const UpdateResearch = () => {
           onChange={(e) => setNewPostalCodeRange({ ...newPostalCodeRange, till_Postalcode: e.target.value })}
         />
 
-        <button className='Buttonblue' onClick={handleCreatePostalCodeRange}>Voeg onderzoek toe</button>
+        <button className='Buttonblue' onClick={handleCreatePostalCodeRange}>Voeg postcode toe</button>
       </div>
 
       <div>
@@ -249,8 +250,8 @@ export const UpdateResearch = () => {
       </div>
 
       <div className='Buttoncontainer'>
-        <button className='Buttonblue' onClick={() => { handleUpdate(); handleSavePostalCodeRanges(); handleFinalDelete() }}>Opslaan</button>
-        <button className='Buttongrey' >Annuleren</button>
+        <button className='Buttonblue' onClick={() => { handleUpdate(); handleSavePostalCodeRanges(); handleFinalDelete(); props.update(null); alert("De wijzigingen zijn opgeslagen") }}>Opslaan</button>
+        <button className='Buttongrey' onClick={() => {props.update(null);}} >Annuleren</button>
       </div>
     </div>
   );

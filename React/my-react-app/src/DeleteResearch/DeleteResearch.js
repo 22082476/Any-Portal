@@ -17,6 +17,10 @@ return (
 
             <div className="Name-R-div">
                 <h3 className="NameResearch">Onderzoeknaam:</h3>
+                <input
+                    type="text"
+                    className="Name-R-TextField"
+                />
             </div>
 
             <div className="Com-div">
@@ -29,14 +33,26 @@ return (
 
             <div className="Type-R-div">
                 <h3 className="TypeResearch">Onderzoeksoort:</h3>
+                < input
+                    type="text"
+                    className="Type-R-TextField"
+                />
             </div>
 
             <div className="Link-R-div">
                 <h3 className="LinkResearch">Link:*</h3>
+                < input
+                    type="text"
+                    className="Link-R-TextField"
+                />
             </div>
 
             <div className="Des-div">
                 <h3 className="Description">Beschrijving:</h3>
+                < input
+                    type="text"
+                    className="Type-R-TextField"
+                />
             </div>
 
             <div className="Pos-div">
@@ -45,6 +61,10 @@ return (
 
             <div className="Age-div">
                 <h3 className="AgeRange">Leeftijdscategorie:</h3>
+                < input
+                    type="text"
+                    className="Age-TextField"
+                />
             </div>
 
             <div className="button-div">

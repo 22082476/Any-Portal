@@ -116,7 +116,7 @@ public class ResearchController : ControllerBase{
         try{
             _context.allowed_AgeRanges.Add(allowed_AgeRange);
             _context.SaveChanges();
-            return Ok(new { Message = "Agerange created successfully", ResearchId = allowed_AgeRange.Allowed_AgeRangeId});
+            return Ok(new { Message = "AgeRange created successfully", ResearchId = allowed_AgeRange.Allowed_AgeRangeId});
         }
 
       

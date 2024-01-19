@@ -28,7 +28,7 @@
 h2 {
     text-align: center;
     width: 100%;
-    margin-top: 0; /* Remove default margin from h2 */
+    margin-top: 0;
     position: absolute;
     top: 0;
     left: 50%;
@@ -68,7 +68,7 @@ h2 {
     text-align: center;
 }
 .TitleError {
-    color: #ff0000;
+    color: #131B56;
     position: absolute;
     top: -25px;
 }
@@ -97,7 +97,7 @@ h2 {
     text-align: center;
 }
 .CompensationError {
-    color: #ff0000;
+    color: #131B56;
     position: absolute;
     top: -25px;
 }
@@ -136,7 +136,7 @@ h2 {
     text-align: center;
 }
 .TypeError {
-    color: #ff0000;
+    color: #131B56;
     position: absolute;
     top: -25px;
 }
@@ -164,7 +164,7 @@ h2 {
     text-align: center;
 }
 .LinkError {
-    color: #ff0000;
+    color: #131B56;
     position: absolute;
     top: -25px;
 }

@@ -15,7 +15,7 @@
 h2 {
     text-align: center;
     width: 100%;
-    margin-top: 0; /* Remove default margin from h2 */
+    margin-top: 0;
     position: absolute;
     top: 0;
     left: 50%;
@@ -116,7 +116,7 @@ h2 {
     font-size: 0.9rem;
 }
 .PostcodeListError {
-    color: #ff0000;
+    color: #131B56;
     position: absolute;
     top: -25px;
 }
@@ -141,7 +141,7 @@ h2 {
     font-size: 0.9rem;
 }
 .AgeCategoryError {
-    color: #ff0000;
+    color: #131B56;
     position: absolute;
     top: -25px;
 }

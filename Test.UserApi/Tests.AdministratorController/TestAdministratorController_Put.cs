@@ -16,7 +16,7 @@ public class TestAdministratorController_Put : IClassFixture<AdminFixture>
         //Arrange
         var mock = new Mock<ILog>();
         var controller = new AdministratorController (_fixture.Context, mock.Object);
-        var dataObject = new Administrator { UserId = "userId", Email = "test213@mail.nl", FirstName = "naampje", LastName = "achternaampje", IsAdmin = false };
+        var dataObject = new Administrator { UserId = "userId", Email = "test213@mail.nl", FirstName = "naampje", LastName = "achternaampje", PhoneNumber = "+31 606060", IsAdmin = false };
         
         //Act
         var actionResult = controller.Put(dataObject).GetAwaiter().GetResult();
@@ -33,7 +33,7 @@ public class TestAdministratorController_Put : IClassFixture<AdminFixture>
         //Arrange
         var mock = new Mock<ILog>();
         var controller = new AdministratorController (_fixture.Context, mock.Object);
-        var dataObject = new Administrator { UserId = "userIdtje", Email = "test@mail.nl", FirstName = "Firstname", LastName = "Lastname", IsAdmin = false };
+        var dataObject = new Administrator { UserId = "userIdtje", Email = "test@mail.nl", FirstName = "Firstname", LastName = "Lastname", PhoneNumber = "+31 606060", IsAdmin = false };
         
         //Act
         var actionResult = controller.Put(dataObject).GetAwaiter().GetResult();

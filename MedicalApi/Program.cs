@@ -1,29 +1,45 @@
-using MedicalApi;
 using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-// Configure and register the DisabilityDbContext with Entity Framework Core, specifying the SQL Server database provider.
-builder.Services.AddDbContext<DisabilityDbContext>(
-    // This uses the connection string named "SqlServer" from the application configuration.
-    o => o.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+var config = builder.Configuration;
+
+builder.Services.AddDbContext<MedicalContext>((options) => options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowSpecificOrigin",
+            builder =>
+            {
+                builder.WithOrigins(
+                    "http://localhost:5177",
+                    "http://localhost:5173",
+                    "http://localhost:3000",
+                    "https://22082476.github.io"
+                )
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+            });
+    });
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+ app.UseHttpsRedirection();
+
+app.UseHsts();
+
+app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
 

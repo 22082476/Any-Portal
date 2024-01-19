@@ -14,7 +14,7 @@ export function ChatBubble (Props)
     }
     return (
         <div>
-            <button className="ChatBubble" onClick={toggleShowChat}>
+            <button aria-label="Chat" className="ChatBubble" onClick={toggleShowChat}>
                 <img src={img}/>
             </button>
             {ShowChats && <ChatBox onClick={toggleShowChat}/>}

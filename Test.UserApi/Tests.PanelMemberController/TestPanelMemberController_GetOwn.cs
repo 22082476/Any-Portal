@@ -18,7 +18,7 @@ public class TestPanelMemberController_GetOwn : IClassFixture<PanelMemberFixture
         //Arrange
         var mockService = new Mock<IResearchApiService>();
         var controller = new PanelMemberController (_fixture.Context, mockService.Object); 
-        var dataObject = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not"};
+        var dataObject = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = "0611", FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = "", Preferred_contact = "not"};
 
         //Act
         var actionResult = controller.GetOwn(dataObject.UserId).GetAwaiter().GetResult();

@@ -1,16 +1,19 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace MedicalApi;
+using System.Diagnostics.CodeAnalysis;
 
 public class Disability
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Dcode { get; set; }
-    public required string UserId { get; set; }
-    public string? Type { get; set; }
-    public string? Name { get; set; }
+    [Key] public string Dcode { get; set; }
+    [Required] public string UserId { get; set; }
+    [Required] public string Type { get; set; }
+    [Required] public string Name { get; set; }
+}
 
-    public string? Tool { get; set; }
+public class Tool
+{   
+    [Key] public int Id { get; set; }
+    public string Dcode { get; set; }
+    public string UserId { get; set; }
+
+    [Required] public string Name { get; set; }
 }

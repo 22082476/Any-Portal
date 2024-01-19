@@ -32,6 +32,8 @@ export function AlterAccountCompany(props) {
     };
 
     update();
+
+    alert("wijzigingen opgeslagen");
     props.state(false)
   };
 

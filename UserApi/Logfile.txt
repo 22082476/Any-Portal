@@ -27,3 +27,5 @@
 18/01/2024 15:46:16 - Source: AdminController.Delete() - Verwijderen Beheerder - tenantId - Admin heeft beheerder id verwijderd
 18/01/2024 15:46:19 - Source: AdminController.Delete() - Verwijderen Beheerder - tenantId - Admin heeft beheerder id verwijderd
 18/01/2024 15:46:24 - Source: AdminController.Delete() - Verwijderen Beheerder - tenantId - Admin heeft beheerder id verwijderd
+19/01/2024 10:05:51 - Source: AdminController.Post() - Toevoegen Beheerder - admin - Admin heeft beheerder toe gevoegd
+19/01/2024 10:06:00 - Source: AdminController.Post() - Toevoegen Beheerder - admin - Admin heeft beheerder toe gevoegd

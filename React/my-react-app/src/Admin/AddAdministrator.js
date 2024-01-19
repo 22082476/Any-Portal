@@ -18,7 +18,7 @@ export function AddAdministrator()
         }
 
     const update = () => {
-      fetch(`http://localhost:5177/Administrator`, {
+      fetch(`https://315d6kkf-5177.euw.devtunnels.ms/Administrator`, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'

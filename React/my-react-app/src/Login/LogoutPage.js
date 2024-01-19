@@ -9,7 +9,7 @@ export function Logout ()
     async function Logout(){
             
         try {
-            const response = await fetch("http://localhost:5097/api/Login/Logout", {
+            const response = await fetch("https://315d6kkf-5097.euw.devtunnels.ms/api/Login/Logout", {
                 method: "post",
                 headers: { 'Content-type': 'application/json'},
             });

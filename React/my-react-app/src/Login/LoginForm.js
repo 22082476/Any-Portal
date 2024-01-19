@@ -22,7 +22,7 @@ export function LoginForm(props) {
         async function Login(){
             
             try {
-                const response = await fetch("http://localhost:5097/api/Login/Login", {
+                const response = await fetch("https://315d6kkf-5097.euw.devtunnels.ms/api/Login/Login", {
                     method: "post",
                     headers: { 'Content-type': 'application/json' },
                     body: JSON.stringify(loginData)
@@ -43,7 +43,7 @@ export function LoginForm(props) {
                 
 
                 try {
-                    const response2 = await fetch(`http://localhost:5177/Role/${sessionStorage.getItem("UserId")}`, {
+                    const response2 = await fetch(`https://315d6kkf-5177.euw.devtunnels.ms/Role/${sessionStorage.getItem("UserId")}`, {
                         method: "GET",
                         headers: { 'Content-type': 'application/text' },
                     });

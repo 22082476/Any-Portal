@@ -12,7 +12,7 @@ export function Admin() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:5177/Administrator/");
+                const response = await fetch("https://315d6kkf-5177.euw.devtunnels.ms/Administrator/");
                 const responseData = await response.json();
                 setAdministrators(responseData);
             } catch (error) {

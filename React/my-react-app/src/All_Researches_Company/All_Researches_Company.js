@@ -10,7 +10,7 @@ export function Companyresearches() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:5064/Research/ByCompanyId/${companyId}`);
+        const response = await fetch(`https://315d6kkf-5064.euw.devtunnels.ms/Research/ByCompanyId/${companyId}`);
         const responseData = await response.json();
         setResearches(responseData);
       } catch (error) {

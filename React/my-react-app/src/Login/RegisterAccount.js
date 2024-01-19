@@ -54,7 +54,7 @@ export function Register(props) {
       .catch(error => console.error('Error:', error));
 
 
-      fetch('http://localhost:5097/api/Login/register', {
+      fetch('https://315d6kkf-5097.euw.devtunnels.ms/api/Login/register', {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify(account),

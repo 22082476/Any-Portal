@@ -6,7 +6,7 @@ export function AccountCompany(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5177/Company/" + props.userId);
+        const response = await fetch("https://315d6kkf-5177.euw.devtunnels.ms/Company/" + props.userId);
         const responseData = await response.json();
         setUserData(responseData);
         } catch (error) {

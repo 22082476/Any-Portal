@@ -8,16 +8,16 @@ export function HomeInfo (props)
         switch (Role) {
             case "PanelMember":
                 // return "https://315d6kkf-5177.euw.devtunnels.ms/PanelMember/";
-                return "http://localhost:5177/PanelMember/";
+                return "https://315d6kkf-5177.euw.devtunnels.ms/PanelMember/";
             case "Company":
                 // return "https://315d6kkf-5177.euw.devtunnels.ms/Research/";
-                return "http://localhost:5086/Research/";
+                return "https://315d6kkf-5064.euw.devtunnels.ms/Research/";
             case "Admin":
             case "Administrator":
                 // return "https://315d6kkf-5177.euw.devtunnels.ms/Company/";
                 return "";
             default:
-                return "http://localhost:5177/Company/";
+                return "https://315d6kkf-5177.euw.devtunnels.ms/Company/";
         }
     }
     useEffect(() =>

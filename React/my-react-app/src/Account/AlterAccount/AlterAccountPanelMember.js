@@ -47,7 +47,7 @@ export function AlterAccountPanelMember(props) {
 
     console.log(data);
 
-    fetch('http://localhost:5177/PanelMember', {
+    fetch('https://315d6kkf-5177.euw.devtunnels.ms/PanelMember', {
       method: 'PUT',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify(data),

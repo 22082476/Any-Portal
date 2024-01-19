@@ -7,7 +7,7 @@ export function AccountAdmin(props)
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5177/Administrator/" + props.userId);
+        const response = await fetch("https://315d6kkf-5177.euw.devtunnels.ms/Administrator/" + props.userId);
         const responseData = await response.json();
         setData(responseData);
               } catch (error) {

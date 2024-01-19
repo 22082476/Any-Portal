@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './DeleteResearch.css';
 
-export async function DeleteResearch(props) {
-
+export function DeleteResearch(props) {
     const navigate = useNavigate();
-
+  
+    const [constantsData, setConstantsData] = useState(null);
+  
     const Title = '';
 
     const Compensation = '';
@@ -13,48 +14,53 @@ export async function DeleteResearch(props) {
     const Disability_Type = [];
     const [showDisability_Type, setShowDisability_Type] = useState(false);
     const displayedDisabilities = showDisability_Type ? Disability_Type : Disability_Type.slice(0, 3);
-
+    
     const Type_Research = '';
-
+    
     const Link_Research = '';
-
+    
     const Description = '';
+    
     const [showFullDescription, setShowFullDescription] = useState(false);
     
     const From_Postalcode = [];
     const Till_Postalcode = [];
     const postalCodeRanges = From_Postalcode.map((from, index) => {
-        const till = Till_Postalcode[index];
-        return `${from} - ${till}`;
+      const till = Till_Postalcode[index];
+      return `${from} - ${till}`;
     });
     const [showAllPostalCodes, setShowAllPostalCodes] = useState(false);
-
+    
     const Allowed_AgeRangeId = '';
-
-try {
-    const response1 = await fetch('http://localhost:5064/Research/Research', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
-
-    console.log('Request URL:', 'http://localhost:5064/Research/Research');
-
-    if (!response1.ok) {
-        const errorMessage = await response1.text();
-        console.error('Error in /Research/Research:', errorMessage);
-        throw new Error('Failed to fetch research.');
-    }
-
-    const constantsData = await response1.json();
-
-    console.log('Response Data:', constantsData);
-
-} catch (error) {
-    console.error('Error:', error);
-}
-
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response1 = await fetch('http://localhost:5064/Research/ByResearchId/{researchId}', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+  
+          if (!response1.ok) {
+            const errorMessage = await response1.text();
+            console.error('Error in /Research/Research:', errorMessage);
+            throw new Error('Failed to fetch research.');
+          }
+  
+          const data = await response1.json();
+          setConstantsData(data);
+  
+          console.log('Response Data:', data);
+  
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      };
+  
+      fetchData();
+    }, []); // Empty dependency array ensures the effect runs only once after initial render  
 
 return (
     <div className="DeleteResearch-div">

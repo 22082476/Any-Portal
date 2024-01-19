@@ -23,7 +23,6 @@
 {
     margin-top: 0.67rem;
     width: auto;
-    height: 58vh;
     box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
     border-radius: 61px;
 }
@@ -38,7 +37,6 @@
 .Info-div
 {
     width: 39.5vw;
-    height: 71.36vh;
     box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
     border-radius: 61px;
 }

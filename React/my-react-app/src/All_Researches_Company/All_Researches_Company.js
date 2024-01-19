@@ -3,6 +3,7 @@ import Kruisje from './Kruisje.png';
 import Vinkje from './Vinkje.png';
 import { UpdateResearch } from '../All_Researches_Updatescherm/All_Research_Updatescherm';
 import './All_Researches_Company.css';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 
@@ -28,18 +29,15 @@ export function Companyresearches(props) {
     fetchData();
   });
 
-  function handleCreateResearch() {
-  }
-
-
+  const navigate = useNavigate();
 
   return (
     <>
       {editAccountId === null ? (
-        <div className='Companybox-div'>
-          <div className='Companybox-container'>
+        <div>
+          <div>
             <h1>Onderzoeken</h1>
-            <button className='Createbutton' onClick={handleCreateResearch}>
+            <button className='Createbutton' onClick={() => navigate("/MaakOnderzoek")}>
               Maak Onderzoek
             </button>
           </div>

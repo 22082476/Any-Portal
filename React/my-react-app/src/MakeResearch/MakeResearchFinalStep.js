@@ -1,11 +1,13 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import './MakeResearchFinalStep.css';
 import React, { useState } from 'react';
+import { AgeDropDown } from '../Account/AlterAccount/AgeDropDown';
 
 export function MakeResearchFinalStep(props) {
 
     const navigate = useNavigate();
     const location = useLocation();
+
+    const update = (age) => setFormData({ ...formData, Allowed_AgeRangeId: age });
 
     const [formData, setFormData] = useState({
         From_Postalcode: '',
@@ -118,71 +120,83 @@ export function MakeResearchFinalStep(props) {
     };
 
     return (
-        <div className="MakeResearchFinalStep-div">
-                <h2>Onderzoek Maken</h2>
+        <div className="AccountInfo-div">
+            <div>
+                <h1>Onderzoek Maken</h1>
+                <p className="blue-title">De invoervelden met een * zijn verplicht</p>
+                <table className="alterCompany-table">
+                    <tr>
+                        <td>
+                        <label className="input-label">Van Postcode:*</label>
 
-                <div className="Text1-div">
-                    <h4>Invoervelden met een * moeten verplicht ingevuld worden</h4>
-                </div>
-
-                <div className="FPC-div">
-                    <h3 className="FromPostalCode">Van Postcode:*</h3>
-                    <input
-                        type="text"
-                        className="FPC-TextField"
-                        value={formData.From_Postalcode}
-                        placeholder="Voer hier de 'van' postcode in."
-                        onChange={(e) => setFormData({ ...formData, From_Postalcode: e.target.value })}
-                    />
-                </div>
-
-                <div className="TPC-div">
-                    <h3 className="TillPostalCode">Tot Postcode:*</h3>
-                    <input
-                        type="text"
-                        className="TPC-TextField"
-                        value={formData.Till_PostalCode}
-                        placeholder="Voer hier de 'tot' postcode in."
-                        onChange={(e) => setFormData({ ...formData, Till_PostalCode: e.target.value })}
-                    />
-                    <button 
-                        className="AddPostalCodeButton"
-                        onClick={handleAddPostalCodeRange}>Voeg postcodes toe
+                        </td>
+                        <td>
+                            <input
+                                type="text"
+                                className="inputfield"
+                                value={formData.From_Postalcode}
+                                placeholder="Voer hier de 'van' postcode in."
+                            onChange={(e) => setFormData({ ...formData, From_Postalcode: e.target.value })}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label className="input-label" htmlFor='poststart'>Tot Postcode:*</label>
+                        </td>
+                        <td>
+                            <input
+                                id='poststart'
+                                type="text"
+                                className="inputfield"
+                                value={formData.Till_PostalCode}
+                                placeholder="Voer hier de 'tot' postcode in."
+                                onChange={(e) => setFormData({ ...formData, Till_PostalCode: e.target.value })}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                        <button 
+                        className="WhiteButton"
+                        style={{width: "11vw", padding: "0 2.5rem 0 2.5rem", marginTop: "0.5rem"}}
+                        onClick={handleAddPostalCodeRange}>Postcode toevoegen
                     </button>
-                </div>
-
-                <div className="AddedPostcodeRange-div">
-                    <h3 className="APC-Range"> Toegevoegde Postcode 'Van - Tot' :</h3>
-                    <select
-                        className="PostalCodeDropdown"
-                        value={formData.selectedPostalCodeRange || ''}
-                        onChange={(e) => setFormData({ ...formData, selectedPostalCodeRange: e.target.value })}
-                    >
-                        <option value="">Toon gemaakte Postcode Ranges</option>
-                        {formData.postalCodeRangeList.map((range, index) => (
-                            <option key={index} value={range}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label className="input-label" id='postend'> Toegevoegde Postcode 'Van - Tot' :</label>
+                        </td>
+                        <td>
+                            <select
+                                className="inputfield"
+                                value={formData.selectedPostalCodeRange || ''}
+                                onChange={(e) => setFormData({ ...formData, selectedPostalCodeRange: e.target.value })}
+                                id='postend'
+                            >
+                                {formData.postalCodeRangeList.map((range, index) => (
+                                <option key={index} value={range}>
                                 {range}
-                            </option>
-                        ))}
-                    </select>
+                                </option>
+                                ))}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label className="input-label" htmlFor='age'>Leeftijdcategorieën:*</label>
+                        </td>
+                        <td>
+                            <AgeDropDown update={update} ageId={formData.Allowed_AgeRangeId}/>
+                        </td>
+                    </tr>
+                </table>
+                                        
                         {error && <p className="PostcodeListError">{error}</p>}
-                </div>
-
-                <div className="AC-div">
-                    <h3 className="AgeCategory">Leeftijdcategorieën:*</h3>
-                    <select
-                        className="AC-Select"
-                        value={formData.Allowed_AgeRangeId}
-                        onChange={(e) => setFormData({ ...formData, Allowed_AgeRangeId: parseInt(e.target.value) })}
-                    >
-                        <option value={0}>Selecteer Leeftijdscategorieën</option>
-                        <option value={1}>4 t/m 17 jaar</option>
-                        <option value={2}>18 t/m 30 jaar</option>
-                        <option value={3}>31 t/m 50 jaar</option>
-                        <option value={4}>50+ jaar</option>
-                    </select>
+               
                     {error && formData.Allowed_AgeRangeId === 0 && <p className="AgeCategoryError">Leeftijdscategorie is vereist.</p>}
-                </div>
 
                 <div className="button-div">
                     <button
@@ -192,6 +206,7 @@ export function MakeResearchFinalStep(props) {
                     >
                         Maak Onderzoek
                     </button>
+                </div>
                 </div>
         </div>
     );

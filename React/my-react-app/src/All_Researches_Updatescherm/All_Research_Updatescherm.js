@@ -134,9 +134,7 @@ export const UpdateResearch = (props) => {
   };
 
   return (
-
-    
-    <div className="Companybox-div">
+      <div>
        <div>
         <h1>Onderzoek</h1>
         {research && (
@@ -165,7 +163,7 @@ export const UpdateResearch = (props) => {
       </div>
 
       <div>
-        <h1>Maak nieuw Postcode </h1>
+        <h3>Maak nieuw Postcode </h3>
         <label>Van Postcode: </label>
         <input
           className='Textfields'
@@ -182,11 +180,11 @@ export const UpdateResearch = (props) => {
           onChange={(e) => setNewPostalCodeRange({ ...newPostalCodeRange, till_Postalcode: e.target.value })}
         />
 
-        <button className='Buttonblue' onClick={handleCreatePostalCodeRange}>Voeg postcode toe</button>
+        <button className='BlueButton' onClick={handleCreatePostalCodeRange}>Voeg postcode toe</button>
       </div>
 
       <div>
-        <h1>Toegevoegde Postcodes</h1>
+        <h4>Toegevoegde Postcodes</h4>
         {postalCodeRanges.length > 0 && (
           <ul>
             {postalCodeRanges.map((range, index) => (
@@ -199,7 +197,7 @@ export const UpdateResearch = (props) => {
         )}
       </div>
       <div>
-        <h1>Bestaande Postcodes</h1>
+        <h5>Bestaande Postcodes</h5>
         <table className="ResearchTable">
           <thead>
             <tr>
@@ -227,7 +225,7 @@ export const UpdateResearch = (props) => {
 
       <div className="CheckboxContainer">
         <div className="CheckboxSection">
-          <label><h2>Disability Types</h2></label>
+          <label><h6>Disability Types</h6></label>
           {['Visueel', 'Fysiek', 'Cognitief', 'Auditief', 'Spraak', 'Ouderen'].map((type) => (
             <div key={type}>
               <label>
@@ -250,8 +248,8 @@ export const UpdateResearch = (props) => {
       </div>
 
       <div className='Buttoncontainer'>
-        <button className='Buttonblue' onClick={() => { handleUpdate(); handleSavePostalCodeRanges(); handleFinalDelete(); props.update(null); alert("De wijzigingen zijn opgeslagen") }}>Opslaan</button>
-        <button className='Buttongrey' onClick={() => {props.update(null);}} >Annuleren</button>
+        <button className='WhiteButton' onClick={() => {props.update(null);}} >Annuleren</button>
+        <button className='BlueButton' onClick={() => { handleUpdate(); handleSavePostalCodeRanges(); handleFinalDelete(); props.update(null); alert("De wijzigingen zijn opgeslagen") }}>Opslaan</button>
       </div>
     </div>
   );

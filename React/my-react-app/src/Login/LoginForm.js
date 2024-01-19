@@ -22,8 +22,8 @@ export function LoginForm(props) {
         async function Login(){
             sessionStorage.clear();
             try {
-                const response = await fetch("https://315d6kkf-5097.euw.devtunnels.ms/api/Login/Login", {
-                    method: "post",
+                const response = await fetch("https://315d6kkf-5097.euw.devtunnels.ms/api/Login/login", {
+                    method: "POST",
                     headers: { 'Content-type': 'application/json' },
                     body: JSON.stringify(loginData)
                 });
@@ -35,15 +35,12 @@ export function LoginForm(props) {
                     return;
                 }
                 const data = await response.json();
-                sessionStorage.setItem("UserId", data.userId);
+                await sessionStorage.setItem("UserId", data.userId);
             } catch (error) {
                 console.error('Error:', error);
             }
-
-                
-
                 try {
-                    const response2 = await fetch(`https://315d6kkf-5177.euw.devtunnels.ms/Role/${sessionStorage.getItem("UserId")}`, {
+                    const response2 = await fetch('https://315d6kkf-5177.euw.devtunnels.ms/Role/' + sessionStorage.getItem("UserId"), {
                         method: "GET",
                         headers: { 'Content-type': 'application/text' },
                     });
@@ -59,7 +56,7 @@ export function LoginForm(props) {
             } catch (error2) {
                 console.error('Error:', error2);
             }
-        }
+    }
 
   return (
     // Render the login form when not logged in
@@ -98,5 +95,5 @@ export function LoginForm(props) {
             </form>
         </div>
     </div>
-  )
-};
+  );
+}

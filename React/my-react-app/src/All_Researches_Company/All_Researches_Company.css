@@ -1,15 +1,3 @@
-.Companybox-div {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column; 
-  margin: 0 25vw;
-  padding: 1rem;
-  box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
-  border-radius: 25px;
-  overflow-y: auto;
-}
-
 .Researchlist {
   width: 80%;
   margin: auto;

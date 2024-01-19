@@ -19,10 +19,10 @@ builder.Services.AddCors(options =>
             builder =>
             {
                 builder.WithOrigins(
-                    "http://localhost:5177", // URL van je lokale ontwikkelingsserver
-                    "http://localhost:5173", // Andere URL van je lokale ontwikkelingsserver
+                    "http://localhost:5177",
+                    "http://localhost:5173",
                     "http://localhost:3000",
-                    "https://22082476.github.io" // GitHub Pages URL
+                    "https://22082476.github.io"
                 )
                 .AllowAnyHeader()
                 .AllowAnyMethod();

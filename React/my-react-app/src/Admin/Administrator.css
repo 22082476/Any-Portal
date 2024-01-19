@@ -1,0 +1,48 @@
+.users-div
+{
+    display: flex;
+    flex-direction: column;
+    margin: 0 25vw;
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
+    width: 45vw;
+}
+
+.table-data-Administrators
+{
+    text-align: center;
+    padding: 1.1rem 3rem 1.1rem 3rem;
+    background-color: #FFFF;
+    box-shadow: 3px 3px 10px rgba(185, 185, 185, 0.2), -3px 3px 10px rgba(185, 185, 185, 0.2), 0 3px 10px rgba(185, 185, 185, 0.2);
+    border-radius: 20px;
+    width: 50%;
+}
+
+.detail-button
+{
+    text-align: center;
+    padding: 1.1rem 3rem 1.1rem 3rem;
+    background-color: #FFFF;
+    box-shadow: 3px 3px 10px rgba(185, 185, 185, 0.2), -3px 3px 10px rgba(185, 185, 185, 0.2), 0 3px 10px rgba(185, 185, 185, 0.2);
+    border-radius: 20px;
+    border: solid transparent 0.2rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.detail-button:hover
+{
+    border: solid #000 0.2rem;
+}
+
+.Administrator-table
+{
+    width: 45vw;
+    border-spacing: 1.3rem;
+}
+
+tr
+{
+    margin: auto;
+}

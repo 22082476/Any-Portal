@@ -1,0 +1,42 @@
+.users-div
+{
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
+    width: 52vw;
+}
+
+.table-data, .table-data-phone
+{
+    text-align: center;
+    padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+    background-color: #FFFF;
+    box-shadow: 3px 3px 10px rgba(185, 185, 185, 0.2), -3px 3px 10px rgba(185, 185, 185, 0.2), 0 3px 10px rgba(185, 185, 185, 0.2);
+    border-radius: 20px;
+    width: 60%;
+
+}
+
+.table-data-phone
+{
+    padding: 0 1.1rem 0 1.1rem;
+}
+
+.Admin-table
+{
+    width: 45vw;
+    border-spacing: 1rem;
+}
+
+a
+{
+    color: #000;            
+    text-decoration: none;
+}
+    
+a:hover, span a:hover
+{
+    text-decoration: underline #000;
+}

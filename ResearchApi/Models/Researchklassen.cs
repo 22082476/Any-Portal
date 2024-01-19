@@ -27,4 +27,6 @@ public class Research
     public string Description { get; set; }
 
     public IList<string>? Disability_Type { get; set; }
+
+    public string Description {get; set;}
 }

@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 public class PanelMember
 {
     [Key] public string UserId { get; set; }
     public string? Email { get; set; }
-    public uint? PhoneNumber { get; set;}
+    [AllowNull] public string? PhoneNumber { get; set;}
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
 
@@ -13,8 +14,8 @@ public class PanelMember
     [Required] public string PostalCode { get; set; }
 
     [Required] public string Preferred_contact { get; set; }  
-    [Required] public string [] Availability { get; set; }
-    public int? CaretakerId { get; set;}
+    [Required] public string Availability { get; set; }
+    public string? CaretakerId { get; set;}
 
     public void UpdateToNull()
     {
@@ -23,7 +24,7 @@ public class PanelMember
         Email = null;
         PhoneNumber = null;
         Preferred_contact = "";
-        Availability = new string [0];
+        Availability = "Niet";
         CaretakerId = null;
     }
 }

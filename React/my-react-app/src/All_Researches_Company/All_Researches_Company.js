@@ -5,6 +5,7 @@ import Vinkje from './Vinkje.png';
 import './All_Researches_Company.css';
 
 export function Companyresearches() {
+  const history = useHistory();
   const [researchList, setResearches] = useState(null);
   const companyId = "1";
 
@@ -65,7 +66,10 @@ export function Companyresearches() {
   );
 
 
-  function handleCreateResearch(id) {
-    <a className="nav-link" href="#/All_Researches_Updatescherm/"></a>
+  function handleCreateResearch() {
+  }
+
+
+  function handleResearchClick() {
   }
 }

@@ -108,15 +108,6 @@ export const UpdateResearch = () => {
         });
       }
 
-      const updatedPostalCodeResponse = await fetch(`http://localhost:5064/Research/ByPostalCode/${researchId}`);
-      const updatedPostalCodeData = await updatedPostalCodeResponse.json();
-
-      if (Array.isArray(updatedPostalCodeData)) {
-        setPostalCode(updatedPostalCodeData);
-      } else if (updatedPostalCodeData.hasOwnProperty('from_Postalcode')) {
-        setPostalCode([updatedPostalCodeData]);
-      } 
-
     } catch (error) {
       console.error('Error creating Postal Code Ranges:', error);
     }

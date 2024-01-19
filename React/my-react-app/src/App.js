@@ -15,7 +15,6 @@ import { Admin } from './Admin/Admin';
 import { AddAdministrator } from './Admin/AddAdministrator'
 
 export function App() {
-
     return (
       <>
       <Header />

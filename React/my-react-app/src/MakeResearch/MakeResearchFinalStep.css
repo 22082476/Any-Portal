@@ -1,0 +1,182 @@
+.MakeResearchFinalStep-div
+{
+    display: flex;
+    flex-direction: column;
+    margin: 0 15rem;
+    padding: 25rem;
+    border-radius: 25px;
+    box-shadow: 3px 3px 10px
+        rgba(185, 185, 185), -3px 3px 10px
+        rgba(185, 185, 185), 0 3px 10px
+        rgba(185, 185, 185);
+    position: relative;
+}
+
+h2 {
+    text-align: center;
+    width: 100%;
+    margin-top: 0;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.Text1-div {
+    color: #131B56;
+    text-align: center;
+    position: absolute;
+    top: 50px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 100%;
+}
+
+.FPC-div {
+    position: absolute;
+    top: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.FromPostalCode {
+    color: #000000;
+    margin-right: 10px;
+}
+.FPC-TextField {
+    width: 200px;
+    border-radius: 25px;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    line-height: 2;
+    text-align: center;
+}
+
+.TPC-div {
+    position: absolute;
+    top: 230px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.TillPostalCode {
+    color: #000000;
+    margin-right: 10px;
+}
+.TPC-TextField {
+    width: 200px;
+    border-radius: 25px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    line-height: 2;
+    text-align: center;
+}
+
+.AddPostalCodeButton {
+    align-self: center;
+    position: absolute;
+    top: 80px;
+    right: 3px;
+    background-color: #57C0B8;
+    border-radius: 20px;    
+    padding: 0.5rem 2rem;
+    border: solid transparent 0.2rem;
+    font-weight: bolder;
+    font-size: 1rem;
+    box-shadow: 3px 3px 10px
+        rgba(185, 185, 185), -3px 3px 10px
+        rgba(185, 185, 185), 0 3px 10px
+        rgba(185, 185, 185);
+}
+
+.AddedPostcodeRange-div {
+    position: absolute;
+    top: 400px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.APC-Range {
+    color: #000000;
+    margin-right: 10px;
+}
+
+.PostalCodeDropdown {
+    border-radius: 20px;
+    margin-right: 10px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+}
+.PostcodeListError {
+    color: #131B56;
+    position: absolute;
+    top: -25px;
+}
+
+.AC-div {
+    position: absolute;
+    top: 530px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.AgeCategory {
+    color: #000000;
+    margin-right: 10px;
+}
+.AC-Select {
+    border-radius: 20px;
+    margin-right: 10px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+}
+.AgeCategoryError {
+    color: #131B56;
+    position: absolute;
+    top: -25px;
+}
+
+.BackButton:hover
+{
+    cursor: pointer;
+    border: solid #000 0.2rem;
+}
+
+.BlueButton
+{
+    align-self: center;
+    position: absolute;
+    bottom: 30px;
+    right: 300px;
+    background-color: #57C0B8;
+    border-radius: 20px;    
+    padding: 0.75rem 4rem 0.75rem 4rem;
+    border: solid transparent 0.2rem;
+    font-weight: bolder;
+    font-size: 1rem;
+    box-shadow: 3px 3px 10px
+        rgba(185, 185, 185), -3px 3px 10px
+        rgba(185, 185, 185), 0 3px 10px
+        rgba(185, 185, 185);
+}
+
+.BlueButton:hover
+{
+    border: solid black 0.2rem;
+}
+
+.button-div
+{
+    display: flex;
+    justify-content: flex-end;
+}

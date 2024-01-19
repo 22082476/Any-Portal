@@ -13,6 +13,7 @@ import {AllResearches} from './All_Researches_Administrator/All_Researches_Admin
 import { AdminRoute } from './Admin/AdminRoute';
 import { Admin } from './Admin/Admin';
 import { AddAdministrator } from './Admin/AddAdministrator'
+import { DeleteResearch } from './DeleteResearch';
 
 export function App() {
     sessionStorage.setItem("Role","PanelMember");
@@ -23,7 +24,8 @@ export function App() {
       <HashRouter>
         <Routes>
             <Route path="/"element={<Home Name="Testnaam" Role="Admin"/>} />
-            <Route path="/Onderzoek" element={<AllResearches />} />
+            <Route path="/Onderzoek" element={<DeleteResearch />} />
+            <Route path="/DeleteResearch" element={<DeleteResearch />} />
             <Route path="/Account" element={<Account userId={sessionStorage.getItem("UserId")} Role={sessionStorage.getItem("Role")} />} />
             <Route path="/Uitloggen" element={<Logout />}/>
             <Route path='/PrivacyPolicy' element={<PrivacyPolicy />}/>

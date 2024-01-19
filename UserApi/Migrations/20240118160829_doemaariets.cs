@@ -5,7 +5,7 @@
 namespace UserApi.Migrations
 {
     /// <inheritdoc />
-    public partial class _1 : Migration
+    public partial class doemaariets : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

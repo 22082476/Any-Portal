@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ResearchApi.Migrations
 {
     [DbContext(typeof(ResearchContext))]
-    [Migration("20240117143446_een")]
-    partial class een
+    [Migration("20240119092227_1")]
+    partial class _1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

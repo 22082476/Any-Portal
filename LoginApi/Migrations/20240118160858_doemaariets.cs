@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace UserApi.Migrations
+namespace LoginApi.Migrations
 {
     /// <inheritdoc />
-    public partial class TestMigration : Migration
+    public partial class doemaariets : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

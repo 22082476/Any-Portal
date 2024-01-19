@@ -66,7 +66,8 @@ namespace ResearchApi.Migrations
                     Compensation = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Type_Research = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Link_Research = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Disability_Type = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Disability_Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

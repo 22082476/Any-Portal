@@ -15,8 +15,7 @@ import { Admin } from './Admin/Admin';
 import { AddAdministrator } from './Admin/AddAdministrator'
 
 export function App() {
-    sessionStorage.setItem("Role","PanelMember");
-    sessionStorage.setItem("UserId", "string")
+
     return (
       <>
       <Header />
@@ -36,3 +35,4 @@ export function App() {
       </>
     );
 }
+

@@ -12,6 +12,8 @@ export function LoginPage() {
     const [isRegister, setIsRegister] = useState(false);
 
     const changeIsRegister = (e) => setIsRegister(e);
+
+    console.log(sessionStorage.getItem("UserId"), sessionStorage.getItem("Role"));
   
     return (
       <>

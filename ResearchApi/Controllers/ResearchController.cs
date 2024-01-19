@@ -65,6 +65,17 @@ public class ResearchController : ControllerBase{
             return Ok(result);
     }
 
+    [HttpGet]
+    [Route("ByParticipatedId/{Id}")]
+    public IActionResult GetAllParticipated(int Id){
+    var result = _context.Participants.Where(s => s.Id == Id).ToList();
+
+        if(result == null){
+            return NotFound();
+        }
+            return Ok(result);
+    }
+
 
     [HttpPost]
     [Route("Research")]

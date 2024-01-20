@@ -1,3 +1,6 @@
+
+import React from 'react';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { Header } from './Header/Header';
 import { Home } from './Home/Home';
 import { Account } from './Account/Account';
@@ -8,7 +11,6 @@ import { Logout } from './Login/LogoutPage';
 import { AdminRoute } from './Admin/AdminRoute';
 import { Admin } from './Admin/Admin';
 import { AddAdministrator } from './Admin/AddAdministrator'
-import { HashRouter, Route, Routes } from 'react-router-dom';
 import { Research } from './Research';
 import { MakeResearch } from './MakeResearch/MakeResearch';
 import {MakeResearchFinalStep } from './MakeResearch/MakeResearchFinalStep';

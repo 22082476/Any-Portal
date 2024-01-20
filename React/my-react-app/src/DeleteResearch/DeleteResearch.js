@@ -3,26 +3,17 @@ import React, { useState, useEffect } from 'react';
 import './DeleteResearch.css';
 
 export function DeleteResearch(props) {
+
     const navigate = useNavigate();
-  
+
     const [constantsData, setConstantsData] = useState(null);
+    
     const [loading, setLoading] = useState(true);
 
     const researchId = 43;
 
-    const Title = '';
-
-    const Compensation = '';
-
-    const Disability_Type = [];
     const [showDisability_Type, setShowDisability_Type] = useState(false);
-    const displayedDisabilities = showDisability_Type ? Disability_Type : Disability_Type.slice(0, 3);
-    
-    const Type_Research = '';
-    
-    const Link_Research = '';
-    
-    const Description = '';
+    const displayedDisabilities = showDisability_Type ? constantsData?.disability_Type : constantsData?.disability_Type?.slice(0, 3);
     
     const [showFullDescription, setShowFullDescription] = useState(false);
     
@@ -48,7 +39,7 @@ export function DeleteResearch(props) {
   
           if (!response1.ok) {
             const errorMessage = await response1.text();
-            console.error('Error in /Research/Research:', errorMessage);
+            console.error('Error in /Research/ByResearchId/${researchId}:', errorMessage);
             throw new Error('Failed to fetch research.');
           }
   
@@ -71,6 +62,10 @@ export function DeleteResearch(props) {
         return <div>Laden... Een ogenblik geduld.</div>;
     }
 
+    if (!constantsData) {
+        return <div>Er is een fout opgetreden bij het ophalen van de gegevens.</div>;
+    }
+
 return (
     <div className="DeleteResearch-div">
             <button className="BackButton"
@@ -82,22 +77,23 @@ return (
 
             <div className="Name-R-div">
                 <h3 className="NameResearch">Onderzoeknaam:</h3>
-                <p className="Name-R-Text">{Title}</p>
+                <p className="Name-R-Text">{constantsData.title}</p>
             </div>
 
             <div className="Com-div">
                 <h3 className="Compensation">Compensatie in euro's:</h3>
-                <p className="Com-Text">{Compensation}</p>
+                <p className="Com-Text">{constantsData.compensation}</p>
             </div>
 
             <div className="Type-D-div">
                 <h3 className="TypeDisability">Type Beperking:</h3>
                     <ul>
-                        {displayedDisabilities.map((disability, index) => (
-                            <li key={index}>{disability}</li>
-                        ))}
+                    {displayedDisabilities !== null && displayedDisabilities.map((disability_Type, index) => (
+                        <li key={index}>{disability_Type}</li>
+                    ))}
+
                     </ul>
-                    {Disability_Type.length > 3 && (
+                    {constantsData.disability_Type.length > 3 && (
                         <button onClick={() => setShowDisability_Type(!showDisability_Type)}>
                             {showDisability_Type ? 'Toon Minder' : 'Toon Meer'}
                         </button>
@@ -106,20 +102,20 @@ return (
 
             <div className="Type-R-div">
                 <h3 className="TypeResearch">Onderzoeksoort:</h3>
-                <p className="Type-R-Text">{Type_Research}</p>
+                <p className="Type-R-Text">{constantsData.type_Research}</p>
             </div>
 
             <div className="Link-R-div">
                 <h3 className="LinkResearch">Link:</h3>
-                <p className="Link-R-Text">{Link_Research}</p>
+                <p className="Link-R-Text">{constantsData.link_Research}</p>
             </div>
 
             <div className="Des-div">
                 <h3 className="Description">Beschrijving:</h3>
                 <p className="Description-Text">
-                    {showFullDescription ? Description : `${Description.slice(0, 100)}...`}
+                    {showFullDescription ? constantsData.description : `${constantsData.description.slice(0, 100)}...`}
                 </p>
-                {Description.length > 100 && (
+                {constantsData.description.length > 50 && (
                     <button onClick={() => setShowFullDescription(!showFullDescription)}>
                         {showFullDescription ? 'Toon Minder' : 'Toon Meer'}
                     </button>
@@ -142,7 +138,7 @@ return (
             </div>
 
             <div className="Age-div">
-                <h3 className="AgeRange">Leeftijdscategorie:</h3>
+                <h3 className="AgeRange">LeeftijdscategorieID:</h3>
                 <p className="Age-Text">{Allowed_AgeRangeId}</p>
             </div>
 

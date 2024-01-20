@@ -37,8 +37,8 @@ export function AddAdministrator()
         .then(result => console.log(result))
         .catch(error => console.error('Error:', error));
     }
-        const updateLogin = async () => {
-            await fetch(`http://localhost:5091/api/Login/register`, {
+        const updateLogin = () => {
+            fetch(`https://315d6kkf-5097.euw.devtunnels.ms/api/Login/register`, {
               method: 'POST',
               headers: {
                   'Content-type': 'application/json'

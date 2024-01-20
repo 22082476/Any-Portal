@@ -106,15 +106,24 @@ h2 {
     text-align: center;
     display: flex;
     align-items: center;
+    max-width: 100%;
 }
-.Description {
-    color: #000000;
-    margin-right: 10px;
-}
+
 .Description-Text {
-    text-align: center;
+    text-align: justify;
+    word-wrap: break-word;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.Description-Text,
+button {
+    margin-bottom: 10px;
+}
+
+.Des-Button {
     display: flex;
-    align-items: center;
+    justify-content: center;
 }
 
 .Pos-div {

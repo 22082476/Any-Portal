@@ -10,7 +10,7 @@ export function DeleteResearch(props) {
     
     const [loading, setLoading] = useState(true);
 
-    const researchId = 43;
+    const researchId = 44;
 
     const [showDisability_Type, setShowDisability_Type] = useState(false);
     const displayedDisabilities = showDisability_Type ? constantsData?.disability_Type : constantsData?.disability_Type?.slice(0, 3);
@@ -115,10 +115,12 @@ return (
                 <p className="Description-Text">
                     {showFullDescription ? constantsData.description : `${constantsData.description.slice(0, 100)}...`}
                 </p>
-                {constantsData.description.length > 50 && (
-                    <button onClick={() => setShowFullDescription(!showFullDescription)}>
-                        {showFullDescription ? 'Toon Minder' : 'Toon Meer'}
-                    </button>
+                {constantsData.description.length > 100 && (
+                    <div className="Des-Button">
+                        <button onClick={() => setShowFullDescription(!showFullDescription)}>
+                            {showFullDescription ? 'Toon Minder' : 'Toon Meer'}
+                        </button>
+                    </div>
                 )}
             </div>
 
@@ -138,8 +140,8 @@ return (
             </div>
 
             <div className="Age-div">
-                <h3 className="AgeRange">LeeftijdscategorieID:</h3>
-                <p className="Age-Text">{Allowed_AgeRangeId}</p>
+                <h3 className="AgeRange">Leeftijdscategorie ID:</h3>
+                <p className="Age-Text">{constantsData.allowed_AgeRangeId}</p>
             </div>
 
             <div className="button-div">

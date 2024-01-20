@@ -20,8 +20,6 @@ public class Research
 
     [Required]
     public string Type_Research { get; set; }
-
-    [Required]
     public string Link_Research { get; set; }
 
     public string Description { get; set; }

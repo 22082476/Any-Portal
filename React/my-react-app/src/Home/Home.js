@@ -22,7 +22,7 @@ export function Home (props)
             };
         }
 
-       ResearchTitle(sessionStorage.getItem("Role")); 
+       ResearchTitle(props.Role); 
     }, []);
     
     
@@ -30,7 +30,7 @@ export function Home (props)
         <div className="HomeScreen-div">
             <div className="HomeScreen-div-left">
                 <div className="Welcome-div">
-                    <h1>Welkom {props.Name}</h1>
+                    <h1>Welkom {props.Name === "Company" ? "bedrijf" : ""}{props.Name === "PanelMember" ? "panellid" : ""}{props.Name === "Admin" ? "admin" : ""}{props.Name === "Administrator" ? "beheerder" : ""}</h1>
                 </div>
                 <div className="News-div">
                     <h2>Nieuws</h2>
@@ -39,7 +39,7 @@ export function Home (props)
             <div className="Info-div">
                 <h2> {researchTitle} </h2>
                 <div>
-                    <HomeInfo Role="Admin"/>
+                    <HomeInfo Role={props.Role}/>
                 </div>
             </div>  
         </div>

@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export function Register(props) {
 
-  const [panelMember, setPanelMember] = useState({userId:uuidv4(), email:"", phoneNumber:"", firstName:"", lastName:"", ageId:1, postalCode:"", preferred_contact:"", availability:"", caretakerId: null});
+  const [panelMember, setPanelMember] = useState({userId:uuidv4(), email:"", phoneNumber:"", firstName:"", lastName:"", ageId:1, postalCode:"", preferred_contact:"", availability:"Niet", caretakerId: null});
   const [account, setAccount] = useState({userId:panelMember.userId, email:"", password:""});
   const [caretaker, setCaretaker] = useState(null);
   const [deleteCare, setDeleteCare] = useState(false);
@@ -73,8 +73,8 @@ export function Register(props) {
         <button className="BackButton" aria-label="Pagina sluiten" onClick={() => props.state(false)}>X</button>
         <h1>Register</h1>
         <div>
-          <form onSubmit={handleUpdate}>
-            <table>
+          <form onSubmit={() => handleUpdate()}>
+            <table className="register-table">
               <tr>
                 <td>
                   <label className="input-label" htmlFor="fname"><b>Voornaam</b></label>

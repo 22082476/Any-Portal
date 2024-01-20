@@ -12,12 +12,19 @@ export function AvailabilityDropDown(props) {
   const handleAvailability1Change = (e) => {
     const selectedValue = e.target.value;
     setAvailability1(selectedValue);
-
-    const updatedString = `${selectedValue === "Niet" ? "Niet" : `${selectedValue} t/m ${availability2}`}`;
-    props.update(updatedString);
-
-    // Als "Niet" is geselecteerd, verberg de tweede select
     setIsNot(selectedValue === "Niet");
+    
+    let updatedString = "Niet";
+
+    if(selectedValue === "Niet")
+    {
+      updatedString = "Niet";
+    }else
+    {
+      updatedString = availability1 + " t/m " + availability2;
+      
+    }
+    props.update(updatedString);
   };
 
   const handleAvailability2Change = (e) => {
@@ -34,7 +41,7 @@ export function AvailabilityDropDown(props) {
         id="availability1"
         aria-label="Beschikbaarheid vanaf"
         value={availability1}
-        onChange={handleAvailability1Change}
+        onChange={(e) => handleAvailability1Change(e)}
         className="inputfield dropdown-Availability"
         size={1}
       >
@@ -51,7 +58,7 @@ export function AvailabilityDropDown(props) {
             id="availability2"
             aria-label="Beschikbaarheid tot en met"
             value={availability2}
-            onChange={handleAvailability2Change}
+            onChange={(e) => handleAvailability2Change(e)}
             className="inputfield dropdown-Availability"
             size={1}
           >

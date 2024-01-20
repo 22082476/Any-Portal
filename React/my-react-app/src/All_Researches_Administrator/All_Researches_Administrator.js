@@ -19,7 +19,7 @@ export function AllResearches() {
     };
 
     fetchData();
-  }, []);
+  });
 
   const checkSearch = (event) => {
     setSearchText(event.target.value);
@@ -32,7 +32,7 @@ export function AllResearches() {
     : [];
 
   return (
-    <div className="Researchbox-div">
+    <div>
       <h1 className='Researchlist'>Alle Onderzoeken</h1>
       <label htmlFor="companySearch">Zoek op bedrijfsnaam:</label>
       <input

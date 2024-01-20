@@ -92,6 +92,15 @@ h1, h2, .input-label, label, .inputfield, textarea, p
     color: #000;
 }
 
+
+.inputfield label
+{
+    display: inline-block;
+    width: 50%;
+    color: #000;
+}
+
+
 .inputfield, textarea
 {
     padding: 1rem 0.5rem 1rem 0.5rem;

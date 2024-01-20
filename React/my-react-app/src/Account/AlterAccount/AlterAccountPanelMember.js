@@ -57,6 +57,7 @@ export function AlterAccountPanelMember(props) {
       .catch(error => {console.error('Error:', error); alert("Er is iets fout gegaan probeer het opnieuw!")});
 
     alert("wijzigingen opgeslagen");
+    location.reload();
     props.state(false);
   };
 

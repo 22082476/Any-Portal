@@ -8,16 +8,19 @@ export function HomeInfo (props)
         switch (Role) {
             case "PanelMember":
                 // return "https://315d6kkf-5177.euw.devtunnels.ms/PanelMember/";
-                return "https://315d6kkf-5177.euw.devtunnels.ms/PanelMember/";
+                return "https://315d6kkf-5177.euw.devtunnels.ms/Research/" + props.userId;
+                break;
             case "Company":
                 // return "https://315d6kkf-5177.euw.devtunnels.ms/Research/";
-                return "https://315d6kkf-5064.euw.devtunnels.ms/Research/";
-            case "Admin":
-            case "Administrator":
+                return "https://315d6kkf-5064.euw.devtunnels.ms/Research/" + props.userId;
+                break;
+            case "Administrator" || "Admin":
                 // return "https://315d6kkf-5177.euw.devtunnels.ms/Company/";
-                return "";
+                return "https://315d6kkf-5177.euw.devtunnels.ms/Company?validationFilter=true";
+                break;
             default:
-                return "https://315d6kkf-5177.euw.devtunnels.ms/Company/";
+                return "";
+                break;
         }
     }
     useEffect(() =>

@@ -125,6 +125,7 @@ public class ResearchController : ControllerBase{
 
 
     [HttpDelete]
+    [Route("Research/{id}")]
     public IActionResult DeleteResearch(int id){
         var research = _context.Research.Find(id);
         if (research == null){

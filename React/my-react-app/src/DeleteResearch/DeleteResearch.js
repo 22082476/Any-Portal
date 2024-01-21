@@ -67,7 +67,7 @@ export function DeleteResearch(props) {
 
     const handleDelete = async () => {
         try {
-            const response2 = await fetch(`http://localhost:5064/Research/${researchId}`, {
+            const response2 = await fetch(`http://localhost:5064/Research/Research/${researchId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

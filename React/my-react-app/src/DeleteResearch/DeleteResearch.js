@@ -7,8 +7,9 @@ export function DeleteResearch(props) {
     const navigate = useNavigate();
 
     const [constantsData, setConstantsData] = useState(null);
-    
     const [loading, setLoading] = useState(true);
+    const [deleteStatus, setDeleteStatus] = useState(null);
+    const [showConfirmationDialog, setShowConfirmationDialog] = useState(false);
 
     const researchId = 1;
 
@@ -57,6 +58,47 @@ export function DeleteResearch(props) {
   
       fetchData();
     }, []);
+
+    useEffect(() => {
+        if (deleteStatus === 'success') {
+            navigate('/');
+        }
+    }, [deleteStatus, navigate]);
+
+    const handleDelete = async () => {
+        try {
+            const response2 = await fetch(`http://localhost:5064/Research/${researchId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response2.ok) {
+                const errorMessage = await response2.text();
+                console.error('Error in DELETE request:', errorMessage);
+                throw new Error('Failed to delete research.');
+            }
+
+            setDeleteStatus('success');
+        } catch (error) {
+            console.error('Error:', error);
+            setDeleteStatus('error');
+        }
+    };
+
+    const showConfirmation = () => {
+        setShowConfirmationDialog(true);
+    };
+
+    const confirmDelete = () => {
+        handleDelete();
+        setShowConfirmationDialog(false);
+    };
+
+    const cancelDelete = () => {
+        setShowConfirmationDialog(false);
+    };
 
     if (loading) {
         return <div>Laden... Een ogenblik geduld.</div>;
@@ -148,9 +190,18 @@ return (
                 <button
                     className="WhiteButton"
                     aria-label="Delete"
-                    onClick={() => navigate('/')}>Verwijder
+                    onClick={showConfirmation}>
+                    Verwijder
                 </button>
             </div>
-    </div>
+
+            {showConfirmationDialog && (
+                <div className="confirmation-dialog">
+                    <p>Weet u zeker dat u wilt verwijderen?</p>
+                    <button onClick={confirmDelete}>Bevestigen</button>
+                    <button onClick={cancelDelete}>Annuleren</button>
+                </div>
+            )}
+        </div>
 );
 }

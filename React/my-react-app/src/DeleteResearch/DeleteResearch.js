@@ -10,7 +10,7 @@ export function DeleteResearch(props) {
     
     const [loading, setLoading] = useState(true);
 
-    const researchId = 44;
+    const researchId = 1;
 
     const [showDisability_Type, setShowDisability_Type] = useState(false);
     const displayedDisabilities = showDisability_Type ? constantsData?.disability_Type : constantsData?.disability_Type?.slice(0, 3);
@@ -25,7 +25,7 @@ export function DeleteResearch(props) {
     });
     const [showAllPostalCodes, setShowAllPostalCodes] = useState(false);
     
-    const Allowed_AgeRangeId = '';
+    const Allowed_AgeRange = '';
   
     useEffect(() => {
       const fetchData = async () => {
@@ -140,7 +140,7 @@ return (
             </div>
 
             <div className="Age-div">
-                <h3 className="AgeRange">Leeftijdscategorie ID:</h3>
+                <h3 className="AgeRange">Leeftijdscategorie:</h3>
                 <p className="Age-Text">{constantsData.allowed_AgeRangeId}</p>
             </div>
 

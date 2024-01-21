@@ -11,7 +11,7 @@ export function DeleteResearch(props) {
     const [deleteStatus, setDeleteStatus] = useState(null);
     const [showConfirmationDialog, setShowConfirmationDialog] = useState(false);
 
-    const researchId = 1;
+    const researchId = 4;
 
     const [showDisability_Type, setShowDisability_Type] = useState(false);
     const displayedDisabilities = showDisability_Type ? constantsData?.disability_Type : constantsData?.disability_Type?.slice(0, 3);

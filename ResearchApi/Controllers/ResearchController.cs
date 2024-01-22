@@ -67,8 +67,8 @@ public class ResearchController : ControllerBase{
 
     [HttpGet]
     [Route("ByParticipatedId/{Id}")]
-    public IActionResult GetAllParticipated(int Id){
-    var result = _context.Participants.Where(s => s.Id == Id).ToList();
+    public IActionResult GetAllParticipated(string Id){
+    var result = _context.Participants.Where(s => s.Id.Equals(Id));
 
         if(result == null){
             return NotFound();

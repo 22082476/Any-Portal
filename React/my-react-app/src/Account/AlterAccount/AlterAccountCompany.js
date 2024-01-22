@@ -34,6 +34,7 @@ export function AlterAccountCompany(props) {
     update();
 
     alert("wijzigingen opgeslagen");
+    location.reload();
     props.state(false)
   };
 

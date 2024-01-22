@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 
 export function PanelmemberResearches() {
-    const [researchList, setResearches] = useState(null);
+    const [researchList, setResearches] = useState([]);
     const [userData, setUserdata] = useState(null);
-    const [medicalData, setmedicalResponseData] = useState(null)
-    const [ParticipantData, setResearchParticipantData] = useState(null)
+    const [ParticipantData, setResearchParticipantData] = useState(null);
     const userId = sessionStorage.getItem("UserId");
   
     useEffect(() => {
@@ -19,7 +18,7 @@ export function PanelmemberResearches() {
         }
 
         try {
-            const researchParticipantResponse = await fetch('https://315d6kkf-5064.euw.devtunnels.ms/setResearchParticipantData/${userId}');
+            const researchParticipantResponse = await fetch('https://315d6kkf-5064.euw.devtunnels.ms/Research/ByParticipatedId/' + userId);
             const researchParticipantData = await researchParticipantResponse.json();
             setResearchParticipantData(researchParticipantData);
           } catch (error) {
@@ -27,7 +26,7 @@ export function PanelmemberResearches() {
           }
 
         try {
-            const userResponse = await fetch('https://315d6kkf-5177.euw.devtunnels.ms/${userId}');
+            const userResponse = await fetch('https://315d6kkf-5177.euw.devtunnels.ms/PanelMember/  ' + userId);
             const Userdata = await userResponse.json();
             setUserdata(Userdata);
           } catch (error) {
@@ -39,10 +38,10 @@ export function PanelmemberResearches() {
       fetchData();
     }, []);
 
-    const filteredResearchList = researchList
-    ? researchList.filter(): []; 
+    const filteredResearchList = []; 
 
     function ParticipantDataLoop(){
+      if( ParticipantData != null){
         for (let i = 0; i < ParticipantData.length; i++){
             for(let j = 0; j < researchList.length; j++){
                 if(ParticipantData[i].ResearchId == researchList[j].rcode){
@@ -51,21 +50,16 @@ export function PanelmemberResearches() {
             }
         }
     }
+  }
     ParticipantDataLoop();
    
 
 
 
     return (
-        <div className="Researchbox-div">
+        <div>
           <h1 className='Researchlist'>Alle Onderzoeken</h1>
-          <label htmlFor="companySearch">Zoek op bedrijfsnaam:</label>
-          <input
-            type="text"
-            id="companySearch"
-            value={searchText}
-            onChange={checkSearch}
-          />
+    
           {filteredResearchList.length > 0 ? (
             <table className='Researchlist'>   {/* Makes the table*/}
             <thead className='Researchlist'> {/*Head elements table*/}

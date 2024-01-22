@@ -60,7 +60,6 @@ export function AccountPanelMember(props) {
         ) : (
         <p>Loading...</p>
       )}
-      {console.log(medicalData)}
       {medicalData ? (
         <div>
           <h2>Medische gegevens</h2>

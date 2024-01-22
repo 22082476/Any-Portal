@@ -38,8 +38,8 @@ export function Logout ()
         <div className="Logout-div">
             <h2 className='TitleLogout'>Weet u zeker dat u wilt uitloggen?</h2>
             <div className='ButtonContainer'>
-            <button className='LogoutButton' onClick={() =>  navigate('/')}>Annuleren</button>
-            <button className='CancelButton'onClick={async () =>  { await Logout();  navigate('/'); location.reload()}}>Uitloggen</button>
+            <button className='BlueButton' onClick={() =>  navigate('/')}>Annuleren</button>
+            <button className='WhiteButton'onClick={async () =>  { await Logout();  navigate('/'); location.reload()}}>Uitloggen</button>
             </div>
         </div>
     </div>

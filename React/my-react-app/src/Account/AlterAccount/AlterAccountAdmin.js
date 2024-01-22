@@ -29,6 +29,7 @@ export function AlterAccountAdmin(props)
     update();
 
     alert("wijzigingen opgeslagen");
+    location.reload();
     props.state(false)
   };
 

@@ -249,7 +249,7 @@ export const UpdateResearch = (props) => {
 
       <div className='Buttoncontainer'>
         <button className='WhiteButton' onClick={() => {props.update(null);}} >Annuleren</button>
-        <button className='BlueButton' onClick={() => { handleUpdate(); handleSavePostalCodeRanges(); handleFinalDelete(); props.update(null); alert("De wijzigingen zijn opgeslagen") }}>Opslaan</button>
+        <button className='BlueButton' onClick={() => { handleUpdate(); handleSavePostalCodeRanges(); handleFinalDelete();  alert("De wijzigingen zijn opgeslagen"); location.reload(); props.update(null); }}>Opslaan</button>
       </div>
     </div>
   );

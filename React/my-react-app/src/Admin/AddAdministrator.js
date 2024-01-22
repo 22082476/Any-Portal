@@ -24,28 +24,29 @@ export function AddAdministrator()
             email: administrator.email,
             password: password,
         }
-
-    const update = () => {
-      fetch(`https://315d6kkf-5177.euw.devtunnels.ms/Administrator`, {
+        console.log(data);
+    const update = async () => {
+      await fetch(`https://315d6kkf-5177.euw.devtunnels.ms/Administrator`, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
         },
         body: JSON.stringify(data)
       })
-        .then(response => response.json())
+        .then( async response => await response.json())
         .then(result => console.log(result))
         .catch(error => console.error('Error:', error));
-    }
-        const updateLogin = async () => {
-            await fetch(`http://localhost:5091/api/Login/register`, {
+    };
+    
+        const updateLogin =  async () => {
+           await fetch(`https://315d6kkf-5097.euw.devtunnels.ms/api/Login/register`, {
               method: 'POST',
               headers: {
                   'Content-type': 'application/json'
               },
               body: JSON.stringify(adminAccount)
             })
-              .then(response => response.json())
+              .then(async response => await response.json())
               .then(result => console.log(result))
               .catch(error => console.error('Error:', error));
           
@@ -53,7 +54,7 @@ export function AddAdministrator()
 
     update();
     updateLogin();
-    window.alert("uw nieuwe wachtwoord is" + adminAccount.password);
+    window.alert("uw nieuwe wachtwoord is " + adminAccount.password);
     
     navigate("/Admin");
   };
@@ -64,7 +65,7 @@ export function AddAdministrator()
             <button className="BackButton" aria-label="Pagina sluiten" onClick={() =>  navigate("/Admin")}>X</button>
             <h1>Beheerder toevoegen</h1>
             <p className="blue-title">De invoervelden met een * zijn verplicht</p>
-            <form onSubmit={() => handleUpdate()}>
+            <form onSubmit={handleUpdate}>
                 <table className="alterCompany-table">
                     <tr>
                         <td>

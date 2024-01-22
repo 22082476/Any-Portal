@@ -4,6 +4,7 @@ import { App } from '../App';
 import { useState, useEffect } from "react";
 import { Register } from './RegisterAccount';
 import { LoginForm } from './LoginForm';
+import { SelectRegisterType } from './SelectRegisterType';
     
 
     
@@ -26,9 +27,9 @@ export function LoginPage() {
         ) : (
           <>
             {isRegister ? (
-              <Register state={changeIsRegister}/>
+              <SelectRegisterType state={changeIsRegister} />   
             ) : (
-              <LoginForm state={changeIsRegister} />
+              <LoginForm state={changeIsRegister}/>
             )}
           </>
         )}

@@ -16,7 +16,8 @@ export function HeaderNav()
             <div className='nav'>
                 <a className="nav-link" href="#/">Thuispagina</a>
                 <a className="nav-link" href="#/Onderzoek">Onderzoek</a>
-                {role === "Administrator" || role === "Admin" && <a className="nav-link" href="#/Administrator">Gebruikers</a>}
+                {role === "Administrator" && <a className="nav-link" href="#/Administrator">Gebruikers</a>}
+                {role === "Admin" && <a className="nav-link" href="#/Administrator">Gebruikers</a>}
                 {role === "Admin" && <a className="nav-link" href="#/Admin">Admin</a>}
                 <a className="nav-link" href="#/Account">Account</a>
                 <a className="nav-link" href="#/Uitloggen">Uitloggen</a>

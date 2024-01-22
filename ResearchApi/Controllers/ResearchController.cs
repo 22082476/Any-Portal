@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
-
 
 [ApiController]
 [Route("[controller]")]
@@ -24,6 +22,28 @@ public class ResearchController : ControllerBase{
             return Ok(result);
     }
 
+    [HttpGet]
+    [Route("ByPostalCode/{researchId}")]
+    public IActionResult GetPostalCodes(int researchId){
+    var result = _context.PostalCodeRanges.Where(s => s.ResearchId == researchId);
+       
+        if(result == null){
+            return NotFound();
+        }
+            return Ok(result);
+    }
+    
+    [HttpGet]
+    [Route("ByAgeRange/{researchId}")]
+    public IActionResult GetAllowedAgeRanges(int researchId){
+    var result = _context.allowed_AgeRanges.SingleOrDefault(s => s.ResearchId == researchId);
+       
+        if(result == null){
+            return NotFound();
+        }
+            return Ok(result);
+    }
+ 
  
     [HttpGet]
     [Route("ByCompanyId/{companyId}")]
@@ -38,6 +58,17 @@ public class ResearchController : ControllerBase{
     [HttpGet]
     public IActionResult GetAllResearch(){
     var result = _context.Research.ToList();
+
+        if(result == null){
+            return NotFound();
+        }
+            return Ok(result);
+    }
+
+    [HttpGet]
+    [Route("ByParticipatedId/{Id}")]
+    public IActionResult GetAllParticipated(int Id){
+    var result = _context.Participants.Where(s => s.Id == Id).ToList();
 
         if(result == null){
             return NotFound();
@@ -96,7 +127,7 @@ public class ResearchController : ControllerBase{
         try{
             _context.allowed_AgeRanges.Add(allowed_AgeRange);
             _context.SaveChanges();
-            return Ok(new { Message = "Agerange created successfully", ResearchId = allowed_AgeRange.Allowed_AgeRangeId});
+            return Ok(new { Message = "AgeRange created successfully", ResearchId = allowed_AgeRange.Allowed_AgeRangeId});
         }
 
       
@@ -107,6 +138,7 @@ public class ResearchController : ControllerBase{
     
 
     [HttpPost]
+    [Route("PostalCode_Range")]
     public IActionResult CreatePostalcodeRange(PostalCodeRange postalCodeRange){
 
         if(postalCodeRange == null){
@@ -125,6 +157,7 @@ public class ResearchController : ControllerBase{
 
 
     [HttpDelete]
+    [Route("DeleteResearch")]
     public IActionResult DeleteResearch(int id){
         var research = _context.Research.Find(id);
         if (research == null){
@@ -144,48 +177,104 @@ public class ResearchController : ControllerBase{
             return BadRequest();
         }
     }
-   
 
-   [HttpPut]
-   [Route("Research/{id}")]
-    public IActionResult UpdateResearch(int id, Research updatedResearch){
-        var existingResearch = _context.Research.FirstOrDefault(r => r.Rcode == id);
+     [HttpDelete]
+     [Route("DeletePostalcode")]
 
-        if (existingResearch == null){
-        return NotFound();
-        }
-
-        if (existingResearch.Active!){
-            existingResearch.Title = updatedResearch.Title;
-            existingResearch.Compensation = updatedResearch.Compensation;
-            existingResearch.Type_Research = updatedResearch.Type_Research;
-            existingResearch.Link_Research = updatedResearch.Link_Research;
-            existingResearch.Disability_Type = updatedResearch.Disability_Type;
-
-            _context.SaveChanges();
-            return NoContent();
-        }
-
-        return BadRequest();
-}
-
-
-[HttpPut]
-[Route("Active/{id}")]
-    public IActionResult SetActive(int id){
-        var research = _context.Research.FirstOrDefault(r => r.Rcode == id);
-
-        if (research == null){
+    public IActionResult DeletePostalcode(int id){
+        var postalCode = _context.PostalCodeRanges.SingleOrDefault(R => R.Id == id);
+        if (postalCode == null){
             return NotFound();
         }
 
-             research.Active = true;
-            _context.SaveChanges();
+        _context.PostalCodeRanges.Remove(postalCode);
+        
+        try{
+        _context.SaveChanges();
 
-            return Ok(new { Message = "Research updated successfully", ResearchId = research.Rcode });
+            return Ok();
+        }
+        
+        catch(DbUpdateException e){
+            System.Console.WriteLine(e);
+            return BadRequest();
+        }
+    }
+   
+[HttpPut]
+[Route("Research/{id}")]
+public IActionResult UpdateResearch(int id, [FromBody] Research updatedResearch)
+{
+    var existingResearch = _context.Research.FirstOrDefault(r => r.Rcode == id);
+
+    if (existingResearch == null)
+    {
+        return NotFound();
+    }
+
+    if (!existingResearch.Active)
+    {
+        existingResearch.Title = updatedResearch.Title;
+        existingResearch.Compensation = updatedResearch.Compensation;
+        existingResearch.Type_Research = updatedResearch.Type_Research;
+        existingResearch.Link_Research = updatedResearch.Link_Research;
+        existingResearch.Disability_Type = updatedResearch.Disability_Type;
+        existingResearch.Active = updatedResearch.Active;
+        existingResearch.Description = updatedResearch.Description;
+        _context.SaveChanges();
+        return Ok();
+    }
+
+    return BadRequest();
 }
 
+[HttpPut]
+[Route("UpdateAllowed_AgeRange/{id}")]
+public IActionResult UpdateAllowed_AgeRange(int id, Allowed_AgeRange updatedAllowed_AgeRange)
+{
+    var existingAgeRange = _context.allowed_AgeRanges.FirstOrDefault(a => a.Id == id);
 
+    if (existingAgeRange == null)
+    {
+        return NotFound();
+    }
+
+    try
+    {
+        existingAgeRange.Allowed_AgeRangeId = updatedAllowed_AgeRange.Allowed_AgeRangeId;
+        _context.SaveChanges();
+        return Ok(new {Message = "AgeRange updated"});
+    }
+    catch (Exception ex)
+    {
+        return BadRequest(new { Message = "Failed to update AgeRange", Error = ex.Message });
+    }
+}
+
+[HttpPut]
+[Route("UpdatePostalCodeRange/{id}")]
+public IActionResult UpdatePostalCodeRange(int id, PostalCodeRange updatedPostalCodeRange)
+{
+    var existingPostalCodeRange = _context.PostalCodeRanges.SingleOrDefault(p => p.Id == id);
+
+    if (existingPostalCodeRange == null)
+    {
+        return Ok(new {Message = "PostalcodeRange updated"});
+    }
+
+    try
+    {
+        existingPostalCodeRange.From_Postalcode = updatedPostalCodeRange.From_Postalcode;
+        existingPostalCodeRange.Till_Postalcode = updatedPostalCodeRange.Till_Postalcode;
+
+        _context.SaveChanges();
+        return NoContent();
+    }
+    catch (Exception ex)
+    {
+        return BadRequest(new { Message = "Failed to update PostalCodeRange", Error = ex.Message });
+    }
+}
 }
 
 

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace UserApi.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20240117190641_1")]
-    partial class _1
+    [Migration("20240118160829_doemaariets")]
+    partial class doemaariets
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

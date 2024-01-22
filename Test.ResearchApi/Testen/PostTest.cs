@@ -10,7 +10,7 @@ public class TestPostfunction : IClassFixture<ResearchFixture>{
     [Fact]
     public void Post_Research_WithAllNecessaryInformation(){
         var controller = new ResearchController(_fixture.Context);
-        Research research = new Research(){Title = "Titel", Compensation = 100.0m, Type_Research = "Type", Link_Research = "Link", Company = "Company", CompanyId= "1"};
+        Research research = new Research(){Title = "Titel", Compensation = 100.0m, Type_Research = "Type", Link_Research = "Link", Company = "Company", CompanyId= "1", Description = ""};
         var result = controller.CreateResearch(research);
          Assert.IsType<OkObjectResult>(result);
 
@@ -19,7 +19,7 @@ public class TestPostfunction : IClassFixture<ResearchFixture>{
     [Fact]
     public void Post_Research_WithAllInformation(){
         var controller = new ResearchController(_fixture.Context);
-        Research research = new Research(){Active = true, Title = "Titel", Compensation = 100.0m, Type_Research = "Type", Link_Research = "Link",  Disability_Type = new List<string>(){"a", "b"}, Company = "Company", CompanyId = "2"};
+        Research research = new Research(){Active = true, Title = "Titel", Compensation = 100.0m, Type_Research = "Type", Link_Research = "Link",  Disability_Type = new List<string>(){"a", "b"}, Company = "Company", CompanyId = "2", Description = ""};
         var result = controller.CreateResearch(research);
          Assert.IsType<OkObjectResult>(result);
 

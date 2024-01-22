@@ -1,6 +1,6 @@
 import './LoginStyle.css';
 import { ChatBubble } from '../Chat/ChatBubble';
-import App from '../App';
+import { App } from '../App';
 import { useState, useEffect } from "react";
 import { Register } from './RegisterAccount';
 import { LoginForm } from './LoginForm';
@@ -12,6 +12,8 @@ export function LoginPage() {
     const [isRegister, setIsRegister] = useState(false);
 
     const changeIsRegister = (e) => setIsRegister(e);
+
+    console.log(sessionStorage.getItem("UserId"), sessionStorage.getItem("Role"));
   
     return (
       <>

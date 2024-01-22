@@ -13,7 +13,7 @@ export function Administrator () {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:5177/Company/");
+                const response = await fetch("https://315d6kkf-5177.euw.devtunnels.ms/Company/");
                 const responseData = await response.json();
                 setCompanies(responseData);
             } catch (error) {
@@ -21,7 +21,7 @@ export function Administrator () {
             }
 
             try {
-                const response = await fetch("http://localhost:5177/PanelMember/");
+                const response = await fetch("https://315d6kkf-5177.euw.devtunnels.ms/PanelMember/");
                 const responseData = await response.json();
                 setPanelMembers(responseData);
             } catch (error) {

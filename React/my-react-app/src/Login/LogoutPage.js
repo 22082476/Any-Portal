@@ -9,7 +9,7 @@ export function Logout ()
     async function Logout(){
             
         try {
-            const response = await fetch("http://localhost:5097/api/Login/Logout", {
+            const response = await fetch("https://315d6kkf-5097.euw.devtunnels.ms/api/Login/Logout", {
                 method: "post",
                 headers: { 'Content-type': 'application/json'},
             });
@@ -38,8 +38,8 @@ export function Logout ()
         <div className="Logout-div">
             <h2 className='TitleLogout'>Weet u zeker dat u wilt uitloggen?</h2>
             <div className='ButtonContainer'>
-            <button className='LogoutButton' onClick={() =>  navigate('/')}>Annuleren</button>
-            <button className='CancelButton'onClick={async () =>  { await Logout();  navigate('/'); location.reload()}}>Uitloggen</button>
+            <button className='BlueButton' onClick={() =>  navigate('/')}>Annuleren</button>
+            <button className='WhiteButton'onClick={async () =>  { await Logout();  navigate('/'); location.reload()}}>Uitloggen</button>
             </div>
         </div>
     </div>

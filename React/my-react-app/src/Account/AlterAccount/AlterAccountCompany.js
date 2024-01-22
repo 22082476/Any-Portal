@@ -11,7 +11,7 @@ export function AlterAccountCompany(props) {
   const handleUpdate = () => {
     console.log(props.userId);
     const update = () => {
-      fetch(`http://localhost:5177/Company`, {
+      fetch(`https://315d6kkf-5177.euw.devtunnels.ms/Company`, {
         method: 'PUT',
         headers: {
             'Content-type': 'application/json'
@@ -32,6 +32,9 @@ export function AlterAccountCompany(props) {
     };
 
     update();
+
+    alert("wijzigingen opgeslagen");
+    location.reload();
     props.state(false)
   };
 

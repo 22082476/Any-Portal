@@ -5,7 +5,7 @@
 namespace ResearchApi.Migrations
 {
     /// <inheritdoc />
-    public partial class een : Migration
+    public partial class _1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -66,6 +66,7 @@ namespace ResearchApi.Migrations
                     Compensation = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Type_Research = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Link_Research = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Disability_Type = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

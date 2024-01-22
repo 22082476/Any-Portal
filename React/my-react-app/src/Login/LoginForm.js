@@ -20,10 +20,10 @@ export function LoginForm(props) {
     };
         
         async function Login(){
-            
+            sessionStorage.clear();
             try {
-                const response = await fetch("http://localhost:5097/api/Login/Login", {
-                    method: "post",
+                const response = await fetch("https://315d6kkf-5097.euw.devtunnels.ms/api/Login/login", {
+                    method: "POST",
                     headers: { 'Content-type': 'application/json' },
                     body: JSON.stringify(loginData)
                 });
@@ -35,15 +35,12 @@ export function LoginForm(props) {
                     return;
                 }
                 const data = await response.json();
-                sessionStorage.setItem("UserId", data.userId)
+                await sessionStorage.setItem("UserId", data.userId);
             } catch (error) {
                 console.error('Error:', error);
             }
-
-                
-
                 try {
-                    const response2 = await fetch(`http://localhost:5177/Role/${sessionStorage.getItem("UserId")}`, {
+                    const response2 = await fetch('https://315d6kkf-5177.euw.devtunnels.ms/Role/' + sessionStorage.getItem("UserId"), {
                         method: "GET",
                         headers: { 'Content-type': 'application/text' },
                     });
@@ -59,7 +56,7 @@ export function LoginForm(props) {
             } catch (error2) {
                 console.error('Error:', error2);
             }
-        }
+    }
 
   return (
     // Render the login form when not logged in
@@ -70,33 +67,33 @@ export function LoginForm(props) {
         </div>
         <div className="Login-div">
             <form onSubmit={ handleLoginSubmit}>
-                <h2>Login</h2>
+                <h2>Inloggen</h2>
                 <table>
                 <tbody>
                     <tr>
                     <td>
-                        <label className='input-label'>Username:</label>
+                        <label className='input-label' htmlFor='email'>Email</label>
                     </td>
                     <td>
-                        <input className='inputfield' type='text' onChange={(e) => setLoginData({...loginData, userName: e.target.value})} />
+                        <input className='inputfield' id='email' type='text' onChange={(e) => setLoginData({...loginData, userName: e.target.value})} />
                     </td>
                     </tr>
                     <tr>
                     <td>
-                        <label className='input-label'>Password:</label>
+                        <label className='input-label' htmlFor='password'>Wachtwoord</label>
                     </td>
                     <td>
-                        <input className='inputfield' type='password' onChange={(e) => setLoginData({...loginData, password: e.target.value})} />
+                        <input className='inputfield' type='password' id='password' onChange={(e) => setLoginData({...loginData, password: e.target.value})} />
                     </td>
                     </tr>
                 </tbody>
                 </table>
                 <div className='ButtonContainer'>
-                <button className='WhiteButton' aria-label="Go to register" onClick={() => props.state(true)}>Register</button>
+                <button className='WhiteButton' aria-label="Registeren" onClick={() => props.state(true)}>Registeren</button>
                 <input type='submit' className='BlueButton' value={"Inloggen"} />
                 </div>
             </form>
         </div>
     </div>
-  )
-};
+  );
+}

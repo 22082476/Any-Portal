@@ -8,16 +8,19 @@ export function HomeInfo (props)
         switch (Role) {
             case "PanelMember":
                 // return "https://315d6kkf-5177.euw.devtunnels.ms/PanelMember/";
-                return "http://localhost:5177/PanelMember/";
+                return "https://315d6kkf-5177.euw.devtunnels.ms/Research/" + props.userId;
+                break;
             case "Company":
                 // return "https://315d6kkf-5177.euw.devtunnels.ms/Research/";
-                return "http://localhost:5086/Research/";
-            case "Admin":
-            case "Administrator":
+                return "https://315d6kkf-5064.euw.devtunnels.ms/Research/" + props.userId;
+                break;
+            case "Administrator" || "Admin":
                 // return "https://315d6kkf-5177.euw.devtunnels.ms/Company/";
-                return "";
+                return "https://315d6kkf-5177.euw.devtunnels.ms/Company?validationFilter=true";
+                break;
             default:
-                return "http://localhost:5177/Company/";
+                return "";
+                break;
         }
     }
     useEffect(() =>
@@ -37,19 +40,19 @@ export function HomeInfo (props)
         (
             <div className="Table-div">
                 {props.Role === "PanelMember" ? "" : ""}
-                {props.Role === "Company" ? <table>{data.map(obj => <tr key={obj.rcode}><td>obj.title</td><td></td></tr>)}</table> : ""}
-                {props.Role === "Administrator" || "Admin" ? 
+                {props.Role === "Company" ? <table className="HomeInfo-table"><tr><th>Onderzoek</th><th>Details</th></tr>{data.map(obj => <tr key={obj.rcode}><td className="table-data"><b>{obj.title}</b></td><td><button className="detail-button" onClick={<></>}><b>Details</b></button></td></tr>)}</table> : ""}
+                {props.Role === "Administrator" || props.Role ===  "Admin" ? (
                 <table className="HomeInfo-table">
                     <tr>
-                        <th className="table-heading"><h3>Bedrijfsnaam</h3></th>
-                        <th className="table-heading"><h3>Website</h3></th>
+                        <th className="table-heading">Bedrijfsnaam</th>
+                        <th className="table-heading">Website</th>
                     </tr>
                         {data.map(company => 
-                        <tr key={company.userId}>
-                            <td>{company.companyName}</td>
-                            <td><a href={company.website}>{company.companyName}</a></td>
-                        </tr>)}
-                </table> 
+                            <tr key={company.userId}>
+                                <td>{company.companyName}</td>
+                                <td><a href={company.website}>{company.companyName}</a></td>
+                            </tr>)}
+                </table>) 
                 : 
                 ""}
             </div>

@@ -1,15 +1,3 @@
-.Companybox-div {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column; 
-  margin: 0 25vw;
-  padding: 1rem;
-  box-shadow: 3px 3px 10px rgba(185, 185, 185), -3px 3px 10px rgba(185, 185, 185), 0 3px 10px rgba(185, 185, 185);
-  border-radius: 25px;
-  overflow-y: auto;
-}
-
 .Researchlist {
   width: 80%;
   margin: auto;
@@ -50,4 +38,21 @@
 
 .Createbutton:active {
   background: #305e56;
+}
+.Buttongrey {
+  width: 250px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 1px solid #FFF;
+  background: lightgray;
+  color: #545454;
+  text-align: center;
+  font-family: Arial;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  cursor: pointer;
 }

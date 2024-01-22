@@ -17,8 +17,16 @@ export function AddAdministrator()
             isAdmin: administrator.isAdmin
         }
 
+        var newPassword = uuidv4();
+        var password = newPassword.slice(0,6)+ "Q!";
+        const adminAccount = {
+            userId: administrator.userId,
+            email: administrator.email,
+            password: password,
+        }
+
     const update = () => {
-      fetch(`http://localhost:5177/Administrator`, {
+      fetch(`https://315d6kkf-5177.euw.devtunnels.ms/Administrator`, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
@@ -28,9 +36,24 @@ export function AddAdministrator()
         .then(response => response.json())
         .then(result => console.log(result))
         .catch(error => console.error('Error:', error));
+    }
+        const updateLogin = () => {
+            fetch(`https://315d6kkf-5097.euw.devtunnels.ms/api/Login/register`, {
+              method: 'POST',
+              headers: {
+                  'Content-type': 'application/json'
+              },
+              body: JSON.stringify(adminAccount)
+            })
+              .then(response => response.json())
+              .then(result => console.log(result))
+              .catch(error => console.error('Error:', error));
+          
     };
 
     update();
+    updateLogin();
+    window.alert("uw nieuwe wachtwoord is" + adminAccount.password);
     
     navigate("/Admin");
   };

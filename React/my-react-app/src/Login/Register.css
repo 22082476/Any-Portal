@@ -65,7 +65,7 @@ h1, h2, .input-label, label, .inputfield, textarea, p
 }
 
         
-.button-div
+.ButtonContainer
 {
     display: flex;
     justify-content: space-evenly;
@@ -98,7 +98,7 @@ h1, h2, .input-label, label, .inputfield, textarea, p
     color: #000;
 }
 
-label 
+.ben-label
 { 
     display: inline-block;
     width: 50%;
@@ -112,7 +112,7 @@ textarea
     resize: none;
 }
 
-table
+.register-table
 {
     width: 50vw;
 }

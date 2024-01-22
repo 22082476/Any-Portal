@@ -47,15 +47,17 @@ export function AlterAccountPanelMember(props) {
 
     console.log(data);
 
-    fetch('http://localhost:5177/PanelMember', {
+    fetch('https://315d6kkf-5177.euw.devtunnels.ms/PanelMember', {
       method: 'PUT',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify(data),
     })
       .then(response => response.json())
       .then(result => console.log(result))
-      .catch(error => console.error('Error:', error));
+      .catch(error => {console.error('Error:', error); alert("Er is iets fout gegaan probeer het opnieuw!")});
 
+    alert("wijzigingen opgeslagen");
+    location.reload();
     props.state(false);
   };
 

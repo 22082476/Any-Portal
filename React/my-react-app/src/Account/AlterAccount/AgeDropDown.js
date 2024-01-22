@@ -6,7 +6,7 @@ export function AgeDropDown(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5177/UserData/Ages");
+        const response = await fetch("https://315d6kkf-5177.euw.devtunnels.ms/UserData/Ages");
         const responseData = await response.json();
         setAges(responseData);
       } catch (error) {

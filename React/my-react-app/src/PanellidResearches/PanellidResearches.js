@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 
 export function PanelmemberResearches() {
     const [researchList, setResearches] = useState(null);
     const [userData, setUserdata] = useState(null);
-    const [medicalData, setmedicalResponseData] = useState(null)
-    const [ParticipantData, setResearchParticipantData] = useState(null)
+    const [medicalData, setmedicalResponseData] = useState(null);
+    const [ParticipantData, setResearchParticipantData] = useState(null);
     const userId = sessionStorage.getItem("UserId");
   
     useEffect(() => {

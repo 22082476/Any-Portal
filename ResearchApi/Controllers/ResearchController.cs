@@ -276,8 +276,3 @@ public IActionResult UpdatePostalCodeRange(int id, PostalCodeRange updatedPostal
     }
 }
 }
-
-
-    
-
-

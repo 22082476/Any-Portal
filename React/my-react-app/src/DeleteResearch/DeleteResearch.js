@@ -26,7 +26,7 @@ export function DeleteResearch(props) {
     });
     const [showAllPostalCodes, setShowAllPostalCodes] = useState(false);
     
-    const Allowed_AgeRange = '';
+    const Allowed_AgeRange = 0;
   
     useEffect(() => {
       const fetchData = async () => {

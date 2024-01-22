@@ -67,9 +67,13 @@ h2 {
 }
 
 .Type-D-div {
+    text-align: center;
+    display: flex;
+    align-items: center;
 }
 .TypeDisability {
     color: #000000;
+    margin-right: 10px;
 }
 
 .Type-R-div {

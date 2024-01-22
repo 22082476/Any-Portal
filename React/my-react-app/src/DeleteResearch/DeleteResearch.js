@@ -18,8 +18,8 @@ export function DeleteResearch(props) {
     
     const [showFullDescription, setShowFullDescription] = useState(false);
     
-    const From_Postalcode = [];
-    const Till_Postalcode = [];
+    const From_Postalcode = []; //Test array but its supposed to be string
+    const Till_Postalcode = []; //Test array but its supposed to be string
     const postalCodeRanges = From_Postalcode.map((from, index) => {
       const till = Till_Postalcode[index];
       return `${from} - ${till}`;
@@ -118,17 +118,17 @@ return (
             <h2>Gekozen Onderzoek </h2>
 
             <div className="Name-R-div">
-                <h3 className="NameResearch">Onderzoeknaam:</h3>
+                <label className="NameResearch">Onderzoeknaam:</label>
                 <p className="Name-R-Text">{constantsData.title}</p>
             </div>
 
             <div className="Com-div">
-                <h3 className="Compensation">Compensatie in euro's:</h3>
+                <label className="Compensation">Compensatie in euro's:</label>
                 <p className="Com-Text">{constantsData.compensation}</p>
             </div>
 
             <div className="Type-D-div">
-                <h3 className="TypeDisability">Type Beperking:</h3>
+                <label className="TypeDisability">Type Beperking:</label>
                     <ul>
                     {displayedDisabilities !== null && displayedDisabilities.map((disability_Type, index) => (
                         <li key={index}>{disability_Type}</li>
@@ -143,17 +143,17 @@ return (
             </div>
 
             <div className="Type-R-div">
-                <h3 className="TypeResearch">Onderzoeksoort:</h3>
+                <label className="TypeResearch">Onderzoeksoort:</label>
                 <p className="Type-R-Text">{constantsData.type_Research}</p>
             </div>
 
             <div className="Link-R-div">
-                <h3 className="LinkResearch">Link:</h3>
+                <label className="LinkResearch">Link:</label>
                 <p className="Link-R-Text">{constantsData.link_Research}</p>
             </div>
 
             <div className="Des-div">
-                <h3 className="Description">Beschrijving:</h3>
+                <label className="Description">Beschrijving:</label>
                 <p className="Description-Text">
                     {showFullDescription ? constantsData.description : `${constantsData.description.slice(0, 100)}...`}
                 </p>
@@ -167,7 +167,7 @@ return (
             </div>
 
             <div className="Pos-div">
-                <h3 className="Postalcode">Postcode range's 'VAN - TOT':</h3>
+                <label className="Postalcode">Postcode range's 'VAN - TOT':</label>
                 <ul>
                     {showAllPostalCodes
                         ? postalCodeRanges.map((code, index) => <li key={index}>{code}</li>)
@@ -182,7 +182,7 @@ return (
             </div>
 
             <div className="Age-div">
-                <h3 className="AgeRange">Leeftijdscategorie:</h3>
+                <label className="AgeRange">Leeftijdscategorie:</label>
                 <p className="Age-Text">{constantsData.allowed_AgeRangeId}</p>
             </div>
 

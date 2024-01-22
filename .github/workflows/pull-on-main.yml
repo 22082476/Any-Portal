@@ -71,11 +71,6 @@ jobs:
           cd Test.ChatApi &&
           dotnet test 
 
-      - name: Run Test LoginApi
-        run: 
-          cd Test.LoginApi &&
-          dotnet test 
-
       - name: Run Test MedicalApi
         run: 
           cd Test.MedicalApi &&

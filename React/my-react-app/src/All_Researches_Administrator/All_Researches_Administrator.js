@@ -10,7 +10,7 @@ export function AllResearches() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5064/Research");
+        const response = await fetch("https://315d6kkf-5064.euw.devtunnels.ms/Research");
         const responseData = await response.json();
         setResearches(responseData);
       } catch (error) {
@@ -19,7 +19,7 @@ export function AllResearches() {
     };
 
     fetchData();
-  }, []);
+  });
 
   const checkSearch = (event) => {
     setSearchText(event.target.value);
@@ -32,8 +32,8 @@ export function AllResearches() {
     : [];
 
   return (
-    <div className="Researchbox-div">
-      <h2 className='Researchlist'>Alle Onderzoeken</h2>
+    <div>
+      <h1 className='Researchlist'>Alle Onderzoeken</h1>
       <label htmlFor="companySearch">Zoek op bedrijfsnaam:</label>
       <input
         type="text"
@@ -47,7 +47,7 @@ export function AllResearches() {
           <tr className='Researchlist'> {/* Makes a row in the head for multiple head names*/}
               <th className='Researchlist'>Titel</th>
               <th className='Researchlist'>Bedrijf</th>
-              <th className='Researchlist'>Actief</th>
+              <th className='Researchlist'>Status</th>
             </tr>
           </thead>
           <tbody> {/*Table body*/}
@@ -59,7 +59,7 @@ export function AllResearches() {
                   {research.active ? (
                     <img className = "ResearchPicture"
                       src={Vinkje}
-                      alt="vActief"
+                      alt="Actief"
                     />
                   ) : (
                     <img className = "ResearchPicture"

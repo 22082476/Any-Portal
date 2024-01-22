@@ -19,7 +19,7 @@ public class TestAdministratorController_getOwn : IClassFixture<AdminFixture>
         //Arrange
         var mock = new Mock<ILog>();
         var controller = new AdministratorController (_fixture.Context, mock.Object);
-        var dataObject = new Administrator { UserId = "userId", Email = "test@mail.nl", FirstName = "Firstname", LastName = "Lastname", IsAdmin = false };
+        var dataObject = new Administrator { UserId = "userId", Email = "test@mail.nl", FirstName = "Firstname", LastName = "Lastname", PhoneNumber = "+31 606060", IsAdmin = false };
         
         //Act
         var actionResult = controller.GetOwn("userId").GetAwaiter().GetResult();

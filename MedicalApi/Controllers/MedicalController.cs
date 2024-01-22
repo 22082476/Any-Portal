@@ -1,80 +1,172 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace MedicalApi.Controllers;
-
-// ApiController attribute indicates that this class is an API controller.
-// Route attribute sets the base route for actions in this controller.
 [ApiController]
 [Route("[controller]")]
 public class MedicalController : ControllerBase
 {
-    // Private field to hold an instance of DisabilityDbContext, which represents the database context.
-    private readonly DisabilityDbContext _context;
-    
-    // Constructor to inject DisabilityDbContext dependency.
-    public MedicalController(DisabilityDbContext context) => _context = context;
+    private readonly MedicalContext _context;
+    public MedicalController (MedicalContext context)
+    {
+       _context = context;
+    }
 
-    // GET: Returns a list of all disabilities.
     [HttpGet]
-    public async Task<IEnumerable<Disability>> Get()
+    [Route("{userId}")]
+    public async Task<IActionResult> GetOwn (string userId)
     {
-        // Retrieve all disabilities from the database asynchronously and convert them to a list.
-        return await _context.Disabilities.ToListAsync();   
+        List<RequestModel> list = [];
+        
+        var result = await _context.Disabilities
+        .Where(a => a.UserId.Equals(userId))
+        .ToListAsync();
+
+
+            if (result != null)
+            {
+                foreach(var disability in result)
+                {
+                    var tools = await _context.Tools.Where((t) => t.Dcode == disability.Dcode).ToListAsync();
+
+                    list.Add(new RequestModel {Disability = disability, Tools = tools});
+                }
+
+                return Ok(list);
+            }
+
+        return NotFound();   
     }
 
-    // GET by Dcode: Returns a specific disability by its Dcode.
-    [HttpGet("Dcode")]
-    [ProducesResponseType(typeof(Disability), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> GetByDcode(int Dcode)
+[HttpPost]
+public async Task<IActionResult> Post([FromBody] List<RequestModel> requests)
+{
+    foreach (var request in requests)
     {
-        var disability = await _context.Disabilities.FindAsync(Dcode);
-        return disability == null ? NotFound() : Ok(disability);
+        if (await _context.Disabilities.AnyAsync(d => d.UserId.Equals(request.Disability.UserId) && d.Type.Equals(request.Disability.Type)))
+        {
+            return BadRequest($"Beperking bestaat al voor deze user met dit type");
+        }
+
+        // Voeg de tools toe aan de database als ze nog niet bestaan
+        foreach (var tool in request.Tools)
+        {
+            tool.Dcode = request.Disability.Dcode;
+            tool.UserId = request.Disability.UserId;
+
+            if (! await _context.Tools.AnyAsync(t => t.UserId.Equals(tool.UserId) && t.Name.Equals(tool.Name) && t.Dcode == tool.Dcode))
+            {
+                _context.Tools.Add(tool);
+            }
+        }
+
+        var add =  await _context.Disabilities.AddAsync(request.Disability);
+
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateException e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500);
+        }
     }
 
-    // POST: Creates a new disability.
-    [HttpPost]
-    [ProducesResponseType(StatusCodes.Status201Created)]
-    public async Task<IActionResult> Create(Disability disability)
+    // Als alle Disability-objecten succesvol zijn toegevoegd
+    return Ok(requests);
+}
+
+[HttpPut]
+public async Task<IActionResult> Put([FromBody] RequestModel request)
+{
+    _context.Update(request.Disability);
+
+    var existingTools = await _context.Tools
+        .Where(t => t.Dcode == request.Disability.Dcode)
+        .ToListAsync();
+
+    foreach (var existingTool in existingTools)
     {
-        await _context.Disabilities.AddAsync(disability);
+        var matchingTool = request.Tools.FirstOrDefault(t => t.Id == existingTool.Id);
+
+        if (matchingTool != null)
+        {
+            _context.Entry(existingTool).CurrentValues.SetValues(matchingTool);
+        }
+        else
+        {
+            _context.Tools.Remove(existingTool);
+        }
+    }
+
+    foreach (var tool in request.Tools)
+    {
+        tool.Dcode = request.Disability.Dcode;
+        tool.UserId = request.Disability.UserId;
+
+        var existingTool = await _context.Tools.FindAsync(tool.Id);
+
+        if (existingTool != null)
+        {
+            _context.Entry(existingTool).CurrentValues.SetValues(tool);
+        }
+        else
+        {
+            _context.Tools.Add(tool);
+        }
+    }
+
+    try
+    {
         await _context.SaveChangesAsync();
 
-        // Returns 201 Created status with the location of the new resource.
-        return CreatedAtAction(nameof(GetByDcode), new {dcode = disability.Dcode}, disability);
+        return Ok(new { Disability = request.Disability, Tools = request.Tools });
     }
-
-    // PUT: Updates an existing disability by Dcode.
-    [HttpPut("{Dcode}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Update(int Dcode, Disability disability)
+    catch (DbUpdateException e)
     {
-        // Checks if the provided Dcode matches the Dcode in the payload.
-        if (Dcode != disability.Dcode) return BadRequest();
-
-        _context.Entry(disability).State = EntityState.Modified;
-        await _context.SaveChangesAsync();
-
-        // Returns 204 No Content status for a successful update.
-        return NoContent();
+        Console.WriteLine(e);
+        return BadRequest();
     }
+}
 
-    // DELETE: Deletes a disability by Dcode.
-    [HttpDelete("{Dcode}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Delete(int Dcode)
+
+
+    [HttpDelete]
+    [Route("{userId}")]
+    public async Task<IActionResult> DeleteAll (string userId)
     {
-        var disabilityToDelete = await _context.Disabilities.FindAsync(Dcode);
-        if (disabilityToDelete == null) return NotFound();
 
-        _context.Disabilities.Remove(disabilityToDelete);
-        await _context.SaveChangesAsync();
+ 
+        var result = _context.Disabilities.Where((d) => d.UserId.Equals(userId));
+        var tools = _context.Tools.Where((t) => t.UserId.Equals(userId));
 
-        // Returns 204 No Content status for a successful deletion.
-        return NoContent();
-    }
-    
+
+        if (result == null)
+            return NotFound();
+
+        foreach(var item in result)
+        {
+            _context.Remove(item);
+        }
+
+        if(tools != null)
+        {
+            foreach(var tool in tools)
+            {
+                _context.Remove(tool);
+            }
+        }    
+
+        try 
+        {
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+        catch(DbUpdateException e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500);
+        }
+    } 
 }

@@ -1,0 +1,58 @@
+.Researchlist {
+  width: 80%;
+  margin: auto;
+}
+
+.Researchlist th,
+.Researchlist td {
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.Researchlist th {
+  background-color: #f2f2f2;
+}
+
+.Createbutton {
+  width: 250px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 1px solid #FFF;
+  background: #57C0B8;
+  color: #000;
+  text-align: center;
+  font-family: Arial;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+}
+
+.Createbutton:hover {
+  background: rgba(87, 192, 184, 0.9);
+}
+
+.Createbutton:active {
+  background: #305e56;
+}
+.Buttongrey {
+  width: 250px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 1px solid #FFF;
+  background: lightgray;
+  color: #545454;
+  text-align: center;
+  font-family: Arial;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+}

@@ -17,7 +17,7 @@ public class TestUserDataController_GetRole : IClassFixture<UserDataFixture>
     {
         //Arrange
         var controller = new UserDataController (_fixture.Context);
-        var dataObject = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = 0611, FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = new [] {"", "", "", "", "", "", ""}, Preferred_contact = "not"};
+        var dataObject = new PanelMember { UserId = "userId", Email = "test@mail.nl", PhoneNumber = "0611", FirstName = "Firstname", LastName = "Lastname", AgeId = 1, PostalCode = "2002 ET", Availability = "", Preferred_contact = "not"};
 ;
 
         
@@ -53,7 +53,7 @@ public class TestUserDataController_GetRole : IClassFixture<UserDataFixture>
     {
         //Arrange
         var controller = new UserDataController (_fixture.Context);
-        var dataObject = new Administrator { UserId = "userId6", Email = "test@mail.nl", FirstName = "Firstname", LastName = "Lastname", IsAdmin = false };
+        var dataObject = new Administrator { UserId = "userId6", Email = "test@mail.nl", FirstName = "Firstname", LastName = "Lastname", PhoneNumber = "+31 606060", IsAdmin = false };
 ;
 
         
@@ -71,7 +71,7 @@ public class TestUserDataController_GetRole : IClassFixture<UserDataFixture>
     {
         //Arrange
         var controller = new UserDataController (_fixture.Context);
-        var dataObject = new Administrator { UserId = "userId7", Email = "test2@mail.nl", FirstName = "Firstname2", LastName = "Lastname2", IsAdmin = true }
+        var dataObject = new Administrator { UserId = "userId7", Email = "test2@mail.nl", FirstName = "Firstname2", LastName = "Lastname2", PhoneNumber = "+31 606060", IsAdmin = true }
 ;
 
         

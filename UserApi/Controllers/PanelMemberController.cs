@@ -62,7 +62,7 @@ public class PanelMemberController : ControllerBase
         {   
             // string tenantId = tenantIdClaim.Value;
 
-            var result = _context.PanelMembers.Select((p) => new { FirstName = p.FirstName, LastName = p.FirstName,  Email = p.Email, PhoneNumber = p.PhoneNumber, AgeId = p.AgeId, Preferred_contact = p.Preferred_contact, PostalCode = p.PostalCode, Availability = p.Availability, Caretaker = p.CaretakerId == null});
+            var result = _context.PanelMembers.Select((p) => new { UserId = p.UserId, FirstName = p.FirstName, LastName = p.FirstName,  Email = p.Email, PhoneNumber = p.PhoneNumber, AgeId = p.AgeId, Preferred_contact = p.Preferred_contact, PostalCode = p.PostalCode, Availability = p.Availability, Caretaker = p.CaretakerId == null});
 
                 if (result != null)
                 {
@@ -76,13 +76,18 @@ public class PanelMemberController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post ([FromBody] RequestModel request)
     {
-        if(!_context.PanelMembers.Any((p) => p.UserId.Equals(request.PanelMemberNew.UserId))){
+        if(!_context.PanelMembers.Any((p) => p.UserId.Equals(request.PanelMemberNew.UserId)) 
+
+        || !_context.Caretakers.Any((p) => p.CaretakerId.Equals(request.Caretaker.CaretakerId))){
 
         if(!await _context.AgeRanges.AnyAsync((a) => a.AgeId == request.PanelMemberNew.AgeId))
             return BadRequest("AgeRange niet gevonden");
 
         var add = _context.PanelMembers.AddAsync(request.PanelMemberNew);
 
+        if(request.Caretaker != null){
+            var add2 =  await _context.Caretakers.AddAsync(request.Caretaker);
+        }
 
         try
         {
@@ -134,7 +139,7 @@ public class PanelMemberController : ControllerBase
                 {
                     if(request.Caretaker != null)
                     {
-                       request.Caretaker.CaretakerId = request.PanelMemberCurrent.CaretakerId.Value;
+                       request.Caretaker.CaretakerId = request.PanelMemberCurrent.CaretakerId;
                        _context.Update(request.Caretaker);
                     }
                     

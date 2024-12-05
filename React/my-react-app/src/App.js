@@ -15,6 +15,9 @@ import { Research } from './Research';
 import { MakeResearch } from './MakeResearch/MakeResearch';
 import {MakeResearchFinalStep } from './MakeResearch/MakeResearchFinalStep';
 
+import { DeleteResearch } from './DeleteResearch/DeleteResearch';
+import { Companyresearches } from './All_Researches_Company/All_Researches_Company';
+
 export function App() {
     return (
       <>
